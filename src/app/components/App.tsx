@@ -10,9 +10,13 @@ import Skill from './skill/Skill'
 
 require('./App.css')
 
+const STORAGE_KEY = 'mhw-simulator/skillLog/v1'
+
+const initSkillLogState: ISkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
-  const [skillLog, setSkillLog] = useState({} as ISkill)
+  const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
   const [result, setResult] = useState(null as IResult | null)
   const skillRef = useRef<HTMLDivElement>(null)
 
@@ -21,10 +25,13 @@ const App: React.FC = () => {
       .sort((a, b) => (skillLog[b.id] || 0) - (skillLog[a.id] || 0))
   }, [skillLog])
 
+  // skillLog変更時
   useLayoutEffect(() => {
-    if (!skillRef.current) return
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(skillLog))
 
-    skillRef.current.scrollTo(0, 0)
+    if (skillRef.current) {
+      skillRef.current.scrollTo(0, 0)
+    }
   }, [skillLog])
 
   return (
