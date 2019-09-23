@@ -1,8 +1,5 @@
 import fs from 'fs'
 
-export const skill = fs.readFileSync(__dirname + '/skill.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
 export const head = fs.readFileSync(__dirname + '/head.txt', 'utf-8')
   .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
 

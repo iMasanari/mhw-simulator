@@ -1,23 +1,27 @@
 import React from 'react'
-import { skill } from '~/app/data'
+import skillList from '~/app/data/skill.json'
 import { Skill, UpdateSkill } from '~/app/hooks/useSkill'
-import SkillInput from './SkillInput'
+import SkillListRow from './SkillRow'
 
 require('./Skill.css')
 
 interface Props {
+  skillList: typeof skillList
   activeSkill: Skill
   updateActiveSkill: UpdateSkill
 }
 
-const skillList = Object.keys(skill).map(key => [key, skill[key]] as const)
-
-const Skill: React.FC<Props> = ({ activeSkill, updateActiveSkill }) =>
+const Skill: React.FC<Props> = ({ skillList, activeSkill, updateActiveSkill }) =>
   <ul className="Skill">
-    {skillList.map(([key, value]) =>
-      <li key={key} className="Skill-li">
-        <span>{value}</span>
-        <SkillInput id={key} value={activeSkill[key]} onUpdate={updateActiveSkill} />
+    {skillList.map(({ id, name, items }) =>
+      <li key={id} className="Skill-li">
+        <SkillListRow
+          id={id}
+          name={name}
+          value={activeSkill[id]}
+          items={items}
+          onUpdate={updateActiveSkill}
+        />
       </li>
     )}
   </ul>
