@@ -1,0 +1,11 @@
+.SkillFilter {
+  padding: 0 1em;
+}
+
+.SkillFilter-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px 0.5em;
+  border: 1px solid #ddd;
+  outline: none;
+}
