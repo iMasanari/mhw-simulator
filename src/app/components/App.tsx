@@ -1,7 +1,7 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import allSkillList from '~/app/data/skill.json'
 import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
-import { Result as IResult } from '../service/search'
+import search, { Result as IResult } from '../service/search'
 import ClearButton from './actions/ClearButton'
 import SearchButton from './actions/SearchButton'
 import Header from './header/Header'
@@ -27,6 +27,11 @@ const App: React.FC = () => {
       .filter((v) => !skillFilter || ~v.name.indexOf(skillFilter) || v.category === skillFilter)
       .sort((a, b) => (skillLog[b.id] || 0) - (skillLog[a.id] || 0))
   }, [skillFilter, skillLog])
+
+  // 初回検索
+  useEffect(() => {
+    search(activeSkill).then(setResult)
+  }, [])
 
   // skillLog変更時
   useLayoutEffect(() => {
