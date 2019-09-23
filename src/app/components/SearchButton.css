@@ -1,0 +1,18 @@
+.SearchButton {
+  padding: 0.5em;
+  margin: 0.5em;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  font-size: 1em;
+  text-decoration: none;
+  background-color: white;
+  color: #67c5ff;
+  transition: color .4s, background-color .4s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.SearchButton:hover {
+  background-color: #67c5ff;
+  color: white;
+}

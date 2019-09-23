@@ -1,0 +1,17 @@
+.Skill {
+  width: 300px;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+}
+
+.Skill-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 1em;
+}
+
+.Skill-li:hover {
+  background-color: #eee;
+}

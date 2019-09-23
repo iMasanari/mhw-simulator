@@ -1,0 +1,32 @@
+{
+  "name": "mhw-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "cp-script": "cp node_modules/glpk.js/dist/glpk.min.js dist/",
+    "clean": "rm -rf dist/*",
+    "predev": "npm run cp-script",
+    "dev": "parcel src/index.html",
+    "prebuild": "npm run clean && npm run cp-script",
+    "build": "parcel build src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iMasanari",
+  "license": "MIT",
+  "dependencies": {
+    "glpk.js": "git+https://github.com/hgourvest/glpk.js.git",
+    "normalize.css": "^8.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.6.3"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
+}
