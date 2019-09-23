@@ -6,11 +6,12 @@ import SkillListRow from './SkillRow'
 require('./Skill.css')
 
 interface Props {
+  skillList: typeof skillList
   activeSkill: Skill
   updateActiveSkill: UpdateSkill
 }
 
-const Skill: React.FC<Props> = ({ activeSkill, updateActiveSkill }) =>
+const Skill: React.FC<Props> = ({ skillList, activeSkill, updateActiveSkill }) =>
   <ul className="Skill">
     {skillList.map(({ id, name, items }) =>
       <li key={id} className="Skill-li">
