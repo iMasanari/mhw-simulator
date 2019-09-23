@@ -11,12 +11,22 @@ export interface Result {
   deco: { name: string, count: number }[]
 }
 
+let _worker: Worker | undefined
+
+const createWorker = () => {
+  // 2重実行しないよう、前回のワーカーを終了させる
+  // TODO: 実行が完了している場合、前回のものを使い回すようにする
+  if (_worker) _worker.terminate()
+
+  return _worker = new Worker('~/worker/index.js')
+}
+
 const find = <T>(list: string[], obj: Record<string, T>) =>
   list.map(value => obj[value]).find(Boolean)
 
 export default async (skill: Skill) =>
   new Promise<Result>(resolve => {
-    const worker = new Worker('~/worker/index.js')
+    const worker = createWorker()
 
     worker.postMessage({
       action: 'load',
@@ -42,14 +52,6 @@ export default async (skill: Skill) =>
         .map(value => ({ name: data.deco[value], count: result[value] }))
         .filter(({ name }) => name)
 
-      resolve({
-        head,
-        body,
-        arm,
-        wst,
-        leg,
-        charm,
-        deco,
-      })
+      resolve({ head, body, arm, wst, leg, charm, deco })
     })
   })
