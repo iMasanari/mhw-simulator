@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Skill } from '~/app/hooks/useSkill'
-import search, { Result } from '../service/search'
+import search, { Result } from '~/app/service/search'
 
 require('./SearchButton.css')
 

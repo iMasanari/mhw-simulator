@@ -18,5 +18,9 @@ export default () => {
     })
   }, [])
 
-  return [skill, updateSkill] as const
+  const clearSkill = useCallback(() => {
+    setSkill({})
+  }, [])
+
+  return [skill, updateSkill, clearSkill] as const
 }

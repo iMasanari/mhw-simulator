@@ -1,0 +1,17 @@
+.ClearButton {
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+  text-decoration: none;
+  background-color: transparent;
+  color: #666;
+  transition: color .4s, background-color .4s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ClearButton:hover {
+  background-color: #eee;
+}
