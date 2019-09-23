@@ -6,13 +6,20 @@ body {
 
 .App {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .App-inputArea {
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 100vh;
 }
 
 .App-skill {
@@ -28,10 +35,12 @@ body {
 @media screen and (max-width:480px) {
 
   .App,
+  .App-main,
   .App-inputArea {
     display: block;
     width: auto;
     height: auto;
+    overflow: visible;
   }
 
   .App-inputArea {

@@ -1,0 +1,25 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px;
+}
+
+.Header-title {
+  font-size: 1.4em;
+}
+
+.Header-githubLink {
+  color: #1A0DAB;
+  text-decoration: none;
+}
+
+.Header-githubLink:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width:480px) {
+  .Header-pc-only {
+    display: none;
+  }
+}

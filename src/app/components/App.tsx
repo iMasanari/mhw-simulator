@@ -3,6 +3,7 @@ import useSkill from '~/app/hooks/useSkill'
 import { Result as IResult } from '../service/search'
 import ClearButton from './actions/ClearButton'
 import SearchButton from './actions/SearchButton'
+import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
 
@@ -14,18 +15,21 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="App-inputArea">
-        <div className="App-skill">
-          <Skill activeSkill={activeSkill} updateActiveSkill={updateActiveSkill} />
+      <Header />
+      <main className="App-main">
+        <div className="App-inputArea">
+          <div className="App-skill">
+            <Skill activeSkill={activeSkill} updateActiveSkill={updateActiveSkill} />
+          </div>
+          <div className="App-searchButton">
+            <SearchButton skill={activeSkill} setResult={setResult} />
+            <ClearButton onClick={clearActiveSkill} />
+          </div>
         </div>
-        <div className="App-searchButton">
-          <SearchButton skill={activeSkill} setResult={setResult} />
-          <ClearButton onClick={clearActiveSkill} />
+        <div className="App-outputArea">
+          {!!result && <Result result={result} />}
         </div>
-      </div>
-      <div className="App-outputArea">
-        {!!result && <Result result={result} />}
-      </div>
+      </main>
     </div>
   )
 }
