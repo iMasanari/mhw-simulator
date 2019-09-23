@@ -9,6 +9,8 @@
     "dev": "parcel src/index.html",
     "prebuild": "npm run clean && npm run cp-script",
     "build": "parcel build src/index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iMasanari",
@@ -23,6 +25,7 @@
     "@types/node": "^12.7.5",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.3",
     "typescript": "^3.6.3"
   },
