@@ -17,7 +17,9 @@ const App: React.FC = () => {
         <div className="App-skill">
           <Skill activeSkill={activeSkill} updateActiveSkill={updateActiveSkill} />
         </div>
-        <SearchButton skill={activeSkill} setResult={setResult} />
+        <div className="App-searchButton">
+          <SearchButton skill={activeSkill} setResult={setResult} />
+        </div>
       </div>
       <div className="App-outputArea">
         {!!result && <Result result={result} />}

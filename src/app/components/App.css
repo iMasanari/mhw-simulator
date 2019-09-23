@@ -11,10 +11,37 @@ body {
 .App-inputArea {
   display: flex;
   flex-direction: column;
+  width: 300px;
   height: 100vh;
 }
 
 .App-skill {
   flex: 1;
   overflow: auto;
+}
+
+.App-searchButton {
+  text-align: center;
+  background: #fff;
+}
+
+@media screen and (max-width:480px) {
+
+  .App,
+  .App-inputArea {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .App-inputArea {
+    position: relative;
+  }
+
+  .App-searchButton {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+  }
+
 }
