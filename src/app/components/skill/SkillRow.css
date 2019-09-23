@@ -1,0 +1,16 @@
+.SkillRow {
+  display: flex;
+  align-items: center;
+  padding: 8px 1em;
+}
+
+.SkillRow:hover {
+  background: #eee
+}
+
+.SkillRow-name {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

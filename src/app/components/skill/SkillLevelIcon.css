@@ -1,0 +1,21 @@
+.SkillLevelIcon {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.SkillLevelIcon-li {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #ddd;
+  margin: 0 2px 0 0;
+  padding: 0;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.SkillLevelIcon-li.on {
+  background: #ddd;
+}

@@ -1,0 +1,34 @@
+.SkillSelect {
+  position: relative;
+}
+
+.SkillSelect::before {
+  position: absolute;
+  top: 0.8em;
+  right: 0.5em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid #666666;
+  pointer-events: none;
+}
+
+.SkillSelect-select {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  padding: 4px 1.5em 0 1em;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  font-size: 1em;
+  cursor: pointer;
+  background: #fff;
+}
+
+.SkillSelect-select::-ms-expand {
+  display: none;
+}
