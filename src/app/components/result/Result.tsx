@@ -48,7 +48,7 @@ const Result: React.FC<Props> = ({ result }) => {
           <td>
             <ul>
               {result.deco.map(({ name, count }) =>
-                <li>{name}x{count}</li>
+                <li key={name}>{name}x{count}</li>
               )}
             </ul>
           </td>
