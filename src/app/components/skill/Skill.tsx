@@ -1,5 +1,5 @@
 import React from 'react'
-import { skill } from '~/app/data'
+import skillList from '~/app/data/skill.json'
 import { Skill, UpdateSkill } from '~/app/hooks/useSkill'
 import SkillInput from './SkillInput'
 
@@ -10,14 +10,12 @@ interface Props {
   updateActiveSkill: UpdateSkill
 }
 
-const skillList = Object.keys(skill).map(key => [key, skill[key]] as const)
-
 const Skill: React.FC<Props> = ({ activeSkill, updateActiveSkill }) =>
   <ul className="Skill">
-    {skillList.map(([key, value]) =>
-      <li key={key} className="Skill-li">
-        <span>{value}</span>
-        <SkillInput id={key} value={activeSkill[key]} onUpdate={updateActiveSkill} />
+    {skillList.map(({ id, name }) =>
+      <li key={id} className="Skill-li">
+        <span>{name}</span>
+        <SkillInput id={id} value={activeSkill[id]} onUpdate={updateActiveSkill} />
       </li>
     )}
   </ul>
