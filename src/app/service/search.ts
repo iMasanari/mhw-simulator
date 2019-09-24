@@ -1,4 +1,5 @@
 import * as data from '~/app/data'
+import skillList from '~/app/data/skill.json'
 import { Skill } from '../hooks/useSkill'
 
 export interface Result {
@@ -8,7 +9,9 @@ export interface Result {
   wst: string | undefined
   leg: string | undefined
   charm: string | undefined
-  deco: { name: string, count: number }[]
+  decos: { name: string, count: number }[]
+  skills: { name: string, count: number }[]
+  def: number | undefined
 }
 
 let _worker: Worker | undefined
@@ -20,6 +23,11 @@ const createWorker = () => {
 
   return _worker = new Worker('~/worker/index.js')
 }
+
+const skillHash = skillList.reduce(
+  (acc, v) => (acc[v.id] = v.name, acc),
+  {} as Record<string, string>
+)
 
 const find = <T>(list: string[], obj: Record<string, T>) =>
   list.map(value => obj[value]).find(Boolean)
@@ -48,10 +56,17 @@ export default async (skill: Skill) =>
       const leg = find(list, data.leg)
       const charm = find(list, data.charm)
 
-      const deco = list
+      const decos = list
         .map(value => ({ name: data.deco[value], count: result[value] }))
         .filter(({ name }) => name)
 
-      resolve({ head, body, arm, wst, leg, charm, deco })
+      const skills = list
+        .map(value => ({ name: skillHash[value], count: result[value] }))
+        .filter(({ name }) => name)
+        .sort((a, b) => b.count - a.count)
+
+      const def = result.y11
+
+      resolve({ head, body, arm, wst, leg, charm, decos, skills, def })
     })
   })

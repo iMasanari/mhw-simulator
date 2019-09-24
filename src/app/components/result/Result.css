@@ -1,0 +1,50 @@
+.Result {
+  display: flex;
+}
+
+.Result-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 50%;
+}
+
+.Result-table tr {
+  border-bottom: solid 1px #ddd;
+}
+
+.Result-table tr:last-child {
+  border-bottom: none;
+}
+
+.Result-table th {
+  width: 5em;
+}
+
+.Result-table th,
+.Result-table td {
+  padding: 0.6em 1em 0.4em;
+  text-align: left;
+  vertical-align: text-top;
+}
+
+.Result-ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+
+@media screen and (max-width:960px) {
+
+  .Result {
+    display: block;
+  }
+
+  .Result-table {
+    width: 100%;
+  }
+
+  .Result-table + .Result-table {
+    margin-top: 1em;
+  }
+}
