@@ -20,6 +20,10 @@ const Result: React.FC<Props> = ({ result }) => {
     <table ref={elRef}>
       <tbody>
         <tr>
+          <th>防御力</th>
+          <td>{result.def}</td>
+        </tr>
+        <tr>
           <th>頭</th>
           <td>{result.head}</td>
         </tr>
@@ -47,8 +51,18 @@ const Result: React.FC<Props> = ({ result }) => {
           <th>装飾品</th>
           <td>
             <ul>
-              {result.deco.map(({ name, count }) =>
+              {result.decos.map(({ name, count }) =>
                 <li key={name}>{name}x{count}</li>
+              )}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>発動スキル</th>
+          <td>
+            <ul>
+              {result.skills.map(({ name, count }) =>
+                <li key={name}>{name} Lv{count}</li>
               )}
             </ul>
           </td>
