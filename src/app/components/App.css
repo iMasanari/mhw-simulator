@@ -32,11 +32,17 @@ body {
   background: #fff;
 }
 
+.App-outputArea {
+  flex: 1;
+  overflow: auto;
+}
+
 @media screen and (max-width:480px) {
 
   .App,
   .App-main,
-  .App-inputArea {
+  .App-inputArea,
+  .App-outputArea {
     display: block;
     width: auto;
     height: auto;
