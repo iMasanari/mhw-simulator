@@ -1,5 +1,5 @@
 import React from 'react'
-import { Result } from '~/app/service/search'
+import { Result } from '~/worker/service/calc'
 
 require('./Result.css')
 

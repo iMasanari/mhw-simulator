@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "cp-script": "cp node_modules/glpk.js/dist/glpk.min.js dist/",
     "clean": "rm -rf dist/*",
-    "predev": "npm run cp-script",
     "dev": "parcel src/index.html",
-    "prebuild": "npm run clean && npm run cp-script",
     "build": "parcel build src/index.html --public-url ./",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
