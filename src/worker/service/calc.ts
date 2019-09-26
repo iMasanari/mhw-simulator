@@ -1,7 +1,7 @@
-import fs from 'fs'
 import * as armorsData from '~/app/data'
 import skillList from '~/app/data/skill.json'
 import { Skill } from '~/app/hooks/useSkill'
+import createLpText from '../util/createLpText'
 import executeGlpk from '../util/executeGlpk'
 
 export interface Result {
@@ -15,9 +15,6 @@ export interface Result {
   skills: { name: string, count: number }[]
   def: number | undefined
 }
-
-const text1 = fs.readFileSync(__dirname + '/../data/text1.txt', 'utf-8')
-const text3 = fs.readFileSync(__dirname + '/../data/text3.txt', 'utf-8')
 
 const skillHash = skillList.reduce(
   (acc, v) => (acc[v.id] = v.name, acc),
@@ -93,7 +90,8 @@ export default (skill: Skill) => {
   skill = nomalizeSkill(skill)
 
   const data = Object.keys(skill).map(key => `${key} >= ${skill[key]}`).join('\n')
-  const result = executeGlpk(`${text1}\n${data}\n${text3}`, true)
+  const lpText = createLpText(data)
+  const result = executeGlpk(lpText, true)
 
   const list = Object.keys(result).filter(key => result[key])
 
