@@ -9,15 +9,16 @@ interface Props {
   id: string
   name: string
   value: number
+  addableValue: number | null
   items: { level: number }[]
   onUpdate: UpdateSkill
 }
 
-const SkillRow: React.FC<Props> = ({ id, name, value, items, onUpdate }) =>
+const SkillRow: React.FC<Props> = ({ id, name, value, addableValue, items, onUpdate }) =>
   <div className="SkillRow">
     <div className="SkillRow-name">
       {name}
-      <SkillLevelIcon id={id} value={value} items={items} onUpdate={onUpdate} />
+      <SkillLevelIcon id={id} value={value} addableValue={addableValue} items={items} onUpdate={onUpdate} />
     </div>
     <SkillSelect id={id} value={value} items={items} onUpdate={onUpdate} />
   </div>

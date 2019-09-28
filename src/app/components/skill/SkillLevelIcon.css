@@ -19,3 +19,11 @@
 .SkillLevelIcon-li.on {
   background: #ddd;
 }
+
+.SkillLevelIcon-li.addable {
+  border-color: #67c5ff;
+}
+
+.SkillLevelIcon-li.on.addable {
+  background: #67c5ff;
+}

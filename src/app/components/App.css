@@ -27,9 +27,10 @@ body {
   overflow: auto;
 }
 
-.App-searchButton {
+.App-actions {
   text-align: center;
   background: #fff;
+  padding: 0.5em;
 }
 
 .App-outputArea {
@@ -53,7 +54,7 @@ body {
     position: relative;
   }
 
-  .App-searchButton {
+  .App-actions {
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;

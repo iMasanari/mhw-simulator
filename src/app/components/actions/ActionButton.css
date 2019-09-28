@@ -1,6 +1,6 @@
-.ClearButton {
+.ActionButton {
   padding: 0.5em 1em;
-  margin: 0.5em;
+  margin: 1px 0.5em;
   border: none;
   border-radius: 3px;
   font-size: 1em;
@@ -12,6 +12,17 @@
   appearance: none;
 }
 
-.ClearButton:hover {
+.ActionButton:hover {
   background-color: #eee;
+}
+
+.ActionButton.primary {
+  border: solid 2px #67c5ff;
+  background-color: white;
+  color: #67c5ff;
+}
+
+.SearchButton.primary:hover {
+  background-color: #67c5ff;
+  color: white;
 }
