@@ -1,7 +1,23 @@
 body {
+  overflow: hidden;
   padding: 0;
   margin: 0;
   font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/*スクロールバーの軌道*/
+::-webkit-scrollbar-track {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+/*スクロールバーの動く部分*/
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
 }
 
 .App {
@@ -39,6 +55,9 @@ body {
 }
 
 @media screen and (max-width:480px) {
+  body {
+    overflow: visible;
+  }
 
   .App,
   .App-main,
@@ -59,5 +78,4 @@ body {
     position: sticky;
     bottom: 0;
   }
-
 }
