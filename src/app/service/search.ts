@@ -3,8 +3,15 @@ import { Skill } from '../hooks/useSkill'
 import createWorker from '../util/createWorker'
 
 export default async (skill: Skill) =>
-  new Promise<Result>(resolve => {
+  new Promise<Result>((resolve, reject) => {
     const worker = createWorker()
+
+    const terminate = worker.terminate.bind(worker)
+
+    worker.terminate = () => {
+      reject()
+      terminate()
+    }
 
     worker.postMessage({
       action: 'load',

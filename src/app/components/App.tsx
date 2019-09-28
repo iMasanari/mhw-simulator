@@ -47,7 +47,7 @@ const App: React.FC = () => {
       skillRef.current.scrollTo(0, 0)
     }
 
-    const result = await search(activeSkill)
+    const result = await search(activeSkill).catch(() => null)
     setResult(result)
 
     if (outputAreaRef.current) {
@@ -65,12 +65,12 @@ const App: React.FC = () => {
 
   const clear = useCallback(() => {
     clearActiveSkill()
-    clearAddableSkill()
-  }, [clearActiveSkill, clearAddableSkill])
+    onSearch()
+  }, [clearActiveSkill, onSearch])
 
   // 初回検索
   useEffect(() => {
-    search(activeSkill).then(setResult)
+    search(activeSkill).catch(() => null).then(setResult)
   }, [])
 
   // skillLog変更時
