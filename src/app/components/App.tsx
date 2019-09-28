@@ -4,8 +4,7 @@ import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
 import search from '~/app/service/search'
 import { Result as IResult } from '~/worker/service/calc'
 import useAddableSkill from '../hooks/useAddableSkill'
-import ClearButton from './actions/ClearButton'
-import SearchButton from './actions/SearchButton'
+import ActionButton from './actions/ActionButton'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
@@ -92,10 +91,10 @@ const App: React.FC = () => {
               updateActiveSkill={updateActiveSkill}
             />
           </div>
-          <div className="App-searchButton">
-            <SearchButton onClick={onSearch} />
-            <ClearButton label="クリア" onClick={clear} />
-            <ClearButton label="追加スキル検索β" onClick={searchAddableSkill} />
+          <div className="App-actions">
+            <ActionButton label="検索" onClick={onSearch} primary />
+            <ActionButton label="クリア" onClick={clear} />
+            <ActionButton label="追加スキル検索β" onClick={searchAddableSkill} />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
