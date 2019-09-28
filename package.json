@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "dev": "parcel src/index.html",
+    "prebuild": "npm run clean",
     "build": "parcel build src/index.html --public-url ./",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
