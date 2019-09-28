@@ -1,6 +1,6 @@
-export default (data: string) => `
+export default (data: string, maximize: string) => `
 Maximize
-obj: y11
+obj: ${maximize}
 
 Subject To
 cap:

@@ -3,6 +3,7 @@ import allSkillList from '~/app/data/skill.json'
 import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
 import search from '~/app/service/search'
 import { Result as IResult } from '~/worker/service/calc'
+import useAddableSkill from '../hooks/useAddableSkill'
 import ClearButton from './actions/ClearButton'
 import SearchButton from './actions/SearchButton'
 import Header from './header/Header'
@@ -18,6 +19,7 @@ const initSkillLogState: ISkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!)
 
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
+  const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
   const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
   const [skillFilter, setSkillFilter] = useState('')
   const [result, setResult] = useState(null as IResult | null)
@@ -31,6 +33,8 @@ const App: React.FC = () => {
   }, [skillFilter, skillLog])
 
   const onSearch = useCallback(async () => {
+    clearAddableSkill()
+
     const time = Date.now()
     const log = Object.keys(activeSkill).reduce(
       (acc, key) => (acc[key] = time + activeSkill[key], acc),
@@ -49,7 +53,20 @@ const App: React.FC = () => {
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, setResult])
+  }, [activeSkill, skillList, setResult, calcAddableSkill])
+
+  const searchAddableSkill = useCallback(() => {
+    if (skillRef.current) {
+      skillRef.current.scrollTo(0, 0)
+    }
+
+    calcAddableSkill(activeSkill, skillList.map(({ id }) => id))
+  }, [activeSkill, skillList])
+
+  const clear = useCallback(() => {
+    clearActiveSkill()
+    clearAddableSkill()
+  }, [clearActiveSkill, clearAddableSkill])
 
   // 初回検索
   useEffect(() => {
@@ -71,12 +88,14 @@ const App: React.FC = () => {
             <Skill
               skillList={skillList}
               activeSkill={activeSkill}
+              addableSkill={addableSkill}
               updateActiveSkill={updateActiveSkill}
             />
           </div>
           <div className="App-searchButton">
             <SearchButton onClick={onSearch} />
-            <ClearButton onClick={clearActiveSkill} />
+            <ClearButton label="クリア" onClick={clear} />
+            <ClearButton label="追加スキル検索β" onClick={searchAddableSkill} />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
