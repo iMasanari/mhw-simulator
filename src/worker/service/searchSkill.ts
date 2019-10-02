@@ -3,7 +3,7 @@ import createLpText from '../util/createLpText'
 import executeGlpk from '../util/executeGlpk'
 import normalizeSkill from '../util/normalizeSkill'
 
-export default function* (skill: Skill, skillList: string) {
+export default function* (skill: Skill, skillList: string[]) {
   skill = normalizeSkill(skill)
 
   const data = Object.keys(skill).map(key => `${key} >= ${skill[key]}`).join('\n')
