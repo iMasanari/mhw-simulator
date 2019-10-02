@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import allSkillList from '~/app/data/skill.json'
+import useAddableSkill from '~/app/hooks/useAddableSkill'
+import useResult from '~/app/hooks/useResult'
 import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
-import search from '~/app/service/search'
-import { Result as IResult } from '~/worker/service/calc'
-import useAddableSkill from '../hooks/useAddableSkill'
 import ActionButton from './actions/ActionButton'
 import Header from './header/Header'
 import Result from './result/Result'
@@ -21,7 +20,7 @@ const App: React.FC = () => {
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
   const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
   const [skillFilter, setSkillFilter] = useState('')
-  const [result, setResult] = useState(null as IResult | null)
+  const [result, search, clearResult] = useResult()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef(null as HTMLDivElement | null)
 
@@ -46,13 +45,12 @@ const App: React.FC = () => {
       skillRef.current.scrollTo(0, 0)
     }
 
-    const result = await search(activeSkill).catch(() => null)
-    setResult(result)
+    search(activeSkill)
 
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, skillList, setResult, calcAddableSkill])
+  }, [activeSkill, skillList, search, calcAddableSkill])
 
   const searchAddableSkill = useCallback(() => {
     if (skillRef.current) {
@@ -69,7 +67,7 @@ const App: React.FC = () => {
 
   // 初回検索
   useEffect(() => {
-    search(activeSkill).catch(() => null).then(setResult)
+    search(activeSkill)
   }, [])
 
   // skillLog変更時
@@ -98,7 +96,46 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
-          {!!result && <Result result={result} />}
+          {!!result.def &&
+            <div className="App-outputAreaResult">
+              <span className="App-outputTitle">
+                防御力最大: {result.def.def}
+              </span>
+              <Result result={result.def} />
+            </div>
+          }
+          {!!result.slot1 &&
+            <div className="App-outputAreaResult">
+              <span className="App-outputTitle">
+                空きスロット最大: {result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}
+              </span>
+              <Result result={result.slot1} />
+            </div>
+          }
+          {!!result.slot2 &&
+            <div className="App-outputAreaResult">
+              <span className="App-outputTitle">
+                空きスロット(Lv2以上)最大: {result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}
+              </span>
+              <Result result={result.slot2} />
+            </div>
+          }
+          {!!result.slot3 &&
+            <div className="App-outputAreaResult">
+              <span className="App-outputTitle">
+                空きスロット(Lv3以上)最大: {result.slot3.slot3 + result.slot3.slot4}
+              </span>
+              <Result result={result.slot3} />
+            </div>
+          }
+          {!!result.slot4 &&
+            <div className="App-outputAreaResult">
+              <span className="App-outputTitle">
+                空きスロット(Lv4)最大: {result.slot4.slot4}
+              </span>
+              <Result result={result.slot4} />
+            </div>
+          }
         </div>
       </main>
     </div>

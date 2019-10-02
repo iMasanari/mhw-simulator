@@ -54,6 +54,22 @@ const Result: React.FC<Props> = ({ result }) =>
           <td>{result.def}</td>
         </tr>
         <tr>
+          <th className="Result-th">空きスロ1</th>
+          <td>{result.slot1}</td>
+        </tr>
+        <tr>
+          <th className="Result-th">空きスロ2</th>
+          <td>{result.slot2}</td>
+        </tr>
+        <tr>
+          <th className="Result-th">空きスロ3</th>
+          <td>{result.slot3}</td>
+        </tr>
+        <tr>
+          <th className="Result-th">空きスロ4</th>
+          <td>{result.slot4}</td>
+        </tr>
+        <tr>
           <th className="Result-th">発動スキル</th>
           <td>
             <ul className="Result-ul">
