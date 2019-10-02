@@ -14,10 +14,12 @@ export interface Result {
   charm: string | undefined
   decos: { name: string, count: number }[]
   skills: { name: string, count: number }[]
-  def: number | undefined
+  def: number
+  slot1: number
+  slot2: number
+  slot3: number
+  slot4: number
 }
-
-const defKey = 'y11'
 
 const skillHash = skillList.reduce(
   (acc, v) => (acc[v.id] = v.name, acc),
@@ -27,11 +29,23 @@ const skillHash = skillList.reduce(
 const findArmor = <T>(list: string[], obj: Record<string, T>) =>
   list.map((value) => obj[value]).find(Boolean)
 
-export default (skill: Skill) => {
+const getSlots = (result: Record<string, number>) => {
+  const slot3Over = Math.min(result.y7, result.y8, result.y9)
+  const slot2Over = Math.min(result.y7, result.y8)
+
+  const slot4 = Math.min(result.y7, result.y8, result.y9, result.y10)
+  const slot3 = slot3Over - slot4
+  const slot2 = slot2Over - slot3Over
+  const slot1 = result.y7 - slot2Over
+
+  return [slot1, slot2, slot3, slot4]
+}
+
+export default (skill: Skill, objective: string): Result => {
   skill = normalizeSkill(skill)
 
   const data = Object.keys(skill).map(key => `${key} >= ${skill[key]}`).join('\n')
-  const lpText = createLpText(data, defKey)
+  const lpText = createLpText(data, objective)
   const result = executeGlpk(lpText, true)
 
   const list = Object.keys(result).filter(key => result[key])
@@ -52,7 +66,22 @@ export default (skill: Skill) => {
     .filter(({ name }) => name)
     .sort((a, b) => b.count - a.count)
 
-  const def = result[defKey]
+  const { y11: def } = result
+  const [slot1, slot2, slot3, slot4] = getSlots(result)
 
-  return { head, body, arm, wst, leg, charm, decos, skills, def }
+  return {
+    head,
+    body,
+    arm,
+    wst,
+    leg,
+    charm,
+    decos,
+    skills,
+    def,
+    slot1,
+    slot2,
+    slot3,
+    slot4,
+  }
 }
