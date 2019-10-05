@@ -1,4 +1,12 @@
 .Result {
+  margin: 1em;
+}
+
+.Result-title {
+  font-weight: bold;
+}
+
+.Result-content {
   display: flex;
 }
 

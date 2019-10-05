@@ -54,14 +54,6 @@ body {
   overflow: auto;
 }
 
-.App-outputAreaResult {
-  margin: 1em;
-}
-
-.App-outputTitle {
-  font-weight: bold;
-}
-
 @media screen and (max-width:480px) {
   body {
     overflow: visible;

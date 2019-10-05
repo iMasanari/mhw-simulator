@@ -97,44 +97,34 @@ const App: React.FC = () => {
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
           {!!result.def &&
-            <div className="App-outputAreaResult">
-              <span className="App-outputTitle">
-                防御力最大: {result.def.def}
-              </span>
-              <Result result={result.def} />
-            </div>
+            <Result
+              title={`防御力最大: ${result.def.def}`}
+              result={result.def}
+            />
           }
           {!!result.slot1 &&
-            <div className="App-outputAreaResult">
-              <span className="App-outputTitle">
-                空きスロット最大: {result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}
-              </span>
-              <Result result={result.slot1} />
-            </div>
+            <Result
+              title={`空きスロット最大: ${result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}`}
+              result={result.slot1}
+            />
           }
           {!!result.slot2 &&
-            <div className="App-outputAreaResult">
-              <span className="App-outputTitle">
-                空きスロット(Lv2以上)最大: {result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}
-              </span>
-              <Result result={result.slot2} />
-            </div>
+            <Result
+              title={`空きスロット(Lv2以上)最大: ${result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}`}
+              result={result.slot2}
+            />
           }
           {!!result.slot3 &&
-            <div className="App-outputAreaResult">
-              <span className="App-outputTitle">
-                空きスロット(Lv3以上)最大: {result.slot3.slot3 + result.slot3.slot4}
-              </span>
-              <Result result={result.slot3} />
-            </div>
+            <Result
+              title={`空きスロット(Lv3以上)最大: ${result.slot3.slot3 + result.slot3.slot4}`}
+              result={result.slot3}
+            />
           }
           {!!result.slot4 &&
-            <div className="App-outputAreaResult">
-              <span className="App-outputTitle">
-                空きスロット(Lv4)最大: {result.slot4.slot4}
-              </span>
-              <Result result={result.slot4} />
-            </div>
+            <Result
+              title={`空きスロット(Lv4)最大: ${result.slot4.slot4}`}
+              result={result.slot4}
+            />
           }
         </div>
       </main>
