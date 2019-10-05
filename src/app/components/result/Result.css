@@ -1,5 +1,35 @@
 .Result {
-  margin: 1em;
+  border-top: 1px solid #bbb;
+}
+
+.Result:last-child {
+  border-bottom: 1px solid #bbb;
+}
+
+.Result-thumb {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.Result-thumb::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0.25em;
+  border-top: 2px solid #bbb;
+  border-right: 2px solid #bbb;
+  transform: rotate(45deg);
+}
+
+.Result-thumb.on::after {
+  transform: rotate(135deg);
+}
+
+.Result-thumb:hover {
+  background: #ddd;
 }
 
 .Result-title {
@@ -11,17 +41,14 @@
 }
 
 .Result-table {
+  table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
   width: 50%;
 }
 
 .Result-table tr {
-  border-bottom: solid 1px #ddd;
-}
-
-.Result-table tr:last-child {
-  border-bottom: none;
+  border-top: solid 1px #ddd;
 }
 
 .Result-table th {
@@ -41,10 +68,12 @@
   list-style-type: none;
 }
 
+.Result-number {
+  text-align: right !important;
+}
 
 @media screen and (max-width:960px) {
-
-  .Result {
+  .Result-content {
     display: block;
   }
 

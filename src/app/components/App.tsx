@@ -100,6 +100,7 @@ const App: React.FC = () => {
             <Result
               title={`防御力最大: ${result.def.def}`}
               result={result.def}
+              initState={true}
             />
           }
           {!!result.slot1 &&
