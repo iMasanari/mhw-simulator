@@ -14,6 +14,7 @@ import Result from './result/Result'
 import Skill from './skill/Skill'
 import SkillFilter from './skill/SkillFilter'
 import Tab from './tab/Tab'
+import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
@@ -102,6 +103,7 @@ const App: React.FC = () => {
               updateActiveSkill={updateActiveSkill}
             />
           </div>
+          <Weapon slots={weaponSlots} setSlot={setWeaponSlot} />
           <div className="App-actions">
             <ActionButton label="検索" onClick={onSearch} primary />
             <ActionButton label="クリア" onClick={clear} />

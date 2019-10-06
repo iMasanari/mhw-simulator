@@ -1,0 +1,9 @@
+.Weapon {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+
+.Weapon-select {
+  width: 60px;
+}
