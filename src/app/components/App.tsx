@@ -3,6 +3,8 @@ import allSkillList from '~/app/data/skill.json'
 import useAddableSkill from '~/app/hooks/useAddableSkill'
 import useResult from '~/app/hooks/useResult'
 import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
+import useDecos from '../hooks/useDecos'
+import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import ActionButton from './actions/ActionButton'
 import Header from './header/Header'
 import Result from './result/Result'
@@ -22,6 +24,8 @@ const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
   const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
+  const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
+  const [decos, setDeco] = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
   const [tab, setTab] = useState(tabKeyList[0])
   const [result, search] = useResult()
@@ -49,7 +53,7 @@ const App: React.FC = () => {
       skillRef.current.scrollTo(0, 0)
     }
 
-    search(activeSkill)
+    search(activeSkill, ignoreArmors, decos)
     setTab('result')
 
     if (outputAreaRef.current) {
@@ -62,8 +66,8 @@ const App: React.FC = () => {
       skillRef.current.scrollTo(0, 0)
     }
 
-    calcAddableSkill(activeSkill, skillList.map(({ id }) => id))
-  }, [activeSkill, skillList])
+    calcAddableSkill(activeSkill, ignoreArmors, decos, skillList.map(({ id }) => id))
+  }, [activeSkill, ignoreArmors, decos, skillList])
 
   const clear = useCallback(() => {
     clearActiveSkill()
@@ -72,7 +76,7 @@ const App: React.FC = () => {
 
   // 初回検索
   useEffect(() => {
-    search(activeSkill)
+    search(activeSkill, ignoreArmors, decos)
   }, [])
 
   // skillLog変更時

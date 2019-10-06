@@ -1,8 +1,8 @@
-import { Skill } from '~/app/hooks/useSkill'
+import { Condition } from './service/execute'
 import searchSkill from './service/searchSkill'
 
-export default (skill: Skill, skillList: string[]) => {
-  for (const result of searchSkill(skill, skillList)) {
+export default (condition: Condition, skillList: string[]) => {
+  for (const result of searchSkill(condition, skillList)) {
     postMessage({ action: 'search', result })
   }
 }

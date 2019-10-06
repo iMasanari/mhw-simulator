@@ -1,9 +1,6 @@
 import * as armorsData from '~/app/data'
 import skillList from '~/app/data/skill.json'
-import { Skill } from '~/app/hooks/useSkill'
-import createLpText from '../util/createLpText'
-import executeGlpk from '../util/executeGlpk'
-import normalizeSkill from '../util/normalizeSkill'
+import execute, { Condition } from './execute'
 
 export interface Result {
   head: string | undefined
@@ -41,12 +38,8 @@ const getSlots = (result: Record<string, number>) => {
   return [slot1, slot2, slot3, slot4]
 }
 
-export default (skill: Skill, objective: string): Result => {
-  skill = normalizeSkill(skill)
-
-  const data = Object.keys(skill).map(key => `${key} >= ${skill[key]}`).join('\n')
-  const lpText = createLpText(data, objective)
-  const result = executeGlpk(lpText, true)
+export default (condition: Condition, objective: string): Result => {
+  const result = execute(condition, objective)
 
   const list = Object.keys(result).filter(key => result[key])
 

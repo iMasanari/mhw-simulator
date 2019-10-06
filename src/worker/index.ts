@@ -9,7 +9,7 @@ addEventListener('message', (e) => {
       load(obj.data)
       break
     case 'search':
-      search(obj.data.skill, obj.data.skillList)
+      search(obj.data.condition, obj.data.skillList)
       break
   }
 })
