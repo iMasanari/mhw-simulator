@@ -5,6 +5,7 @@ import useResult from '~/app/hooks/useResult'
 import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
+import useWeaponSlots from '../hooks/useWeaponSlots'
 import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
 import Decos from './decos/Decos'
@@ -25,7 +26,8 @@ const tabKeyList = ['result', 'armors', 'decos']
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
-  const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
+  const [skillLog, setSkillLog] = useState(initSkillLogState)
+  const [weaponSlots, setWeaponSlot] = useWeaponSlots()
   const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
   const [decos, setDeco] = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
@@ -55,21 +57,21 @@ const App: React.FC = () => {
       skillRef.current.scrollTo(0, 0)
     }
 
-    search(activeSkill, ignoreArmors, decos)
+    search(activeSkill, weaponSlots, ignoreArmors, decos)
     setTab('result')
 
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, ignoreArmors, decos, skillList, search, calcAddableSkill])
+  }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList, search, calcAddableSkill])
 
   const searchAddableSkill = useCallback(() => {
     if (skillRef.current) {
       skillRef.current.scrollTo(0, 0)
     }
 
-    calcAddableSkill(activeSkill, ignoreArmors, decos, skillList.map(({ id }) => id))
-  }, [activeSkill, ignoreArmors, decos, skillList])
+    calcAddableSkill(activeSkill, weaponSlots, ignoreArmors, decos, skillList.map(({ id }) => id))
+  }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList])
 
   const clear = useCallback(() => {
     clearActiveSkill()
@@ -78,7 +80,7 @@ const App: React.FC = () => {
 
   // 初回検索
   useEffect(() => {
-    search(activeSkill, ignoreArmors, decos)
+    search(activeSkill, weaponSlots, ignoreArmors, decos)
   }, [])
 
   // skillLog変更時

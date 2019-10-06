@@ -5,6 +5,7 @@ import { Skill } from '../hooks/useSkill'
 import createWorker from '../util/createWorker'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
+import { WeaponSlots } from './useWeaponSlots'
 
 interface MessageData {
   action: 'done'
@@ -21,12 +22,12 @@ export default () => {
     setResult({})
   }, [])
 
-  const search = useCallback((skill: Skill, armors: Armors, decos: Decos) => {
+  const search = useCallback((skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
     clear()
 
     const worker = createWorker()
 
-    const condition: Condition = { skill, armors, decos }
+    const condition: Condition = { skill, weaponSlots: slots, armors, decos }
 
     worker.postMessage({
       action: 'load',
