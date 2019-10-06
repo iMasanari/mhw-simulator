@@ -7,6 +7,7 @@ import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
+import Decos from './decos/Decos'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
@@ -149,6 +150,12 @@ const App: React.FC = () => {
               <Armors
                 ignoreArmors={ignoreArmors}
                 toggleIgnoreArmors={toggleIgnoreArmors}
+              />
+            }
+            {tab === 'decos' &&
+              <Decos
+                decos={decos}
+                setDeco={setDeco}
               />
             }
           </div>
