@@ -1,16 +1,8 @@
-import { Skill } from '~/app/hooks/useSkill'
-import createLpText from '../util/createLpText'
-import executeGlpk from '../util/executeGlpk'
-import normalizeSkill from '../util/normalizeSkill'
+import execute, { Condition } from './execute'
 
-export default function* (skill: Skill, skillList: string[]) {
-  skill = normalizeSkill(skill)
-
-  const data = Object.keys(skill).map(key => `${key} >= ${skill[key]}`).join('\n')
-
+export default function* (condition: Condition, skillList: string[]) {
   for (const id of skillList) {
-    const lpText = createLpText(data, id)
-    const result = executeGlpk(lpText, true)
+    const result = execute(condition, id)
     const value = result[id]
 
     yield { id, value }

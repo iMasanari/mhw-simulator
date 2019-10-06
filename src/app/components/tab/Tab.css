@@ -1,0 +1,22 @@
+.Tab {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-flex;
+}
+
+.Tab-li {
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  color: #666;
+  cursor: pointer;
+}
+
+.Tab-li:hover {
+  background: #eee;
+}
+
+.Tab-li.on {
+  color: #67c5ff;
+  background: #fff;
+}

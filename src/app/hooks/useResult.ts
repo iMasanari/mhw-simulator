@@ -1,7 +1,10 @@
 import { useCallback, useState } from 'react'
 import { Result } from '~/worker/service/calc'
+import { Condition } from '~/worker/service/execute'
 import { Skill } from '../hooks/useSkill'
 import createWorker from '../util/createWorker'
+import { Decos } from './useDecos'
+import { Armors } from './useIgnoreArmors'
 
 interface MessageData {
   action: 'done'
@@ -18,14 +21,16 @@ export default () => {
     setResult({})
   }, [])
 
-  const search = useCallback((skill: Skill) => {
+  const search = useCallback((skill: Skill, armors: Armors, decos: Decos) => {
     clear()
 
     const worker = createWorker()
 
+    const condition: Condition = { skill, armors, decos }
+
     worker.postMessage({
       action: 'load',
-      data: skill,
+      data: condition,
     })
 
     worker.addEventListener('message', (e) => {

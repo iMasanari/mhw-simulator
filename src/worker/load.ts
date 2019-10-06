@@ -1,5 +1,5 @@
-import { Skill } from '~/app/hooks/useSkill'
 import calc from './service/calc'
+import { Condition } from './service/execute'
 
 const slotList = [
   { type: 'slot1', objective: 'y7' },
@@ -8,13 +8,13 @@ const slotList = [
   { type: 'slot4', objective: 'z10' },
 ] as const
 
-export default (skill: Skill) => {
-  const result = calc(skill, 'y11')
+export default (condition: Condition) => {
+  const result = calc(condition, 'y11')
 
   postMessage({ action: 'done', payload: { type: 'def', result } })
 
   for (const { type, objective } of slotList) {
-    const result = calc(skill, objective)
+    const result = calc(condition, objective)
 
     postMessage({ action: 'done', payload: { type, result } })
   }
