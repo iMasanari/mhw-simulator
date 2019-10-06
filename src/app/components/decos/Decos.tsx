@@ -31,6 +31,11 @@ const Decos: React.FC<Props> = ({ decos, setDeco }) => {
 
   return (
     <div>
+      <p>
+        検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。
+        <br />
+        内容は自動的に保存されますが、開発の都合でリセットされることがあります。
+      </p>
       <input type="text"
         value={filter}
         onChange={e => { setFilter(e.currentTarget.value) }}

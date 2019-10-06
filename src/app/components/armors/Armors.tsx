@@ -27,6 +27,11 @@ const Armors: React.FC<Props> = ({ ignoreArmors, toggleIgnoreArmors }) => {
 
   return (
     <div>
+      <p>
+        検索で防具を除外する場合、下記のチェックを外してください。
+        <br />
+        内容は自動的に保存されますが、開発の都合でリセットされることがあります。
+        </p>
       <input type="text"
         value={filter}
         onChange={e => { setFilter(e.currentTarget.value) }}
