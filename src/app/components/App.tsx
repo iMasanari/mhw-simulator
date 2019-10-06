@@ -6,6 +6,7 @@ import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import ActionButton from './actions/ActionButton'
+import Armors from './armors/armors'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
@@ -38,7 +39,7 @@ const App: React.FC = () => {
       .sort((a, b) => (skillLog[b.id] || 0) - (skillLog[a.id] || 0))
   }, [skillFilter, skillLog])
 
-  const onSearch = useCallback(async () => {
+  const onSearch = useCallback(() => {
     clearAddableSkill()
 
     const time = Date.now()
@@ -59,7 +60,7 @@ const App: React.FC = () => {
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, skillList, search, calcAddableSkill])
+  }, [activeSkill, ignoreArmors, decos, skillList, search, calcAddableSkill])
 
   const searchAddableSkill = useCallback(() => {
     if (skillRef.current) {
@@ -143,6 +144,12 @@ const App: React.FC = () => {
                   />
                 }
               </div>
+            }
+            {tab === 'armors' &&
+              <Armors
+                ignoreArmors={ignoreArmors}
+                toggleIgnoreArmors={toggleIgnoreArmors}
+              />
             }
           </div>
         </div>
