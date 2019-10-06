@@ -8,6 +8,7 @@ import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
 import SkillFilter from './skill/SkillFilter'
+import Tab from './tab/Tab'
 
 require('./App.css')
 
@@ -15,12 +16,15 @@ const STORAGE_KEY = 'mhw-simulator/skillLog/v1'
 
 const initSkillLogState: ISkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
+const tabKeyList = ['result', 'armors', 'decos']
+
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
   const [skillLog, setSkillLog] = useState(initSkillLogState as ISkill)
   const [skillFilter, setSkillFilter] = useState('')
-  const [result, search, clearResult] = useResult()
+  const [tab, setTab] = useState(tabKeyList[0])
+  const [result, search] = useResult()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef(null as HTMLDivElement | null)
 
@@ -46,6 +50,7 @@ const App: React.FC = () => {
     }
 
     search(activeSkill)
+    setTab('result')
 
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
@@ -96,37 +101,46 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
-          {!!result.def &&
-            <Result
-              title={`防御力最大: ${result.def.def}`}
-              result={result.def}
-              initState={true}
-            />
-          }
-          {!!result.slot1 &&
-            <Result
-              title={`空きスロット最大: ${result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}`}
-              result={result.slot1}
-            />
-          }
-          {!!result.slot2 &&
-            <Result
-              title={`空きスロット(Lv2以上)最大: ${result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}`}
-              result={result.slot2}
-            />
-          }
-          {!!result.slot3 &&
-            <Result
-              title={`空きスロット(Lv3以上)最大: ${result.slot3.slot3 + result.slot3.slot4}`}
-              result={result.slot3}
-            />
-          }
-          {!!result.slot4 &&
-            <Result
-              title={`空きスロット(Lv4)最大: ${result.slot4.slot4}`}
-              result={result.slot4}
-            />
-          }
+          <div className="App-outputTab">
+            <Tab value={tab} list={tabKeyList} onSelect={setTab} />
+          </div>
+          <div className="App-outputContent">
+            {tab === 'result' &&
+              <div>
+                {!!result.def &&
+                  <Result
+                    title={`防御力最大: ${result.def.def}`}
+                    result={result.def}
+                    initState={true}
+                  />
+                }
+                {!!result.slot1 &&
+                  <Result
+                    title={`空きスロット最大: ${result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}`}
+                    result={result.slot1}
+                  />
+                }
+                {!!result.slot2 &&
+                  <Result
+                    title={`空きスロット(Lv2以上)最大: ${result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}`}
+                    result={result.slot2}
+                  />
+                }
+                {!!result.slot3 &&
+                  <Result
+                    title={`空きスロット(Lv3以上)最大: ${result.slot3.slot3 + result.slot3.slot4}`}
+                    result={result.slot3}
+                  />
+                }
+                {!!result.slot4 &&
+                  <Result
+                    title={`空きスロット(Lv4)最大: ${result.slot4.slot4}`}
+                    result={result.slot4}
+                  />
+                }
+              </div>
+            }
+          </div>
         </div>
       </main>
     </div>

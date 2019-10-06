@@ -51,7 +51,13 @@ body {
 
 .App-outputArea {
   flex: 1;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-outputContent {
+  overflow-y: scroll;
+  flex: 1;
 }
 
 @media screen and (max-width:480px) {
@@ -62,7 +68,8 @@ body {
   .App,
   .App-main,
   .App-inputArea,
-  .App-outputArea {
+  .App-outputArea,
+  .App-outputContent {
     display: block;
     width: auto;
     height: auto;
