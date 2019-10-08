@@ -1,22 +1,8 @@
-import fs from 'fs'
+export { default as arm } from './arm.json'
+export { default as body } from './body.json'
+export { default as charm } from './charm.json'
+export { default as deco } from './deco.json'
+export { default as head } from './head.json'
+export { default as leg } from './leg.json'
+export { default as wst } from './wst.json'
 
-export const head = fs.readFileSync(__dirname + '/head.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const body = fs.readFileSync(__dirname + '/body.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const arm = fs.readFileSync(__dirname + '/arm.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const wst = fs.readFileSync(__dirname + '/wst.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const leg = fs.readFileSync(__dirname + '/leg.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const charm = fs.readFileSync(__dirname + '/charm.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)
-
-export const deco = fs.readFileSync(__dirname + '/deco.txt', 'utf-8')
-  .split('\n').filter(Boolean).map(v => v.split(' ')).reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, string>)

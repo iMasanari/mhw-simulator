@@ -18,7 +18,7 @@ import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
-const STORAGE_KEY = 'mhw-simulator/skillLog/v1'
+const STORAGE_KEY = 'mhw-simulator/skillLog/v1.1'
 
 const initSkillLogState: ISkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 

@@ -1,4 +1,6 @@
 import React, { useCallback, useState } from 'react'
+import { arm, body, charm, deco, head, leg, wst } from '~/app/data'
+import skill from '~/app/data/skill.json'
 import { Result } from '~/worker/service/calc'
 
 require('./Result.css')
@@ -8,6 +10,8 @@ interface Props {
   result: Result
   initState?: boolean
 }
+
+const skillMap = new Map(skill.map(({ id, name }) => [id, name]))
 
 const Result: React.FC<Props> = ({ title, result, initState }) => {
   const [isOpen, setOpen] = useState(initState)
@@ -32,34 +36,34 @@ const Result: React.FC<Props> = ({ title, result, initState }) => {
               </tr>
               <tr>
                 <th className="Result-th">頭</th>
-                <td>{result.head || '装備なし'}</td>
+                <td>{head[result.head as keyof typeof head] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">胴</th>
-                <td>{result.body || '装備なし'}</td>
+                <td>{body[result.body as keyof typeof body] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">腕</th>
-                <td>{result.arm || '装備なし'}</td>
+                <td>{arm[result.arm as keyof typeof arm] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">腰</th>
-                <td>{result.wst || '装備なし'}</td>
+                <td>{wst[result.wst as keyof typeof wst] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">足</th>
-                <td>{result.leg || '装備なし'}</td>
+                <td>{leg[result.leg as keyof typeof leg] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">お守り</th>
-                <td>{result.charm || '装備なし'}</td>
+                <td>{charm[result.charm as keyof typeof charm] || '装備なし'}</td>
               </tr>
               <tr>
                 <th className="Result-th">装飾品</th>
                 <td>
                   <ul className="Result-ul">
-                    {result.decos.map(({ name, count }) =>
-                      <li key={name}>{name}x{count}</li>
+                    {result.decos.map(({ id, count }) =>
+                      <li key={id}>{deco[id as keyof typeof deco]}x{count}</li>
                     )}
                     {!!result.slot1 &&
                       <li>空きスロット【１】x{result.slot1}</li>
@@ -84,9 +88,9 @@ const Result: React.FC<Props> = ({ title, result, initState }) => {
                 <th>スキル名</th>
                 <th className="Result-number">ポイント</th>
               </tr>
-              {result.skills.map(({ name, count }) =>
-                <tr key={name}>
-                  <td>{name}</td>
+              {result.skills.map(({ id, count }) =>
+                <tr key={id}>
+                  <td>{skillMap.get(id)}</td>
                   <td className="Result-number">{count}</td>
                 </tr>
               )}

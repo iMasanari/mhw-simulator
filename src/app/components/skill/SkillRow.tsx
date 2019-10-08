@@ -10,7 +10,7 @@ interface Props {
   name: string
   value: number
   addableValue: number | null
-  items: { level: number }[]
+  items: number[]
   onUpdate: UpdateSkill
 }
 
