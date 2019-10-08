@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 export type Decos = Record<string, number>
 
-const STORAGE_KEY = 'mhw-simulator/decos/v1'
+const STORAGE_KEY = 'mhw-simulator/decos/v1.1'
 const initState: Decos = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
 export default () => {

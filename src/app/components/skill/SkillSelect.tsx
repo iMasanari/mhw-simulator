@@ -6,7 +6,7 @@ require('./SkillSelect.css')
 interface Props {
   id: string
   value: number
-  items: { level: number }[]
+  items: number[]
   onUpdate: UpdateSkill
 }
 
@@ -23,7 +23,7 @@ const SkillSelect: React.FC<Props> = ({ id, value, items, onUpdate }) => {
         onChange={onChange}
       >
         <option key="" value=""></option>
-        {items.map(({ level }) =>
+        {items.map((level) =>
           <option key={level} value={level}>Lv {level}</option>
         )}
       </select>

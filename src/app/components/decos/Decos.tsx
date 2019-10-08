@@ -10,7 +10,7 @@ interface Props {
 }
 
 const createList = (filter: string) =>
-  Object.keys(decoData)
+  (Object.keys(decoData) as (keyof typeof decoData)[])
     .filter(id => ~decoData[id].indexOf(filter))
     .map(id => [id, decoData[id]])
 

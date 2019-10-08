@@ -27,13 +27,13 @@ const findArmor = <T>(list: string[], obj: Record<string, T>) =>
   list.map((value) => obj[value]).find(Boolean)
 
 const getSlots = (result: Record<string, number>) => {
-  const slot3Over = Math.min(result.y7, result.y8, result.y9)
-  const slot2Over = Math.min(result.y7, result.y8)
+  const slot3Over = Math.min(result.y_1, result.y_2, result.y_3)
+  const slot2Over = Math.min(result.y_1, result.y_2)
 
-  const slot4 = Math.min(result.y7, result.y8, result.y9, result.y10)
+  const slot4 = Math.min(result.y_1, result.y_2, result.y_3, result.y_4)
   const slot3 = slot3Over - slot4
   const slot2 = slot2Over - slot3Over
-  const slot1 = result.y7 - slot2Over
+  const slot1 = result.y_1 - slot2Over
 
   return [slot1, slot2, slot3, slot4]
 }
@@ -51,7 +51,7 @@ export default (condition: Condition, objective: string): Result => {
   const charm = findArmor(list, armorsData.charm)
 
   const decos = list
-    .map(value => ({ name: armorsData.deco[value], count: result[value] }))
+    .map(value => ({ name: (armorsData.deco as Record<string, string>)[value], count: result[value] }))
     .filter(({ name }) => name)
 
   const skills = list
@@ -59,7 +59,7 @@ export default (condition: Condition, objective: string): Result => {
     .filter(({ name }) => name)
     .sort((a, b) => b.count - a.count)
 
-  const { y11: def } = result
+  const { ydl: def } = result
   const [slot1, slot2, slot3, slot4] = getSlots(result)
 
   return {

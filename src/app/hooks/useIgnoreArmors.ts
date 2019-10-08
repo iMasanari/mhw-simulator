@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 export type Armors = Record<string, 0 | 1>
 
-const STORAGE_KEY = 'mhw-simulator/ignoreArmors/v1'
+const STORAGE_KEY = 'mhw-simulator/ignoreArmors/v1.1'
 const initState: Armors = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
 export default () => {

@@ -7,13 +7,13 @@ interface Props {
   id: string
   value: number
   addableValue: number | null
-  items: { level: number }[]
+  items: number[]
   onUpdate: UpdateSkill
 }
 
 const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items, onUpdate }) =>
   <ul className="SkillLevelIcon">
-    {items.map(({ level }) =>
+    {items.map((level) =>
       <li
         key={level}
         className={`SkillLevelIcon-li ${value === level ? 'on' : ''} ${addableValue != null && level <= addableValue ? 'addable' : ''}`}
