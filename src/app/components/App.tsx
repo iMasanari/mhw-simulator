@@ -2,9 +2,10 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import allSkillList from '~/app/data/skill.json'
 import useAddableSkill from '~/app/hooks/useAddableSkill'
 import useResult from '~/app/hooks/useResult'
-import useSkill, { Skill as ISkill } from '~/app/hooks/useSkill'
+import useSkill from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
+import useSkillLog from '../hooks/useSkillLog'
 import useWeaponSlots from '../hooks/useWeaponSlots'
 import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
@@ -18,16 +19,12 @@ import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
-const STORAGE_KEY = 'mhw-simulator/skillLog/v1.1'
-
-const initSkillLogState: ISkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
-
 const tabKeyList = ['result', 'armors', 'decos']
 
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
-  const [skillLog, setSkillLog] = useState(initSkillLogState)
+  const [skillLog, updateSkillLog] = useSkillLog()
   const [weaponSlots, setWeaponSlot] = useWeaponSlots()
   const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
   const [decos, setDeco] = useDecos()
@@ -45,21 +42,14 @@ const App: React.FC = () => {
 
   const onSearch = useCallback(() => {
     clearAddableSkill()
+    updateSkillLog(activeSkill)
 
-    const time = Date.now()
-    const log = Object.keys(activeSkill).reduce(
-      (acc, key) => (acc[key] = time + activeSkill[key], acc),
-      {} as ISkill
-    )
-
-    setSkillLog(state => ({ ...state, ...log }))
+    search(activeSkill, weaponSlots, ignoreArmors, decos)
+    setTab('result')
 
     if (skillRef.current) {
       skillRef.current.scrollTo(0, 0)
     }
-
-    search(activeSkill, weaponSlots, ignoreArmors, decos)
-    setTab('result')
 
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
@@ -83,11 +73,6 @@ const App: React.FC = () => {
   useEffect(() => {
     search(activeSkill, weaponSlots, ignoreArmors, decos)
   }, [])
-
-  // skillLog変更時
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(skillLog))
-  }, [skillLog])
 
   return (
     <div className="App">
