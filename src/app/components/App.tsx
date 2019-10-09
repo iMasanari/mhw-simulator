@@ -11,7 +11,7 @@ import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
 import Decos from './decos/Decos'
 import Header from './header/Header'
-import Result from './result/Equipment'
+import Result from './result/Result'
 import Skill from './skill/Skill'
 import SkillFilter from './skill/SkillFilter'
 import Tab from './tab/Tab'
@@ -101,39 +101,13 @@ const App: React.FC = () => {
           </div>
           <div className="App-outputContent">
             {tab === 'result' &&
-              <div>
-                {!!result.def &&
-                  <Result
-                    title={`防御力最大: ${result.def.def}`}
-                    result={result.def}
-                    initState={true}
-                  />
-                }
-                {!!result.slot1 &&
-                  <Result
-                    title={`空きスロット最大: ${result.slot1.slot1 + result.slot1.slot2 + result.slot1.slot3 + result.slot1.slot4}`}
-                    result={result.slot1}
-                  />
-                }
-                {!!result.slot2 &&
-                  <Result
-                    title={`空きスロット(Lv2以上)最大: ${result.slot2.slot2 + result.slot2.slot3 + result.slot2.slot4}`}
-                    result={result.slot2}
-                  />
-                }
-                {!!result.slot3 &&
-                  <Result
-                    title={`空きスロット(Lv3以上)最大: ${result.slot3.slot3 + result.slot3.slot4}`}
-                    result={result.slot3}
-                  />
-                }
-                {!!result.slot4 &&
-                  <Result
-                    title={`空きスロット(Lv4)最大: ${result.slot4.slot4}`}
-                    result={result.slot4}
-                  />
-                }
-              </div>
+              <Result
+                def={result.def}
+                slot1={result.slot1}
+                slot2={result.slot2}
+                slot3={result.slot3}
+                slot4={result.slot4}
+              />
             }
             {tab === 'armors' &&
               <Armors
