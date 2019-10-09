@@ -1,19 +1,19 @@
-.Result {
+.Equipment {
   border-top: 1px solid #bbb;
 }
 
-.Result:last-child {
+.Equipment:last-child {
   border-bottom: 1px solid #bbb;
 }
 
-.Result-thumb {
+.Equipment-thumb {
   display: flex;
   justify-content: space-between;
   padding: 1em;
   cursor: pointer;
 }
 
-.Result-thumb::after {
+.Equipment-thumb::after {
   content: '';
   display: inline-block;
   width: 0.5em;
@@ -24,64 +24,64 @@
   transform: rotate(45deg);
 }
 
-.Result-thumb.on::after {
+.Equipment-thumb.on::after {
   transform: rotate(135deg);
 }
 
-.Result-thumb:hover {
+.Equipment-thumb:hover {
   background: #ddd;
 }
 
-.Result-title {
+.Equipment-title {
   font-weight: bold;
 }
 
-.Result-content {
+.Equipment-content {
   display: flex;
 }
 
-.Result-table {
+.Equipment-table {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
   width: 50%;
 }
 
-.Result-table tr {
+.Equipment-table tr {
   border-top: solid 1px #ddd;
 }
 
-.Result-table th {
+.Equipment-table th {
   width: 5em;
 }
 
-.Result-table th,
-.Result-table td {
+.Equipment-table th,
+.Equipment-table td {
   padding: 0.6em 1em 0.4em;
   text-align: left;
   vertical-align: text-top;
 }
 
-.Result-ul {
+.Equipment-ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
-.Result-number {
+.Equipment-number {
   text-align: right !important;
 }
 
 @media screen and (max-width:960px) {
-  .Result-content {
+  .Equipment-content {
     display: block;
   }
 
-  .Result-table {
+  .Equipment-table {
     width: 100%;
   }
 
-  .Result-table + .Result-table {
+  .Equipment-table + .Equipment-table {
     margin-top: 1em;
   }
 }
