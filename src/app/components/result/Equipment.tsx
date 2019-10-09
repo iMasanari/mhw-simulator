@@ -3,7 +3,7 @@ import { arm, body, charm, deco, head, leg, wst } from '~/app/data'
 import skill from '~/app/data/skill.json'
 import { Result } from '~/worker/service/calc'
 
-require('./Result.css')
+require('./Equipment.css')
 
 interface Props {
   title: string
@@ -13,55 +13,55 @@ interface Props {
 
 const skillMap = new Map(skill.map(({ id, name }) => [id, name]))
 
-const Result: React.FC<Props> = ({ title, result, initState }) => {
+const Equipment: React.FC<Props> = ({ title, result, initState }) => {
   const [isOpen, setOpen] = useState(initState)
 
   const toggleOpen = useCallback(() => setOpen(v => !v), [])
 
   return (
-    <div className="Result">
+    <div className="Equipment">
       <div
-        className={`Result-thumb ${isOpen ? 'on' : ''}`}
+        className={`Equipment-thumb ${isOpen ? 'on' : ''}`}
         onClick={toggleOpen}
       >
-        <div className="Result-title">{title}</div>
+        <div className="Equipment-title">{title}</div>
       </div>
       {isOpen &&
-        <div className="Result-content">
-          <table className="Result-table">
+        <div className="Equipment-content">
+          <table className="Equipment-table">
             <tbody>
               <tr>
-                <th className="Result-th">防御力</th>
+                <th className="Equipment-th">防御力</th>
                 <td>{result.def}</td>
               </tr>
               <tr>
-                <th className="Result-th">頭</th>
+                <th className="Equipment-th">頭</th>
                 <td>{head[result.head as keyof typeof head] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">胴</th>
+                <th className="Equipment-th">胴</th>
                 <td>{body[result.body as keyof typeof body] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">腕</th>
+                <th className="Equipment-th">腕</th>
                 <td>{arm[result.arm as keyof typeof arm] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">腰</th>
+                <th className="Equipment-th">腰</th>
                 <td>{wst[result.wst as keyof typeof wst] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">足</th>
+                <th className="Equipment-th">足</th>
                 <td>{leg[result.leg as keyof typeof leg] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">お守り</th>
+                <th className="Equipment-th">お守り</th>
                 <td>{charm[result.charm as keyof typeof charm] || '装備なし'}</td>
               </tr>
               <tr>
-                <th className="Result-th">装飾品</th>
+                <th className="Equipment-th">装飾品</th>
                 <td>
-                  <ul className="Result-ul">
+                  <ul className="Equipment-ul">
                     {result.decos.map(({ id, count }) =>
                       <li key={id}>{deco[id as keyof typeof deco]}x{count}</li>
                     )}
@@ -82,16 +82,16 @@ const Result: React.FC<Props> = ({ title, result, initState }) => {
               </tr>
             </tbody>
           </table>
-          <table className="Result-table">
+          <table className="Equipment-table">
             <tbody>
               <tr>
                 <th>スキル名</th>
-                <th className="Result-number">ポイント</th>
+                <th className="Equipment-number">ポイント</th>
               </tr>
               {result.skills.map(({ id, count }) =>
                 <tr key={id}>
                   <td>{skillMap.get(id)}</td>
-                  <td className="Result-number">{count}</td>
+                  <td className="Equipment-number">{count}</td>
                 </tr>
               )}
             </tbody>
@@ -101,4 +101,5 @@ const Result: React.FC<Props> = ({ title, result, initState }) => {
     </div>
   )
 }
-export default Result
+
+export default Equipment
