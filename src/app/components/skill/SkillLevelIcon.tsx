@@ -16,7 +16,11 @@ const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items, onUpd
     {items.map((level) =>
       <li
         key={level}
-        className={`SkillLevelIcon-li ${value === level ? 'on' : ''} ${addableValue != null && level <= addableValue ? 'addable' : ''}`}
+        className={
+          `SkillLevelIcon-li ${
+          value === level ? 'on' : ''} ${
+          addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
+        }
         onClick={() => onUpdate(id, level)}
       />
     )}

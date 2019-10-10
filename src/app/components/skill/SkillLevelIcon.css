@@ -8,7 +8,7 @@
 .SkillLevelIcon-li {
   width: 12px;
   height: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #bbb;
   margin: 0 2px 0 0;
   padding: 0;
   background: #fff;
@@ -17,7 +17,7 @@
 }
 
 .SkillLevelIcon-li.on {
-  background: #ddd;
+  background: #bbb;
 }
 
 .SkillLevelIcon-li.addable {
@@ -26,4 +26,12 @@
 
 .SkillLevelIcon-li.on.addable {
   background: #67c5ff;
+}
+
+.SkillLevelIcon-li.unaddable {
+  border-color: #ddd;
+}
+
+.SkillLevelIcon-li.on.unaddable {
+  background: #ddd;
 }
