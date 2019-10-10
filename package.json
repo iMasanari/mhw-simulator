@@ -6,7 +6,7 @@
     "clean": "rm -rf dist/*",
     "dev": "parcel src/index.html",
     "prebuild": "npm run clean",
-    "build": "parcel build src/index.html --public-url ./",
+    "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
