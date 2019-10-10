@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import allSkillList from '~/app/data/skill.json'
+import baseSkillList from '~/app/data/skill.json'
 import useAddableSkill from '~/app/hooks/useAddableSkill'
 import useResult from '~/app/hooks/useResult'
 import useSkill from '~/app/hooks/useSkill'
@@ -7,6 +7,7 @@ import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
 import useWeaponSlots from '../hooks/useWeaponSlots'
+import { partition } from '../util/array'
 import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
 import Decos from './decos/Decos'
@@ -20,6 +21,7 @@ import Weapon from './weapon/Weapon'
 require('./App.css')
 
 const tabKeyList = ['result', 'armors', 'decos']
+const allSkillList = baseSkillList.slice()
 
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
@@ -32,12 +34,18 @@ const App: React.FC = () => {
   const [tab, setTab] = useState(tabKeyList[0])
   const [result, search] = useResult()
   const skillRef = useRef<HTMLDivElement>(null)
-  const outputAreaRef = useRef(null as HTMLDivElement | null)
+  const outputAreaRef = useRef<HTMLDivElement>(null)
 
   const skillList = useMemo(() => {
-    return allSkillList
-      .filter((v) => !skillFilter || ~v.name.indexOf(skillFilter) || v.category === skillFilter)
-      .sort((a, b) => (skillLog[b.id] || 0) - (skillLog[a.id] || 0))
+    const sorted = allSkillList.sort((a, b) =>
+      (skillLog[b.id] || 0) - (skillLog[a.id] || 0)
+    )
+
+    const [t, f] = partition(sorted, (v) =>
+      !skillFilter || ~v.name.indexOf(skillFilter) || v.category === skillFilter
+    )
+
+    return [...t, ...f]
   }, [skillFilter, skillLog])
 
   const onSearch = useCallback(() => {
