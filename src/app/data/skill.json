@@ -1679,7 +1679,7 @@
   {
     "id": "yst2",
     "name": "受け身術",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
@@ -1687,7 +1687,7 @@
   {
     "id": "yst3",
     "name": "陽動攻撃",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
@@ -1695,7 +1695,7 @@
   {
     "id": "yst4",
     "name": "業物／弾丸節約",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
@@ -1703,7 +1703,7 @@
   {
     "id": "yst5",
     "name": "鈍器使い",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
@@ -1711,7 +1711,7 @@
   {
     "id": "yst6",
     "name": "奮起",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
@@ -1719,7 +1719,7 @@
   {
     "id": "yst7",
     "name": "根性",
-    "category": "シリーズスキル",
+    "category": "",
     "items": [
       1
     ]
