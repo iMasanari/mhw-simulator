@@ -13,7 +13,7 @@ export interface Condition {
   weaponSlots: WeaponSlots
 }
 
-export default (condition: Condition, objective: string) => {
+export default (objective: string, condition: Condition) => {
   const skill = normalizeSkill(condition.skill)
 
   const data = [

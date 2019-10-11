@@ -16,6 +16,7 @@
   "dependencies": {
     "glpk.js": "git+https://github.com/hgourvest/glpk.js.git",
     "normalize.css": "^8.0.1",
+    "promise-worker": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
