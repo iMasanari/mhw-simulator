@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iMasanari",
-  "license": "GPLv2",
+  "license": "GPLv3",
   "dependencies": {
     "glpk.js": "^3.0.0",
     "normalize.css": "^8.0.1",
