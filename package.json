@@ -4,18 +4,21 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist/*",
+    "cp-wasm": "cp node_modules/glpk.js/glpk.wasm dist/glpk.wasm",
+    "predev": "npm run cp-wasm",
     "dev": "parcel src/index.html",
-    "prebuild": "npm run clean",
+    "prebuild": "npm run clean && npm run cp-wasm",
     "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iMasanari",
-  "license": "GPLv2",
+  "license": "GPLv3",
   "dependencies": {
-    "glpk.js": "git+https://github.com/hgourvest/glpk.js.git",
+    "glpk.js": "^3.0.0",
     "normalize.css": "^8.0.1",
+    "promise-worker": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },

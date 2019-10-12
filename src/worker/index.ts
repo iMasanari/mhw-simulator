@@ -1,15 +1,12 @@
-import load from './load'
-import search from './search'
+import register from 'promise-worker/register'
+import calc, { Result } from './service/calc'
+import { Condition } from './service/execute'
 
-addEventListener('message', (e) => {
-  const obj = e.data
+export interface Message {
+  objective: string
+  condition: Condition
+}
 
-  switch (obj.action) {
-    case 'load':
-      load(obj.data)
-      break
-    case 'search':
-      search(obj.data.condition, obj.data.skillList)
-      break
-  }
-})
+register<Message, Result>(({ condition, objective }) =>
+  calc(objective, condition)
+)

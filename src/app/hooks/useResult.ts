@@ -1,19 +1,18 @@
 import { useCallback, useState } from 'react'
 import { Result } from '~/worker/service/calc'
-import { Condition } from '~/worker/service/execute'
 import { Skill } from '../hooks/useSkill'
-import createWorker from '../util/createWorker'
+import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
 import { WeaponSlots } from './useWeaponSlots'
 
-interface MessageData {
-  action: 'done'
-  payload: {
-    type: string
-    result: Result
-  }
-}
+const list = Object.entries({
+  def: 'ydl',
+  slot1: 'y_1',
+  slot2: 'z_2',
+  slot3: 'z_3',
+  slot4: 'z_4',
+})
 
 export default () => {
   const [result, setResult] = useState({} as Record<string, Result>)
@@ -22,25 +21,18 @@ export default () => {
     setResult({})
   }, [])
 
-  const search = useCallback((skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
+  const search = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
     clear()
 
-    const worker = createWorker()
+    const condition = { skill, weaponSlots: slots, armors, decos }
 
-    const condition: Condition = { skill, weaponSlots: slots, armors, decos }
+    for (const [key, objective] of list) {
+      const value = await calc(objective, condition)
 
-    worker.postMessage({
-      action: 'load',
-      data: condition,
-    })
+      if (!value) return
 
-    worker.addEventListener('message', (e) => {
-      const { action, payload } = e.data as MessageData
-
-      if (action !== 'done') return
-
-      setResult(result => ({ ...result, [payload.type]: payload.result }))
-    })
+      setResult(result => ({ ...result, [key]: value }))
+    }
   }, [])
 
   return [result, search, clear] as const

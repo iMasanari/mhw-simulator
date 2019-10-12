@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
-import { Condition } from '~/worker/service/execute'
 import useSkill, { Skill } from '../hooks/useSkill'
-import createWorker from '../util/createWorker'
+import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
 import { WeaponSlots } from './useWeaponSlots'
@@ -9,22 +8,18 @@ import { WeaponSlots } from './useWeaponSlots'
 export default () => {
   const [addableSkill, updateAddableSkill, clearAddableSkill] = useSkill()
 
-  const onUpdateAddableSkill = useCallback((skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos, skillList: string[]) => {
+  const onUpdateAddableSkill = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos, skillList: string[]) => {
     clearAddableSkill()
 
-    const worker = createWorker()
+    for (const id of skillList) {
+      const result = await calc(id, { skill, weaponSlots: slots, armors, decos })
 
-    const condition: Condition = { skill, weaponSlots: slots, armors, decos }
+      if (!result) break
 
-    worker.postMessage({ action: 'search', data: { condition, skillList } })
+      const ref = result.skills.find(skill => skill.id === id)
 
-    worker.addEventListener('message', (e) => {
-      const { action, result } = e.data as { action: string, result: { id: string, name: string, value: number } }
-
-      if (action !== 'search') return
-
-      updateAddableSkill(result.id, result.value)
-    })
+      updateAddableSkill(id, ref ? ref.count : 0)
+    }
   }, [updateAddableSkill, clearAddableSkill])
 
   return [addableSkill, onUpdateAddableSkill, clearAddableSkill] as const

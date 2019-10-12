@@ -2,8 +2,8 @@ import { Decos } from '~/app/hooks/useDecos'
 import { Armors } from '~/app/hooks/useIgnoreArmors'
 import { Skill } from '~/app/hooks/useSkill'
 import { WeaponSlots } from '~/app/hooks/useWeaponSlots'
-import createLpText from '../util/createLpText'
-import executeGlpk from '../util/executeGlpk'
+import baseLp from '../data/lp.json'
+import executeGlpk, { GLP_FX, GLP_LO, GLP_UP } from '../util/executeGlpk'
 import normalizeSkill from '../util/normalizeSkill'
 
 export interface Condition {
@@ -13,21 +13,39 @@ export interface Condition {
   weaponSlots: WeaponSlots
 }
 
-export default (condition: Condition, objective: string) => {
+const createSubject = (data: Record<string, number>, type: number) =>
+  Object.entries(data).map(([name, value]) =>
+    ({ name, vars: [{ name, coef: 1 }], bnds: { type, ub: value, lb: value } })
+  )
+
+export default (objectiveName: string, condition: Condition) => {
   const skill = normalizeSkill(condition.skill)
 
-  const data = [
-    ...Object.keys(skill).map(key => `${key} >= ${skill[key]}`),
-    ...Object.keys(condition.armors).map(key => `${key} = ${condition.armors[key]}`),
-    ...Object.keys(condition.decos).map(key => `${key} <= ${condition.decos[key]}`),
+  const slots = [1, 2, 3, 4]
+    .map(slot => [`cs${slot}`, condition.weaponSlots.filter(v => v >= slot).length] as const)
+    .reduce((acc, [key, value]) => (acc[key] = value, acc), {} as Record<string, number>)
+
+  const subjectTo = [
+    ...baseLp.subjectTo,
+    ...createSubject(skill, GLP_LO),
+    ...createSubject(condition.armors, GLP_FX),
+    ...createSubject(condition.decos, GLP_UP),
+    ...createSubject(slots, GLP_FX),
   ]
 
-  const slots = [1, 2, 3, 4]
-    .map(slot => [slot, condition.weaponSlots.filter(v => v >= slot).length])
-    .reduce((acc, [key, value]) => (acc[key] = value, acc), {} as Record<number, number>)
+  const objective = {
+    direction: 2,
+    name: objectiveName,
+    vars: [
+      { name: objectiveName, coef: 1 },
+    ],
+  }
 
-  const lpText = createLpText(data.join('\n'), slots, objective)
-  const result = executeGlpk(lpText, true)
+  const lp = {
+    ...baseLp,
+    objective,
+    subjectTo,
+  }
 
-  return result
+  return executeGlpk(lp)
 }
