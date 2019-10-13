@@ -3,14 +3,24 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import { persistReducer, persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+import storage from 'redux-persist/lib/storage'
 import App from './components/App'
-import modules from './modules'
+import modules, { RootState } from './modules'
 
-const store = createStore(modules)
+const whitelist: (keyof RootState)[] = []
+
+const persistConfig = { key: 'mhw-simulator', storage, whitelist }
+
+const store = createStore(persistReducer(persistConfig, modules))
+const persistor = persistStore(store)
 
 render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 )
