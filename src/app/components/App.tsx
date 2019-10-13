@@ -4,7 +4,7 @@ import { useActiveSkill, useActiveSkillActions } from '~/app/hooks/activeSkill'
 import { useAddableSkillActions } from '~/app/hooks/addableSkill'
 import { useResultActions } from '~/app/hooks/result'
 import { useDecos } from '../hooks/decos'
-import useIgnoreArmors from '../hooks/useIgnoreArmors'
+import { useIgnoreArmors } from '../hooks/ignoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
 import { useWeaponSlots } from '../hooks/weaponSlots'
 import { partition } from '../util/array'
@@ -30,7 +30,7 @@ const App: React.FC = () => {
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
   const [skillLog, updateSkillLog] = useSkillLog()
   const weaponSlots = useWeaponSlots()
-  const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
+  const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
   const [tab, setTab] = useState(tabKeyList[0])
@@ -127,10 +127,7 @@ const App: React.FC = () => {
               <Result />
             }
             {tab === 'armors' &&
-              <Armors
-                ignoreArmors={ignoreArmors}
-                toggleIgnoreArmors={toggleIgnoreArmors}
-              />
+              <Armors />
             }
             {tab === 'decos' &&
               <Decos />

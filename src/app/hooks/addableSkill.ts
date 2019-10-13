@@ -4,9 +4,9 @@ import { RootState } from '../modules'
 import { ActiveSkill } from '../modules/activeSkill'
 import * as actions from '../modules/addableSkill'
 import { Decos } from '../modules/decos'
+import { Armors } from '../modules/ignoreArmors'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
-import { Armors } from './useIgnoreArmors'
 
 const selector = (state: RootState) => state.addableSkill
 

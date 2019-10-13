@@ -1,13 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import { arm, body, charm, head, leg, wst } from '~/app/data'
-import { Armors } from '~/app/hooks/useIgnoreArmors'
+import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
 import ArmorList from './ArmorList'
 
 require('./Armors.css')
 
 interface Props {
-  ignoreArmors: Armors
-  toggleIgnoreArmors: (armor: string) => void
 }
 
 const createList = (armorData: Record<string, string>, filter: string) =>
@@ -15,7 +13,10 @@ const createList = (armorData: Record<string, string>, filter: string) =>
     .filter(id => ~armorData[id].indexOf(filter))
     .map(id => [id, armorData[id]])
 
-const Armors: React.FC<Props> = ({ ignoreArmors, toggleIgnoreArmors }) => {
+const Armors: React.FC<Props> = () => {
+  const ignoreArmors = useIgnoreArmors()
+  const { toggle } = useIgnoreArmorsActions()
+
   const [filter, setFilter] = useState('')
 
   const headList = useMemo(() => createList(head, filter), [filter])
@@ -38,12 +39,12 @@ const Armors: React.FC<Props> = ({ ignoreArmors, toggleIgnoreArmors }) => {
         placeholder="フィルタ: 防具名"
       />
       <div className="Armors-contents">
-        <ArmorList armors={headList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
-        <ArmorList armors={bodyList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
-        <ArmorList armors={armList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
-        <ArmorList armors={wstList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
-        <ArmorList armors={legList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
-        <ArmorList armors={charmList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggleIgnoreArmors} />
+        <ArmorList armors={headList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+        <ArmorList armors={bodyList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+        <ArmorList armors={armList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+        <ArmorList armors={wstList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+        <ArmorList armors={legList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+        <ArmorList armors={charmList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
       </div>
     </div>
   )

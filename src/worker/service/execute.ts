@@ -1,6 +1,6 @@
-import { Armors } from '~/app/hooks/useIgnoreArmors'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
+import { Armors } from '~/app/modules/ignoreArmors'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import baseLp from '../data/lp.json'
 import executeGlpk, { GLP_FX, GLP_LO, GLP_UP } from '../util/executeGlpk'
