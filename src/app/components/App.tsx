@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import baseSkillList from '~/app/data/skill.json'
+import { useAddableSkillActions } from '~/app/hooks/addableSkill'
 import { useResultActions } from '~/app/hooks/result'
-import useAddableSkill from '~/app/hooks/useAddableSkill'
 import useSkill from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
@@ -26,7 +26,7 @@ const allSkillList = baseSkillList.slice()
 
 const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
-  const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
+  const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
   const [skillLog, updateSkillLog] = useSkillLog()
   const weaponSlots = useWeaponSlots()
   const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
@@ -81,12 +81,12 @@ const App: React.FC = () => {
     }
   }, [activeSkill, weaponSlots, ignoreArmors, decos, searchList])
 
-  const searchAddableSkill = useCallback(() => {
+  const onSearchAddableSkill = useCallback(() => {
     if (skillRef.current) {
       skillRef.current.scrollTo(0, 0)
     }
 
-    calcAddableSkill(activeSkill, weaponSlots, ignoreArmors, decos, skillList.map(({ id }) => id))
+    searchAddableSkill(activeSkill, weaponSlots, ignoreArmors, decos, skillList.map(({ id }) => id))
   }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList])
 
   const clear = useCallback(() => {
@@ -110,7 +110,6 @@ const App: React.FC = () => {
             <Skill
               skillList={skillList}
               activeSkill={activeSkill}
-              addableSkill={addableSkill}
               updateActiveSkill={updateActiveSkill}
             />
           </div>
@@ -119,7 +118,7 @@ const App: React.FC = () => {
             <ActionButton label="検索" onClick={onSearchSummary} primary />
             <ActionButton label="クリア" onClick={clear} />
             <ActionButton label="10件検索β" onClick={onSearchList} />
-            <ActionButton label="追加スキルβ" onClick={searchAddableSkill} />
+            <ActionButton label="追加スキルβ" onClick={onSearchAddableSkill} />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
