@@ -32,7 +32,7 @@ const App: React.FC = () => {
   const [decos, setDeco] = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
   const [tab, setTab] = useState(tabKeyList[0])
-  const [result, search] = useResult()
+  const [result, search, searchList] = useResult()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef<HTMLDivElement>(null)
 
@@ -62,7 +62,23 @@ const App: React.FC = () => {
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList, search, calcAddableSkill])
+  }, [activeSkill, weaponSlots, ignoreArmors, decos, search])
+
+  const onSearchList = useCallback(() => {
+    clearAddableSkill()
+    updateSkillLog(activeSkill)
+
+    searchList(activeSkill, weaponSlots, ignoreArmors, decos)
+    setTab('result')
+
+    if (skillRef.current) {
+      skillRef.current.scrollTo(0, 0)
+    }
+
+    if (outputAreaRef.current) {
+      window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
+    }
+  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchList])
 
   const searchAddableSkill = useCallback(() => {
     if (skillRef.current) {
@@ -100,7 +116,8 @@ const App: React.FC = () => {
           <div className="App-actions">
             <ActionButton label="検索" onClick={onSearch} primary />
             <ActionButton label="クリア" onClick={clear} />
-            <ActionButton label="追加スキル検索β" onClick={searchAddableSkill} />
+            <ActionButton label="10件検索β" onClick={onSearchList} />
+            <ActionButton label="追加スキルβ" onClick={searchAddableSkill} />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
@@ -115,6 +132,7 @@ const App: React.FC = () => {
                 slot2={result.slot2}
                 slot3={result.slot3}
                 slot4={result.slot4}
+                list={result.list}
               />
             }
             {tab === 'armors' &&

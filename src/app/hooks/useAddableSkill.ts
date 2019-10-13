@@ -5,6 +5,8 @@ import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
 import { WeaponSlots } from './useWeaponSlots'
 
+const prev = [] as any[]
+
 export default () => {
   const [addableSkill, updateAddableSkill, clearAddableSkill] = useSkill()
 
@@ -12,7 +14,7 @@ export default () => {
     clearAddableSkill()
 
     for (const id of skillList) {
-      const result = await calc(id, { skill, weaponSlots: slots, armors, decos })
+      const result = await calc(id, { skill, weaponSlots: slots, armors, decos, prev })
 
       if (!result) break
 
