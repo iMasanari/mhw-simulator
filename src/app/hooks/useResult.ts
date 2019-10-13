@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Result } from '~/worker/service/calc'
+import { Equipment } from '~/worker/service/calc'
 import { Condition } from '~/worker/service/execute'
 import { Skill } from '../hooks/useSkill'
 import { WeaponSlots } from '../modules/weaponSlots'
@@ -8,12 +8,12 @@ import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
 
 interface State {
-  def?: Result
-  slot1?: Result
-  slot2?: Result
-  slot3?: Result
-  slot4?: Result
-  list?: Result[]
+  def?: Equipment
+  slot1?: Equipment
+  slot2?: Equipment
+  slot3?: Equipment
+  slot4?: Equipment
+  list?: Equipment[]
 }
 
 const list = Object.entries({

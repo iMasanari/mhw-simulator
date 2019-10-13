@@ -1,6 +1,6 @@
 import execute, { Condition } from './execute'
 
-export interface Result {
+export interface Equipment {
   head: string | undefined
   body: string | undefined
   arm: string | undefined
@@ -31,7 +31,7 @@ const getSlots = (result: Record<string, number>) => {
   return [slot1, slot2, slot3, slot4]
 }
 
-export default async (objective: string, condition: Condition): Promise<Result> => {
+export default async (objective: string, condition: Condition): Promise<Equipment> => {
   const result = await execute(objective, condition)
 
   const list = Object.keys(result).filter(key => result[key])

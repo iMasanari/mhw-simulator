@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { arm, body, charm, deco, head, leg, wst } from '~/app/data'
 import skill from '~/app/data/skill.json'
-import { Result } from '~/worker/service/calc'
+import { Equipment } from '~/worker/service/calc'
 
 require('./Equipment.css')
 
 interface Props {
   title: string
-  result: Result
+  result: Equipment
   initState?: boolean
 }
 

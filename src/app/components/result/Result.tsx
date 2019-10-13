@@ -1,14 +1,14 @@
 import React from 'react'
-import { Result } from '~/worker/service/calc'
+import { Equipment as IEquipment } from '~/worker/service/calc'
 import Equipment from './Equipment'
 
 interface Props {
-  def?: Result
-  slot1?: Result
-  slot2?: Result
-  slot3?: Result
-  slot4?: Result
-  list?: Result[]
+  def?: IEquipment
+  slot1?: IEquipment
+  slot2?: IEquipment
+  slot3?: IEquipment
+  slot4?: IEquipment
+  list?: IEquipment[]
 }
 
 const Result: React.FC<Props> = ({ def, slot1, slot2, slot3, slot4, list }) =>
