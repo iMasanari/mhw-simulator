@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import baseSkillList from '~/app/data/skill.json'
+import { useResultActions } from '~/app/hooks/result'
 import useAddableSkill from '~/app/hooks/useAddableSkill'
-import useResult from '~/app/hooks/useResult'
 import useSkill from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const [decos, setDeco] = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
   const [tab, setTab] = useState(tabKeyList[0])
-  const [result, search, searchList] = useResult()
+  const { searchSummary, searchList } = useResultActions()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef<HTMLDivElement>(null)
 
@@ -49,11 +49,11 @@ const App: React.FC = () => {
     return [...t, ...f]
   }, [skillFilter, skillLog])
 
-  const onSearch = useCallback(() => {
+  const onSearchSummary = useCallback(() => {
     clearAddableSkill()
     updateSkillLog(activeSkill)
 
-    search(activeSkill, weaponSlots, ignoreArmors, decos)
+    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
     setTab('result')
 
     if (skillRef.current) {
@@ -63,7 +63,7 @@ const App: React.FC = () => {
     if (outputAreaRef.current) {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, search])
+  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchSummary])
 
   const onSearchList = useCallback(() => {
     clearAddableSkill()
@@ -97,7 +97,7 @@ const App: React.FC = () => {
 
   // 初回検索
   useEffect(() => {
-    search(activeSkill, weaponSlots, ignoreArmors, decos)
+    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
   }, [])
 
   return (
@@ -116,7 +116,7 @@ const App: React.FC = () => {
           </div>
           <Weapon />
           <div className="App-actions">
-            <ActionButton label="検索" onClick={onSearch} primary />
+            <ActionButton label="検索" onClick={onSearchSummary} primary />
             <ActionButton label="クリア" onClick={clear} />
             <ActionButton label="10件検索β" onClick={onSearchList} />
             <ActionButton label="追加スキルβ" onClick={searchAddableSkill} />
@@ -128,14 +128,7 @@ const App: React.FC = () => {
           </div>
           <div className="App-outputContent">
             {tab === 'result' &&
-              <Result
-                def={result.def}
-                slot1={result.slot1}
-                slot2={result.slot2}
-                slot3={result.slot3}
-                slot4={result.slot4}
-                list={result.list}
-              />
+              <Result />
             }
             {tab === 'armors' &&
               <Armors

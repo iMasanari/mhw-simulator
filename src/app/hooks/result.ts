@@ -1,19 +1,21 @@
-import { useCallback, useState } from 'react'
-import { Equipment } from '~/worker/service/calc'
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Condition } from '~/worker/service/execute'
-import { Skill } from '../hooks/useSkill'
+import { RootState } from '../modules'
+import * as actions from '../modules/result'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
+import { Skill } from './useSkill'
 
-interface State {
-  def?: Equipment
-  slot1?: Equipment
-  slot2?: Equipment
-  slot3?: Equipment
-  slot4?: Equipment
-  list?: Equipment[]
+const selector = (state: RootState) =>
+  state.result
+
+export const useResult = () => {
+  const result = useSelector(selector)
+
+  return result
 }
 
 const list = Object.entries({
@@ -27,14 +29,14 @@ const list = Object.entries({
 const isntEmpty = (s: string | undefined): s is string =>
   s as any
 
-export default () => {
-  const [result, setResult] = useState({} as State)
+export const useResultActions = () => {
+  const dispatch = useDispatch()
 
   const clear = useCallback(() => {
-    setResult({})
+    dispatch(actions.clear())
   }, [])
 
-  const search = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
     clear()
 
     const condition: Condition = { skill, weaponSlots: slots, armors, decos, prev: [] }
@@ -44,7 +46,7 @@ export default () => {
 
       if (!value) return
 
-      setResult(result => ({ ...result, [key]: value }))
+      dispatch(actions.updateSummary({ [key]: value }))
     }
   }, [])
 
@@ -58,7 +60,7 @@ export default () => {
 
       if (!value) return
 
-      setResult(result => ({ ...result, list: [...(result.list || []), value] }))
+      dispatch(actions.updateList(value))
 
       if (!value.def) return
 
@@ -68,5 +70,5 @@ export default () => {
     }
   }, [])
 
-  return [result, search, searchList, clear] as const
+  return { searchSummary, searchList }
 }
