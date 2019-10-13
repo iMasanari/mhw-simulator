@@ -6,7 +6,7 @@ import useSkill from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
-import useWeaponSlots from '../hooks/useWeaponSlots'
+import { useWeaponSlots } from '../hooks/weaponSlots'
 import { partition } from '../util/array'
 import { terminate } from '../util/calc'
 import ActionButton from './actions/ActionButton'
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
   const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
   const [skillLog, updateSkillLog] = useSkillLog()
-  const [weaponSlots, setWeaponSlot] = useWeaponSlots()
+  const weaponSlots = useWeaponSlots()
   const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
   const [decos, setDeco] = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
@@ -114,7 +114,7 @@ const App: React.FC = () => {
               updateActiveSkill={updateActiveSkill}
             />
           </div>
-          <Weapon slots={weaponSlots} setSlot={setWeaponSlot} />
+          <Weapon />
           <div className="App-actions">
             <ActionButton label="検索" onClick={onSearch} primary />
             <ActionButton label="クリア" onClick={clear} />

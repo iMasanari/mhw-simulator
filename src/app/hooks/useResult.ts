@@ -2,10 +2,10 @@ import { useCallback, useState } from 'react'
 import { Result } from '~/worker/service/calc'
 import { Condition } from '~/worker/service/execute'
 import { Skill } from '../hooks/useSkill'
+import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
-import { WeaponSlots } from './useWeaponSlots'
 
 interface State {
   def?: Result

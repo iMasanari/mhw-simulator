@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import useSkill, { Skill } from '../hooks/useSkill'
+import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
-import { WeaponSlots } from './useWeaponSlots'
 
 const prev = [] as any[]
 
