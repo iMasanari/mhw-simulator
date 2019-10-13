@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Skill } from '~/app/hooks/useSkill'
+import { ActiveSkill } from '../modules/activeSkill'
 
 const STORAGE_KEY = 'mhw-simulator/skillLog/v1.1'
 
-const initSkillLogState: Skill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+const initSkillLogState: ActiveSkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
 
 export default () => {
   const [skillLog, setSkillLog] = useState(initSkillLogState)
 
-  const updateSkillLog = useCallback((skill: Skill) => {
+  const updateSkillLog = useCallback((skill: ActiveSkill) => {
     const time = Date.now()
 
     const log = Object.keys(skill).reduce(
       (acc, key) => (acc[key] = time + skill[key], acc),
-      {} as Skill
+      {} as ActiveSkill
     )
 
     setSkillLog(state => ({ ...state, ...log }))

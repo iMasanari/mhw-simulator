@@ -1,5 +1,5 @@
 import React from 'react'
-import { UpdateSkill } from '~/app/hooks/useSkill'
+import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 
 require('./SkillLevelIcon.css')
 
@@ -8,22 +8,26 @@ interface Props {
   value: number
   addableValue: number | null
   items: number[]
-  onUpdate: UpdateSkill
 }
 
-const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items, onUpdate }) =>
-  <ul className="SkillLevelIcon">
-    {items.map((level) =>
-      <li
-        key={level}
-        className={
-          `SkillLevelIcon-li ${
-          value === level ? 'on' : ''} ${
-          addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
-        }
-        onClick={() => onUpdate(id, level)}
-      />
-    )}
-  </ul>
+const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items }) => {
+  const { update } = useActiveSkillActions()
+
+  return (
+    <ul className="SkillLevelIcon">
+      {items.map((level) =>
+        <li
+          key={level}
+          className={
+            `SkillLevelIcon-li ${
+            value === level ? 'on' : ''} ${
+            addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
+          }
+          onClick={() => update(id, level)}
+        />
+      )}
+    </ul>
+  )
+}
 
 export default SkillLevelIcon

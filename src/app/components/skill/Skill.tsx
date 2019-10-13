@@ -1,18 +1,17 @@
 import React from 'react'
 import skillList from '~/app/data/skill.json'
+import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useAddableSkill } from '~/app/hooks/addableSkill'
-import { Skill, UpdateSkill } from '~/app/hooks/useSkill'
 import SkillRow from './SkillRow'
 
 require('./Skill.css')
 
 interface Props {
   skillList: typeof skillList
-  activeSkill: Skill
-  updateActiveSkill: UpdateSkill
 }
 
-const Skill: React.FC<Props> = ({ skillList, activeSkill, updateActiveSkill }) => {
+const Skill: React.FC<Props> = ({ skillList }) => {
+  const activeSkill = useActiveSkill()
   const addableSkill = useAddableSkill()
 
   return (
@@ -25,7 +24,6 @@ const Skill: React.FC<Props> = ({ skillList, activeSkill, updateActiveSkill }) =
             value={activeSkill[id]}
             addableValue={addableSkill[id]}
             items={items}
-            onUpdate={updateActiveSkill}
           />
         </li>
       )}

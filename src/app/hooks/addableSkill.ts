@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../modules'
+import { ActiveSkill } from '../modules/activeSkill'
 import * as actions from '../modules/addableSkill'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
-import { Skill } from './useSkill'
 
 const selector = (state: RootState) => state.addableSkill
 
@@ -25,7 +25,7 @@ export const useAddableSkillActions = () => {
     dispatch(actions.clear())
   }, [])
 
-  const search = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos, skillList: string[]) => {
+  const search = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos, skillList: string[]) => {
     clear()
 
     for (const key of skillList) {

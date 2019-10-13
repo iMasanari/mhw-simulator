@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import baseSkillList from '~/app/data/skill.json'
+import { useActiveSkill, useActiveSkillActions } from '~/app/hooks/activeSkill'
 import { useAddableSkillActions } from '~/app/hooks/addableSkill'
 import { useResultActions } from '~/app/hooks/result'
-import useSkill from '~/app/hooks/useSkill'
 import useDecos from '../hooks/useDecos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
@@ -25,7 +25,8 @@ const tabKeyList = ['result', 'armors', 'decos']
 const allSkillList = baseSkillList.slice()
 
 const App: React.FC = () => {
-  const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
+  const activeSkill = useActiveSkill()
+  const { clear: clearActiveSkill } = useActiveSkillActions()
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
   const [skillLog, updateSkillLog] = useSkillLog()
   const weaponSlots = useWeaponSlots()
@@ -107,11 +108,7 @@ const App: React.FC = () => {
         <div className="App-inputArea">
           <SkillFilter value={skillFilter} setValue={setSkillFilter} />
           <div className="App-skill" ref={skillRef}>
-            <Skill
-              skillList={skillList}
-              activeSkill={activeSkill}
-              updateActiveSkill={updateActiveSkill}
-            />
+            <Skill skillList={skillList} />
           </div>
           <Weapon />
           <div className="App-actions">

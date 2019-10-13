@@ -1,13 +1,13 @@
 import { Decos } from '~/app/hooks/useDecos'
 import { Armors } from '~/app/hooks/useIgnoreArmors'
-import { Skill } from '~/app/hooks/useSkill'
+import { ActiveSkill } from '~/app/modules/activeSkill'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import baseLp from '../data/lp.json'
 import executeGlpk, { GLP_FX, GLP_LO, GLP_UP } from '../util/executeGlpk'
 import normalizeSkill from '../util/normalizeSkill'
 
 export interface Condition {
-  skill: Skill
+  skill: ActiveSkill
   armors: Armors
   decos: Decos
   weaponSlots: WeaponSlots

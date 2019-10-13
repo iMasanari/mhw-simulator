@@ -2,12 +2,12 @@ import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Condition } from '~/worker/service/execute'
 import { RootState } from '../modules'
+import { ActiveSkill } from '../modules/activeSkill'
 import * as actions from '../modules/result'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
 import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
-import { Skill } from './useSkill'
 
 const selector = (state: RootState) =>
   state.result
@@ -36,7 +36,7 @@ export const useResultActions = () => {
     dispatch(actions.clear())
   }, [])
 
-  const searchSummary = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
     clear()
 
     const condition: Condition = { skill, weaponSlots: slots, armors, decos, prev: [] }
@@ -50,7 +50,7 @@ export const useResultActions = () => {
     }
   }, [])
 
-  const searchList = useCallback(async (skill: Skill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
+  const searchList = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
     clear()
 
     const condition: Condition = { skill, weaponSlots: slots, armors, decos, prev: [] }
