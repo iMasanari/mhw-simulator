@@ -6,6 +6,7 @@ import { useDecos } from '../hooks/decos'
 import { useIgnoreArmors } from '../hooks/ignoreArmors'
 import { useResultActions } from '../hooks/result'
 import { useSkillLog, useSkillLogActions } from '../hooks/skillLog'
+import { useTab, useTabActions } from '../hooks/tab'
 import { useWeaponSlots } from '../hooks/weaponSlots'
 import { partition } from '../util/array'
 import { terminate } from '../util/calc'
@@ -21,7 +22,6 @@ import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
-const tabKeyList = ['result', 'armors', 'decos']
 const allSkillList = baseSkillList.slice()
 
 const App: React.FC = () => {
@@ -34,7 +34,8 @@ const App: React.FC = () => {
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
-  const [tab, setTab] = useState(tabKeyList[0])
+  const tab = useTab()
+  const { set: setTab } = useTabActions()
   const { searchSummary, searchList } = useResultActions()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef<HTMLDivElement>(null)
@@ -121,7 +122,7 @@ const App: React.FC = () => {
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
           <div className="App-outputTab">
-            <Tab value={tab} list={tabKeyList} onSelect={setTab} />
+            <Tab />
           </div>
           <div className="App-outputContent">
             {tab === 'result' &&

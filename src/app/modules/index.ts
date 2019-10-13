@@ -5,6 +5,7 @@ import decos, { Decos } from './decos'
 import ignoreArmors, { Armors } from './ignoreArmors'
 import result, { Result } from './result'
 import skillLog, { SkillLog } from './skillLog'
+import tab, { Tab } from './tab'
 import weaponSlots, { WeaponSlots } from './weaponSlots'
 
 export interface RootState {
@@ -14,6 +15,7 @@ export interface RootState {
   ignoreArmors: Armors
   result: Result
   skillLog: SkillLog
+  tab: Tab
   weaponSlots: WeaponSlots
 }
 
@@ -24,5 +26,6 @@ export default combineReducers<RootState>({
   ignoreArmors,
   result,
   skillLog,
+  tab,
   weaponSlots,
 })
