@@ -8,6 +8,7 @@ import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
 import useWeaponSlots from '../hooks/useWeaponSlots'
 import { partition } from '../util/array'
+import { terminate } from '../util/calc'
 import ActionButton from './actions/ActionButton'
 import Armors from './armors/armors'
 import Decos from './decos/Decos'
@@ -90,8 +91,9 @@ const App: React.FC = () => {
 
   const clear = useCallback(() => {
     clearActiveSkill()
-    onSearch()
-  }, [clearActiveSkill, onSearch])
+    clearAddableSkill()
+    terminate()
+  }, [])
 
   // 初回検索
   useEffect(() => {

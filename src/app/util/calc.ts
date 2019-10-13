@@ -15,3 +15,7 @@ export default async (objective: string, condition: Condition) => {
     current === _current ? result : null
   )
 }
+
+export const terminate = () => {
+  _current = Symbol()
+}
