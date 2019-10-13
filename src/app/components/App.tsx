@@ -3,7 +3,7 @@ import baseSkillList from '~/app/data/skill.json'
 import { useActiveSkill, useActiveSkillActions } from '~/app/hooks/activeSkill'
 import { useAddableSkillActions } from '~/app/hooks/addableSkill'
 import { useResultActions } from '~/app/hooks/result'
-import useDecos from '../hooks/useDecos'
+import { useDecos } from '../hooks/decos'
 import useIgnoreArmors from '../hooks/useIgnoreArmors'
 import useSkillLog from '../hooks/useSkillLog'
 import { useWeaponSlots } from '../hooks/weaponSlots'
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const [skillLog, updateSkillLog] = useSkillLog()
   const weaponSlots = useWeaponSlots()
   const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
-  const [decos, setDeco] = useDecos()
+  const decos = useDecos()
   const [skillFilter, setSkillFilter] = useState('')
   const [tab, setTab] = useState(tabKeyList[0])
   const { searchSummary, searchList } = useResultActions()
@@ -133,10 +133,7 @@ const App: React.FC = () => {
               />
             }
             {tab === 'decos' &&
-              <Decos
-                decos={decos}
-                setDeco={setDeco}
-              />
+              <Decos />
             }
           </div>
         </div>

@@ -1,12 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { deco as decoData } from '~/app/data'
-import { Decos } from '~/app/hooks/useDecos'
+import { useDecos, useDecosActions } from '~/app/hooks/decos'
 
 require('./Decos.css')
 
 interface Props {
-  decos: Decos
-  setDeco: (deco: string, value: number | null) => void
 }
 
 const createList = (filter: string) =>
@@ -24,7 +22,9 @@ const toNumber = (str: string) => {
   return num
 }
 
-const Decos: React.FC<Props> = ({ decos, setDeco }) => {
+const Decos: React.FC<Props> = () => {
+  const decos = useDecos()
+  const { set } = useDecosActions()
   const [filter, setFilter] = useState('')
 
   const decoList = useMemo(() => createList(filter), [filter])
@@ -52,7 +52,7 @@ const Decos: React.FC<Props> = ({ decos, setDeco }) => {
                 min="0"
                 max="9"
                 value={decos[id] != null ? decos[id] : ''}
-                onChange={e => setDeco(id, toNumber(e.currentTarget.value))}
+                onChange={e => set(id, toNumber(e.currentTarget.value))}
               />
             </li>
           )}

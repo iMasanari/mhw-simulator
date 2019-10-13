@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Condition } from '~/worker/service/execute'
 import { RootState } from '../modules'
 import { ActiveSkill } from '../modules/activeSkill'
+import { Decos } from '../modules/decos'
 import * as actions from '../modules/result'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
-import { Decos } from './useDecos'
 import { Armors } from './useIgnoreArmors'
 
 const selector = (state: RootState) =>
