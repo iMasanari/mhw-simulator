@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage'
 import App from './components/App'
 import modules, { RootState } from './modules'
 
-const whitelist: (keyof RootState)[] = ['decos', 'ignoreArmors']
+const whitelist: (keyof RootState)[] = ['decos', 'ignoreArmors', 'skillLog']
 
 const persistConfig = { key: 'mhw-simulator', storage, whitelist }
 

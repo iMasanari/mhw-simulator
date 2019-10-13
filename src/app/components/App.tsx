@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import baseSkillList from '~/app/data/skill.json'
-import { useActiveSkill, useActiveSkillActions } from '~/app/hooks/activeSkill'
-import { useAddableSkillActions } from '~/app/hooks/addableSkill'
-import { useResultActions } from '~/app/hooks/result'
+import baseSkillList from '../data/skill.json'
+import { useActiveSkill, useActiveSkillActions } from '../hooks/activeSkill'
+import { useAddableSkillActions } from '../hooks/addableSkill'
 import { useDecos } from '../hooks/decos'
 import { useIgnoreArmors } from '../hooks/ignoreArmors'
-import useSkillLog from '../hooks/useSkillLog'
+import { useResultActions } from '../hooks/result'
+import { useSkillLog, useSkillLogActions } from '../hooks/skillLog'
 import { useWeaponSlots } from '../hooks/weaponSlots'
 import { partition } from '../util/array'
 import { terminate } from '../util/calc'
@@ -28,7 +28,8 @@ const App: React.FC = () => {
   const activeSkill = useActiveSkill()
   const { clear: clearActiveSkill } = useActiveSkillActions()
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
-  const [skillLog, updateSkillLog] = useSkillLog()
+  const skillLog = useSkillLog()
+  const { update: updateSkillLog } = useSkillLogActions()
   const weaponSlots = useWeaponSlots()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
