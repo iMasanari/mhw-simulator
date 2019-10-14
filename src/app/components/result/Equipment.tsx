@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react'
-import { arm, body, charm, deco, head, leg, wst } from '~/app/data'
 import skill from '~/app/data/skill.json'
-import { Result } from '~/worker/service/calc'
+import { Equipment } from '~/worker/service/calc'
+import ArmorName from './ArmorName'
+import DecoName from './DecoName'
 
 require('./Equipment.css')
 
 interface Props {
   title: string
-  result: Result
+  result: Equipment
   initState?: boolean
 }
 
@@ -36,34 +37,34 @@ const Equipment: React.FC<Props> = ({ title, result, initState }) => {
               </tr>
               <tr>
                 <th className="Equipment-th">頭</th>
-                <td>{head[result.head as keyof typeof head] || '装備なし'}</td>
+                <td><ArmorName id={result.head} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">胴</th>
-                <td>{body[result.body as keyof typeof body] || '装備なし'}</td>
+                <td><ArmorName id={result.body} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">腕</th>
-                <td>{arm[result.arm as keyof typeof arm] || '装備なし'}</td>
+                <td><ArmorName id={result.arm} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">腰</th>
-                <td>{wst[result.wst as keyof typeof wst] || '装備なし'}</td>
+                <td><ArmorName id={result.wst} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">足</th>
-                <td>{leg[result.leg as keyof typeof leg] || '装備なし'}</td>
+                <td><ArmorName id={result.leg} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">お守り</th>
-                <td>{charm[result.charm as keyof typeof charm] || '装備なし'}</td>
+                <td><ArmorName id={result.charm} /></td>
               </tr>
               <tr>
                 <th className="Equipment-th">装飾品</th>
                 <td>
                   <ul className="Equipment-ul">
                     {result.decos.map(({ id, count }) =>
-                      <li key={id}>{deco[id as keyof typeof deco]}x{count}</li>
+                      <li key={id}><DecoName id={id} />x{count}</li>
                     )}
                     {!!result.slot1 &&
                       <li>空きスロット【１】x{result.slot1}</li>

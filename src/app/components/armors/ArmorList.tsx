@@ -1,5 +1,5 @@
 import React from 'react'
-import { Armors } from '~/app/hooks/useIgnoreArmors'
+import { Armors } from '~/app/modules/ignoreArmors'
 
 require('./ArmorList.css')
 

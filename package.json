@@ -16,18 +16,23 @@
   "author": "iMasanari",
   "license": "GPLv3",
   "dependencies": {
+    "action-reducer": "^0.2.0",
     "glpk.js": "^3.0.0",
     "normalize.css": "^8.0.1",
     "promise-worker": "^2.0.1",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^12.7.5",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.4",
     "gh-pages": "^2.1.1",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "typescript": "^3.6.3"
   },
   "browserslist": [

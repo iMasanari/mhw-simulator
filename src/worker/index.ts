@@ -1,5 +1,5 @@
 import register from 'promise-worker/register'
-import calc, { Result } from './service/calc'
+import calc, { Equipment } from './service/calc'
 import { Condition } from './service/execute'
 
 export interface Message {
@@ -7,6 +7,6 @@ export interface Message {
   condition: Condition
 }
 
-register<Message, Result>(({ condition, objective }) =>
+register<Message, Equipment>(({ condition, objective }) =>
   calc(objective, condition)
 )

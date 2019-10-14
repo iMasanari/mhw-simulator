@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { UpdateSkill } from '~/app/hooks/useSkill'
+import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 
 require('./SkillSelect.css')
 
@@ -7,13 +7,14 @@ interface Props {
   id: string
   value: number
   items: number[]
-  onUpdate: UpdateSkill
 }
 
-const SkillSelect: React.FC<Props> = ({ id, value, items, onUpdate }) => {
+const SkillSelect: React.FC<Props> = ({ id, value, items }) => {
+  const { update } = useActiveSkillActions()
+
   const onChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    onUpdate(id, +e.currentTarget.value)
-  }, [id, onUpdate])
+    update(id, +e.currentTarget.value)
+  }, [id, update])
 
   return (
     <div className="SkillSelect">
