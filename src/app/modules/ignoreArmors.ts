@@ -2,7 +2,11 @@ import ActionReducer from 'action-reducer'
 
 export type Armors = Record<string, 0 | 1>
 
-const { reducer, createAction } = ActionReducer({} as Armors, 'ignoreArmors/')
+// 旧保存データの移行
+const STORAGE_KEY = 'mhw-simulator/ignoreArmors/v1.1'
+const initState: Armors = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+
+const { reducer, createAction } = ActionReducer(initState, 'ignoreArmors/')
 
 interface Payload {
   armor: string

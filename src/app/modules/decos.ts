@@ -2,7 +2,11 @@ import ActionReducer from 'action-reducer'
 
 export type Decos = Record<string, number>
 
-const { reducer, createAction } = ActionReducer({} as Decos, 'decos/')
+// 旧保存データの移行
+const STORAGE_KEY = 'mhw-simulator/decos/v1.1'
+const initState: Decos = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+
+const { reducer, createAction } = ActionReducer(initState, 'decos/')
 
 interface Payload {
   deco: string
