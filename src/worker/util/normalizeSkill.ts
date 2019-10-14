@@ -1,6 +1,6 @@
-import { Skill } from '~/app/hooks/useSkill'
+import { ActiveSkill } from '~/app/modules/activeSkill'
 
-export default (skill: Skill) => {
+export default (skill: ActiveSkill) => {
   // clone
   skill = { ...skill }
 

@@ -1,23 +1,29 @@
 import React from 'react'
+import { useTab, useTabActions } from '~/app/hooks/tab'
 
 require('./Tab.css')
 
 interface Props {
-  value: string
-  list: string[]
-  onSelect: (name: string) => void
 }
 
-const Tab: React.FC<Props> = ({ value, list, onSelect }) =>
-  <ul className="Tab">
-    {list.map((name) =>
-      <li key={name}
-        className={`Tab-li ${name === value ? 'on' : ''}`}
-        onClick={() => onSelect(name)}
-      >
-        {name}
-      </li>
-    )}
-  </ul>
+const tabKeyList = ['result', 'armors', 'decos'] as const
+
+const Tab: React.FC<Props> = () => {
+  const tab = useTab()
+  const { set } = useTabActions()
+
+  return (
+    <ul className="Tab">
+      {tabKeyList.map((name) =>
+        <li key={name}
+          className={`Tab-li ${name === tab ? 'on' : ''}`}
+          onClick={() => set(name)}
+        >
+          {name}
+        </li>
+      )}
+    </ul>
+  )
+}
 
 export default Tab

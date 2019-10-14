@@ -1,15 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import baseSkillList from '~/app/data/skill.json'
-import useAddableSkill from '~/app/hooks/useAddableSkill'
-import useResult from '~/app/hooks/useResult'
-import useSkill from '~/app/hooks/useSkill'
-import useDecos from '../hooks/useDecos'
-import useIgnoreArmors from '../hooks/useIgnoreArmors'
-import useSkillLog from '../hooks/useSkillLog'
-import useWeaponSlots from '../hooks/useWeaponSlots'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
+import baseSkillList from '../data/skill.json'
+import { useSkillLog } from '../hooks/skillLog'
+import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'
-import { terminate } from '../util/calc'
-import ActionButton from './actions/ActionButton'
+import Actions from './actions/Actions'
 import Armors from './armors/armors'
 import Decos from './decos/Decos'
 import Header from './header/Header'
@@ -21,19 +15,12 @@ import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
-const tabKeyList = ['result', 'armors', 'decos']
 const allSkillList = baseSkillList.slice()
 
 const App: React.FC = () => {
-  const [activeSkill, updateActiveSkill, clearActiveSkill] = useSkill()
-  const [addableSkill, calcAddableSkill, clearAddableSkill] = useAddableSkill()
-  const [skillLog, updateSkillLog] = useSkillLog()
-  const [weaponSlots, setWeaponSlot] = useWeaponSlots()
-  const [ignoreArmors, toggleIgnoreArmors] = useIgnoreArmors()
-  const [decos, setDeco] = useDecos()
+  const skillLog = useSkillLog()
   const [skillFilter, setSkillFilter] = useState('')
-  const [tab, setTab] = useState(tabKeyList[0])
-  const [result, search, searchList] = useResult()
+  const tab = useTab()
   const skillRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef<HTMLDivElement>(null)
 
@@ -49,55 +36,16 @@ const App: React.FC = () => {
     return [...t, ...f]
   }, [skillFilter, skillLog])
 
-  const onSearch = useCallback(() => {
-    clearAddableSkill()
-    updateSkillLog(activeSkill)
-
-    search(activeSkill, weaponSlots, ignoreArmors, decos)
-    setTab('result')
-
+  const resetSkillScroll = useCallback(() => {
     if (skillRef.current) {
       skillRef.current.scrollTo(0, 0)
     }
-
-    if (outputAreaRef.current) {
-      window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
-    }
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, search])
-
-  const onSearchList = useCallback(() => {
-    clearAddableSkill()
-    updateSkillLog(activeSkill)
-
-    searchList(activeSkill, weaponSlots, ignoreArmors, decos)
-    setTab('result')
-
-    if (skillRef.current) {
-      skillRef.current.scrollTo(0, 0)
-    }
-
-    if (outputAreaRef.current) {
-      window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
-    }
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchList])
-
-  const searchAddableSkill = useCallback(() => {
-    if (skillRef.current) {
-      skillRef.current.scrollTo(0, 0)
-    }
-
-    calcAddableSkill(activeSkill, weaponSlots, ignoreArmors, decos, skillList.map(({ id }) => id))
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList])
-
-  const clear = useCallback(() => {
-    clearActiveSkill()
-    clearAddableSkill()
-    terminate()
   }, [])
 
-  // 初回検索
-  useEffect(() => {
-    search(activeSkill, weaponSlots, ignoreArmors, decos)
+  const scrollOutputArea = useCallback(() => {
+    if (outputAreaRef.current) {
+      window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
+    }
   }, [])
 
   return (
@@ -107,47 +55,30 @@ const App: React.FC = () => {
         <div className="App-inputArea">
           <SkillFilter value={skillFilter} setValue={setSkillFilter} />
           <div className="App-skill" ref={skillRef}>
-            <Skill
-              skillList={skillList}
-              activeSkill={activeSkill}
-              addableSkill={addableSkill}
-              updateActiveSkill={updateActiveSkill}
-            />
+            <Skill skillList={skillList} />
           </div>
-          <Weapon slots={weaponSlots} setSlot={setWeaponSlot} />
+          <Weapon />
           <div className="App-actions">
-            <ActionButton label="検索" onClick={onSearch} primary />
-            <ActionButton label="クリア" onClick={clear} />
-            <ActionButton label="10件検索β" onClick={onSearchList} />
-            <ActionButton label="追加スキルβ" onClick={searchAddableSkill} />
+            <Actions
+              skillList={skillList.map((skill => skill.id))}
+              resetSkillScroll={resetSkillScroll}
+              scrollOutputArea={scrollOutputArea}
+            />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
           <div className="App-outputTab">
-            <Tab value={tab} list={tabKeyList} onSelect={setTab} />
+            <Tab />
           </div>
           <div className="App-outputContent">
             {tab === 'result' &&
-              <Result
-                def={result.def}
-                slot1={result.slot1}
-                slot2={result.slot2}
-                slot3={result.slot3}
-                slot4={result.slot4}
-                list={result.list}
-              />
+              <Result />
             }
             {tab === 'armors' &&
-              <Armors
-                ignoreArmors={ignoreArmors}
-                toggleIgnoreArmors={toggleIgnoreArmors}
-              />
+              <Armors />
             }
             {tab === 'decos' &&
-              <Decos
-                decos={decos}
-                setDeco={setDeco}
-              />
+              <Decos />
             }
           </div>
         </div>
