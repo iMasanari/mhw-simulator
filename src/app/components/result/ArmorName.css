@@ -1,0 +1,8 @@
+.ArmorName.on {
+  color: #1A0DAB;
+  cursor: pointer;
+}
+
+.ArmorName.on:hover {
+  text-decoration: underline;
+}
