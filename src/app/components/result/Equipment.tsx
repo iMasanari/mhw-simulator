@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { deco } from '~/app/data'
 import skill from '~/app/data/skill.json'
 import { Equipment } from '~/worker/service/calc'
 import ArmorName from './ArmorName'
+import DecoName from './DecoName'
 
 require('./Equipment.css')
 
@@ -64,7 +64,7 @@ const Equipment: React.FC<Props> = ({ title, result, initState }) => {
                 <td>
                   <ul className="Equipment-ul">
                     {result.decos.map(({ id, count }) =>
-                      <li key={id}>{deco[id as keyof typeof deco]}x{count}</li>
+                      <li key={id}><DecoName id={id} />x{count}</li>
                     )}
                     {!!result.slot1 &&
                       <li>空きスロット【１】x{result.slot1}</li>

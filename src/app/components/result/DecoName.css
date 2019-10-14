@@ -1,0 +1,8 @@
+.DecoName.on {
+  color: #1A0DAB;
+  cursor: pointer;
+}
+
+.DecoName.on:hover {
+  text-decoration: underline;
+}

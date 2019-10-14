@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { deco as decoData } from '~/app/data'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import toNumber from '~/app/util/toNumber'
 
 require('./Decos.css')
 
@@ -11,16 +12,6 @@ const createList = (filter: string) =>
   (Object.keys(decoData) as (keyof typeof decoData)[])
     .filter(id => ~decoData[id].indexOf(filter))
     .map(id => [id, decoData[id]])
-
-const toNumber = (str: string) => {
-  const num = +str
-
-  if (str === '' || Number.isNaN(num)) {
-    return null
-  }
-
-  return num
-}
 
 const Decos: React.FC<Props> = () => {
   const decos = useDecos()
