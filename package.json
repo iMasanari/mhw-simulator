@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "cp-wasm": "cp node_modules/glpk.js/glpk.wasm dist/glpk.wasm",
+    "clean": "rimraf dist",
+    "cp-wasm": "cpx node_modules/glpk.js/glpk.wasm dist/",
     "predev": "npm run cp-wasm",
     "dev": "parcel src/index.html",
     "prebuild": "npm run clean && npm run cp-wasm",
     "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iMasanari",
@@ -31,8 +29,10 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.4",
+    "cpx": "^1.5.0",
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
+    "rimraf": "^3.0.0",
     "typescript": "^3.6.3"
   },
   "browserslist": [
