@@ -3,19 +3,47 @@ import { Message } from '~/worker'
 import { Equipment } from '~/worker/service/calc'
 import { Condition } from '~/worker/service/execute'
 
-const worker = new Worker('~/worker/index.ts')
-const pw = new PromiseWorker(worker)
+let worker: Worker | undefined
+let promiseWorker: PromiseWorker
+let promise: Promise<any> | undefined
+let isRunning = false
 
-let _current: Symbol
+const init = () => {
+  if (worker && promise) {
+    const currentWorker = worker
+
+    promise.then(() => currentWorker.terminate())
+  }
+
+  worker = new Worker('~/worker/index.ts')
+  promiseWorker = new PromiseWorker(worker)
+  isRunning = false
+}
+
+init()
+
+let _current: Symbol | null
 
 export default async (objective: string, condition: Condition) => {
-  const current = _current = Symbol()
+  if (isRunning) {
+    init()
+  }
 
-  return pw.postMessage<Equipment, Message>({ objective, condition }).then(result =>
-    current === _current ? result : null
-  )
+  isRunning = true
+
+  const current = _current = Symbol()
+  const result = await (promise = promiseWorker.postMessage<Equipment, Message>({ objective, condition }))
+
+  if (current !== _current) {
+    return null
+  }
+
+  isRunning = false
+
+  return result
 }
 
 export const terminate = () => {
-  _current = Symbol()
+  _current = null
+  init()
 }
