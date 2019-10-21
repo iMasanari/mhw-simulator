@@ -1,8 +1,8 @@
-.SkillSelect {
+.Select {
   position: relative;
 }
 
-.SkillSelect::before {
+.Select::before {
   position: absolute;
   top: 0.8em;
   right: 0.5em;
@@ -16,7 +16,7 @@
   pointer-events: none;
 }
 
-.SkillSelect-select {
+.Select-select {
   -webkit-appearance: none;
   appearance: none;
   outline: none;
@@ -29,6 +29,6 @@
   background: #fff;
 }
 
-.SkillSelect-select::-ms-expand {
+.Select-select::-ms-expand {
   display: none;
 }
