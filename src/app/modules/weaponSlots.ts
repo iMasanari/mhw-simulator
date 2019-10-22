@@ -11,8 +11,6 @@ interface Payload {
   value: number
 }
 
-export const set = createAction('set', (state, { key, value }: Payload) =>
-  state.map((v, i) => i === key ? value : v) as WeaponSlots
-)
+export const set = createAction('set', (state, value: WeaponSlots) => value)
 
 export default reducer

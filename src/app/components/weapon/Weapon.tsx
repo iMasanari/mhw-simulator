@@ -1,5 +1,7 @@
 import React from 'react'
 import { useWeaponSlots, useWeaponSlotsActions } from '~/app/hooks/weaponSlots'
+import { WeaponSlots } from '~/app/modules/weaponSlots'
+import Select from '../common/Select'
 
 require('./Weapon.css')
 
@@ -10,25 +12,59 @@ const Weapon: React.FC<Props> = () => {
   const slots = useWeaponSlots()
   const { set } = useWeaponSlotsActions()
 
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    set(e.currentTarget.value.split('-').map(Number) as WeaponSlots)
+
   return (
     <div className="Weapon">
-      <div>武器スロ</div>
-      <div>
-        {slots.map((slot, i) =>
-          <select
-            key={i}
-            value={slot}
-            onChange={(e) => set(i, +e.currentTarget.value)}
-            className="Weapon-select"
-          >
-            <option value={0}>-</option>
-            <option value={1}>【１】</option>
-            <option value={2}>【２】</option>
-            <option value={3}>【３】</option>
-            <option value={4}>【４】</option>
-          </select>
-        )}
-      </div>
+      <div>武器スロット</div>
+      <Select value={slots.join('-')} onChange={onChange}      >
+        <optgroup label="武器スロットなし">
+          <option value="0-0-0">なし</option>
+        </optgroup>
+        <optgroup label="最大Lv1">
+          <option value="1-0-0">【1】</option>
+          <option value="1-1-0">【1】【1】</option>
+          <option value="1-1-1">【1】【1】【1】</option>
+        </optgroup>
+        <optgroup label="最大Lv2">
+          <option value="2-0-0">【2】</option>
+          <option value="2-1-0">【2】【1】</option>
+          <option value="2-1-1">【2】【1】【1】</option>
+          <option value="2-2-0">【2】【2】</option>
+          <option value="2-2-1">【2】【2】【1】</option>
+          <option value="2-2-2">【2】【2】【2】</option>
+        </optgroup>
+        <optgroup label="最大Lv3">
+          <option value="3-0-0">【3】</option>
+          <option value="3-1-0">【3】【1】</option>
+          <option value="3-1-1">【3】【1】【1】</option>
+          <option value="3-2-0">【3】【2】</option>
+          <option value="3-2-1">【3】【2】【1】</option>
+          <option value="3-2-2">【3】【2】【2】</option>
+          <option value="3-3-0">【3】【3】</option>
+          <option value="3-3-1">【3】【3】【1】</option>
+          <option value="3-3-2">【3】【3】【2】</option>
+          <option value="3-3-3">【3】【3】【3】</option>
+        </optgroup>
+        <optgroup label="最大Lv4">
+          <option value="4-0-0">【4】</option>
+          <option value="4-1-0">【4】【1】</option>
+          <option value="4-1-1">【4】【1】【1】</option>
+          <option value="4-2-0">【4】【2】</option>
+          <option value="4-2-1">【4】【2】【1】</option>
+          <option value="4-2-2">【4】【2】【2】</option>
+          <option value="4-3-0">【4】【3】</option>
+          <option value="4-3-1">【4】【3】【1】</option>
+          <option value="4-3-2">【4】【3】【2】</option>
+          <option value="4-3-3">【4】【3】【3】</option>
+          <option value="4-4-0">【4】【4】</option>
+          <option value="4-4-1">【4】【4】【1】</option>
+          <option value="4-4-2">【4】【4】【2】</option>
+          <option value="4-4-3">【4】【4】【3】</option>
+          <option value="4-4-4">【4】【4】【4】</option>
+        </optgroup>
+      </Select>
     </div>
   )
 }
