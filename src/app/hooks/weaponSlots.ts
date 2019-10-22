@@ -15,8 +15,8 @@ export const useWeaponSlots = () => {
 export const useWeaponSlotsActions = () => {
   const dispatch = useDispatch()
 
-  const set = useCallback((key: number, value: number) => (
-    dispatch(actions.set({ key, value }))
+  const set = useCallback((value: actions.WeaponSlots) => (
+    dispatch(actions.set(value))
   ), [])
 
   return { set }

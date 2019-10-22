@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { useActiveSkillActions } from '~/app/hooks/activeSkill'
-
-require('./SkillSelect.css')
+import Select from '../common/Select'
 
 interface Props {
   id: string
@@ -17,18 +16,12 @@ const SkillSelect: React.FC<Props> = ({ id, value, items }) => {
   }, [id, update])
 
   return (
-    <div className="SkillSelect">
-      <select
-        className="SkillSelect-select"
-        value={value || ''}
-        onChange={onChange}
-      >
-        <option key="" value=""></option>
-        {items.map((level) =>
-          <option key={level} value={level}>Lv {level}</option>
-        )}
-      </select>
-    </div>
+    <Select value={value || ''} onChange={onChange}>
+      <option key="" value=""></option>
+      {items.map((level) =>
+        <option key={level} value={level}>Lv {level}</option>
+      )}
+    </Select>
   )
 }
 
