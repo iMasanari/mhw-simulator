@@ -6,3 +6,12 @@
 .ArmorName.on:hover {
   text-decoration: underline;
 }
+
+.ArmorName-table {
+  margin: 1em 0;
+}
+
+.ArmorName-table th,
+.ArmorName-table td {
+  text-align: center;
+}

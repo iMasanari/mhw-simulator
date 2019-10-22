@@ -1,0 +1,25 @@
+.CharmName.on {
+  color: #1A0DAB;
+  cursor: pointer;
+}
+
+.CharmName.on:hover {
+  text-decoration: underline;
+}
+
+.CharmName-table {
+  margin: 1em 0;
+}
+
+.CharmName-table th {
+  text-align: center;
+}
+
+.CharmName-table td {
+  text-align: right;
+}
+
+.CharmName-table th:first-child,
+.CharmName-table td:first-child {
+  text-align: left;
+}
