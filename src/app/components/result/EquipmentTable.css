@@ -1,0 +1,9 @@
+.EquipmentTable th {
+  width: 5em;
+}
+
+.EquipmentTable-decos {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}

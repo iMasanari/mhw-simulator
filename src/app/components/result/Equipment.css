@@ -40,48 +40,12 @@
   display: flex;
 }
 
-.Equipment-table {
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 50%;
-}
-
-.Equipment-table tr {
-  border-top: solid 1px #ddd;
-}
-
-.Equipment-table th {
-  width: 5em;
-}
-
-.Equipment-table th,
-.Equipment-table td {
-  padding: 0.6em 1em 0.4em;
-  text-align: left;
-  vertical-align: text-top;
-}
-
-.Equipment-ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.Equipment-number {
-  text-align: right !important;
-}
-
 @media screen and (max-width:960px) {
   .Equipment-content {
     display: block;
   }
 
-  .Equipment-table {
-    width: 100%;
-  }
-
-  .Equipment-table + .Equipment-table {
+  .Equipment-column + .Equipment-column {
     margin-top: 1em;
   }
 }
