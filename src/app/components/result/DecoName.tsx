@@ -1,8 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import { deco } from '~/app/data'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import { getDecoInfo } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
 import Modal from '../modal/Modal'
+import SkillTable from './SkillTable'
+import SlotTable from './SlotTable'
 
 require('./DecoName.css')
 
@@ -23,13 +26,17 @@ const DecoName: React.FC<Props> = ({ id }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])
 
+  const info = isModalOpen ? getDecoInfo(name) : null
+
   return (
     <>
       <span className={`DecoName ${id ? 'on' : ''}`} onClick={id ? toggleModal : undefined}>
         {name}
       </span>
-      {isModalOpen &&
-        <Modal title="装備設定" onClose={toggleModal}>
+      {info &&
+        <Modal title={name} onClose={toggleModal}>
+          <SlotTable slots={[Math.abs(info.slot1)]} />
+          <SkillTable skillList={info.skill} />
           <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
           <label>
             {name}

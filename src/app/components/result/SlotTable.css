@@ -1,0 +1,16 @@
+.SlotTable {
+  margin: 1em 0;
+}
+
+.SlotTable th {
+  text-align: center;
+}
+
+.SlotTable td {
+  text-align: right;
+}
+
+.SlotTable th:first-child,
+.SlotTable td:first-child {
+  text-align: left;
+}

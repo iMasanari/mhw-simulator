@@ -12,8 +12,10 @@
 
 .Modal-content {
   position: fixed;
+  overflow-y: auto;
   width: 50%;
   min-width: 300px;
+  max-height: calc(100% - 2em);
   padding: 0 1em;
   background-color: white;
 }

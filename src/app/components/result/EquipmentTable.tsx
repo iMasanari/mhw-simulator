@@ -2,6 +2,7 @@ import React from 'react'
 import { Equipment } from '~/worker/service/calc'
 import Table from '../common/Table'
 import ArmorName from './ArmorName'
+import CharmName from './CharmName'
 import DecoName from './DecoName'
 
 require('./EquipmentTable.css')
@@ -38,8 +39,8 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) =>
         <td><ArmorName id={equipment.leg} /></td>
       </tr>
       <tr>
-        <th>お守り</th>
-        <td><ArmorName id={equipment.charm} /></td>
+        <th>護石</th>
+        <td><CharmName id={equipment.charm} /></td>
       </tr>
       <tr>
         <th>装飾品</th>
