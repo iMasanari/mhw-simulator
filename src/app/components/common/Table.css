@@ -11,7 +11,17 @@
 
 .Table th,
 .Table td {
-  padding: 0.6em 1em 0.4em;
+  padding: 0.6em 4px 0.4em;
   text-align: left;
   vertical-align: text-top;
+}
+
+.Table th:first-child,
+.Table td:first-child {
+  padding-left: 1em;
+}
+
+.Table th:last-child,
+.Table td:last-child {
+  padding-right: 1em;
 }
