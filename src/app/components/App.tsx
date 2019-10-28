@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import baseSkillList from '../data/skill.json'
+import baseSkillList from '~/generated/skillList.json'
 import { useSkillLog } from '../hooks/skillLog'
 import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'

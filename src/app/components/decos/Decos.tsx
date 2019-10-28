@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
-import { deco as decoData } from '~/app/data'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
 import toNumber from '~/app/util/toNumber'
+import decoData from '~/generated/deco.json'
 
 require('./Decos.css')
 
@@ -9,9 +9,7 @@ interface Props {
 }
 
 const createList = (filter: string) =>
-  (Object.keys(decoData) as (keyof typeof decoData)[])
-    .filter(name => ~decoData[name].indexOf(filter))
-    .map(name => decoData[name])
+  Object.keys(decoData).filter(name => ~name.indexOf(filter))
 
 const Decos: React.FC<Props> = () => {
   const decos = useDecos()

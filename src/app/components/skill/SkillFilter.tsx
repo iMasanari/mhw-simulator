@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import skillList from '~/app/data/skill.json'
+import skillList from '~/generated/skillList.json'
 
 require('./SkillFilter.css')
 
