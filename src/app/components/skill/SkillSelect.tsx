@@ -3,17 +3,17 @@ import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 import Select from '../common/Select'
 
 interface Props {
-  id: string
+  name: string
   value: number
   items: number[]
 }
 
-const SkillSelect: React.FC<Props> = ({ id, value, items }) => {
+const SkillSelect: React.FC<Props> = ({ name, value, items }) => {
   const { update } = useActiveSkillActions()
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    update(id, +e.currentTarget.value)
-  }, [id, update])
+    update(name, +e.currentTarget.value)
+  }, [name, update])
 
   return (
     <Select value={value || ''} onChange={onChange}>

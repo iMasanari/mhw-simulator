@@ -2,7 +2,7 @@ import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
-import baseLp from '../data/lp.json'
+import baseLp from '~/app/util/baseLp'
 import executeGlpk, { GLP_FX, GLP_LO, GLP_UP } from '../util/executeGlpk'
 import normalizeSkill from '../util/normalizeSkill'
 

@@ -11,7 +11,7 @@ interface Props {
 const createList = (armorData: Record<string, string>, filter: string) =>
   Object.keys(armorData)
     .filter(id => ~armorData[id].indexOf(filter))
-    .map(id => [id, armorData[id]])
+    .map(id => armorData[id])
 
 const Armors: React.FC<Props> = () => {
   const ignoreArmors = useIgnoreArmors()

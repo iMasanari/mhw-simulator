@@ -79,7 +79,7 @@ const createBaseLp = () => {
     slotLv4 && slotLv4Subject.vars.push({ name, coef: slotLv4 })
 
     // スキル
-    for (const [skillName, value] of equip.skill) {
+    for (const { name: skillName, value } of equip.skill) {
       const ref = skillSubjectMap.get(skillName)
 
       if (!ref) {
@@ -105,7 +105,7 @@ const createBaseLp = () => {
     slotLv4 && slotLv4Subject.vars.push({ name, coef: -slotLv4 })
 
     // スキル
-    for (const [skillName, value] of deco.skill) {
+    for (const { name: skillName, value } of deco.skill) {
       const ref = skillSubjectMap.get(skillName)
 
       if (!ref) {

@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { arm, body, charm, head, leg, wst } from '~/app/data'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
 import { getArmInfo, getBodyInfo, getCharmInfo, getHeadInfo, getLegInfo, getWstInfo } from '~/app/util/generatedUtil'
 import Table from '../common/Table'
@@ -10,52 +9,41 @@ import SlotTable from './SlotTable'
 require('./ArmorName.css')
 
 const info: Record<string, typeof getHeadInfo> = {
-  xa: getArmInfo,
-  xb: getBodyInfo,
-  xh: getHeadInfo,
-  xw: getWstInfo,
-  xl: getLegInfo,
+  head: getHeadInfo,
+  body: getBodyInfo,
+  arm: getArmInfo,
+  wst: getWstInfo,
+  leg: getLegInfo,
   xc: getCharmInfo,
 }
 
-const getEquipInfo = (type: string | undefined, name: string) => {
-  const fn = info[type!]
+const getEquipInfo = (type: string, name: string) => {
+  const fn = info[type]
 
   return fn ? fn(name) : null
 }
 
 interface Props {
-  id: string | undefined
+  name: string | undefined
+  type: string
 }
 
-const list: Record<string, Record<string, string>> = {
-  xa: arm,
-  xb: body,
-  xh: head,
-  xw: wst,
-  xl: leg,
-  xc: charm,
-}
-
-const ArmorName: React.FC<Props> = ({ id }) => {
-  const type = id && id.slice(0, 2)
-  const name = id ? list[type!][id] : '装備なし'
-
+const ArmorName: React.FC<Props> = ({ name, type }) => {
   const ignoreArmor = useIgnoreArmors()
   const { toggle } = useIgnoreArmorsActions()
-  const toggleArmor = useCallback(() => id && toggle(id), [id])
+  const toggleArmor = useCallback(() => name && toggle(name), [name])
 
-  const isIgnore = id && ignoreArmor[id] === 0
+  const isIgnore = name && ignoreArmor[name] === 0
 
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])
 
-  const info = isModalOpen ? getEquipInfo(type, name) : null
+  const info = isModalOpen ? getEquipInfo(type, name!) : null
 
   return (
     <>
-      <span className={`ArmorName ${id ? 'on' : ''}`} onClick={id ? toggleModal : undefined}>
-        {name}
+      <span className={`ArmorName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
+        {name || '装備なし'}
       </span>
       {info &&
         <Modal title={name} onClose={toggleModal}>

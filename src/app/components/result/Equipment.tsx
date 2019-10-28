@@ -33,7 +33,7 @@ const Equipment: React.FC<Props> = ({ title, result, initState }) => {
             <EquipmentTable equipment={result} />
           </div>
           <div className="Equipment-column">
-            <SkillTable skillList={result.skills.map(v => [skillMap.get(v.id)!, v.count])} />
+            <SkillTable skillList={result.skills} />
           </div>
         </div>
       }

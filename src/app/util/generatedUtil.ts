@@ -31,7 +31,9 @@ export const skillList = require('~/generated/skillList.json') as SkillInfo[]
 const skillNameMap = new Map(skillList.map((v, i) => [i, v.name]))
 
 const getEquipInfo = ([skillData, slot1, slot2, slot3, def, maxDef, customDef, fire, water, thunder, ice, dragon]: EquipData) => {
-  const skill = Object.keys(skillData).map((name) => [skillNameMap.get(+name)!, skillData[name]] as const)
+  const skill = Object.keys(skillData).map((name) =>
+    ({ name: skillNameMap.get(+name)!, value: skillData[name] })
+  )
 
   return { skill, slot1, slot2, slot3, def, maxDef, customDef, fire, water, thunder, ice, dragon }
 }

@@ -10,8 +10,8 @@ interface Props {
 
 const createList = (filter: string) =>
   (Object.keys(decoData) as (keyof typeof decoData)[])
-    .filter(id => ~decoData[id].indexOf(filter))
-    .map(id => [id, decoData[id]])
+    .filter(name => ~decoData[name].indexOf(filter))
+    .map(name => decoData[name])
 
 const Decos: React.FC<Props> = () => {
   const decos = useDecos()
@@ -34,16 +34,16 @@ const Decos: React.FC<Props> = () => {
       />
       <div className="Decos-contents">
         <ul>
-          {decoList.map(([id, name]) =>
-            <li key={id}>
+          {decoList.map(name =>
+            <li key={name}>
               {name}
               <input
                 className="Decos-numberInput"
                 type="number"
                 min="0"
                 max="9"
-                value={decos[id] != null ? decos[id] : ''}
-                onChange={e => set(id, toNumber(e.currentTarget.value))}
+                value={decos[name] != null ? decos[name] : ''}
+                onChange={e => set(name, toNumber(e.currentTarget.value))}
               />
             </li>
           )}
