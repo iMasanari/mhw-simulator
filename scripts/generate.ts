@@ -19,9 +19,16 @@ const main = async () => {
   ))
 
   for (const [type, list] of equips) {
-    const hash = fromEntries(list.map(([name, ...list]) => [name, list]))
+    const hash = fromEntries(list.map(({ name, list }) => [name, list]))
     await writeJson(`src/generated/${type}.json`, hash)
   }
+
+  // ワンセット防具リスト
+  const oneset = equips.map(([type, list]) =>
+    list.filter(v => v.oneset).map(v => v.name)
+  )
+
+  await writeJson('src/generated/oneset.json', oneset[0].map((_, i) => oneset.map(v => v[i])))
 
   // 護石
   const charm = await getCharm(skillIndexMap)
