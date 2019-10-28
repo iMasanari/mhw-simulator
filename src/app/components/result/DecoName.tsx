@@ -20,7 +20,7 @@ const DecoName: React.FC<Props> = ({ id }) => {
   const { set } = useDecosActions()
 
   const setDeco = useCallback((e: React.ChangeEvent<HTMLInputElement>) => (
-    id && set(id, toNumber(e.currentTarget.value)), [id]
+    id && set(id, toNumber(e.currentTarget.value))
   ), [id])
 
   const [isModalOpen, setModalOpen] = useState(false)
@@ -35,7 +35,7 @@ const DecoName: React.FC<Props> = ({ id }) => {
       </span>
       {info &&
         <Modal title={name} onClose={toggleModal}>
-          <SlotTable slots={[Math.abs(info.slot1)]} />
+          <SlotTable slots={[info.slot1]} />
           <SkillTable skillList={info.skill} />
           <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
           <label>

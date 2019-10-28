@@ -18,7 +18,7 @@ export const getDeco = async (skillIndexMap: Map<string, number>) => {
         .map(([name, point]) => [skillIndexMap.get(name)!, point])
     )
 
-    return [名前, skill, -スロットサイズ] as const
+    return [名前, skill, +スロットサイズ] as const
   })
 
   return result
