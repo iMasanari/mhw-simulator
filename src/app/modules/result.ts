@@ -1,5 +1,5 @@
 import ActionReducer from 'action-reducer'
-import { Equipment } from '~/worker/service/calc'
+import { Equipment } from '../util/calc'
 
 export interface Result {
   def?: Equipment

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Equipment } from '~/worker/service/calc'
+import { Equipment } from '~/app/util/calc'
 import EquipmentTable from './EquipmentTable'
 import SkillTable from './SkillTable'
 

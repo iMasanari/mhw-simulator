@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Condition } from '~/worker/service/execute'
 import { RootState } from '../modules'
 import { ActiveSkill } from '../modules/activeSkill'
 import { Decos } from '../modules/decos'
@@ -8,6 +7,7 @@ import { Armors } from '../modules/ignoreArmors'
 import * as actions from '../modules/result'
 import { WeaponSlots } from '../modules/weaponSlots'
 import calc from '../util/calc'
+import { Condition } from '../util/calc/execute'
 
 const selector = (state: RootState) =>
   state.result

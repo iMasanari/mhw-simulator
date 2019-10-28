@@ -1,7 +1,4 @@
 import PromiseWorker from 'promise-worker'
-import { Message } from '~/worker'
-import { Equipment } from '~/worker/service/calc'
-import { Condition } from '~/worker/service/execute'
 
 let worker: Worker | undefined
 let promiseWorker: PromiseWorker
@@ -24,7 +21,7 @@ init()
 
 let _current: Symbol | null
 
-export default async (objective: string, condition: Condition) => {
+export default async (lp: any) => {
   if (isRunning) {
     init()
   }
@@ -32,7 +29,7 @@ export default async (objective: string, condition: Condition) => {
   isRunning = true
 
   const current = _current = Symbol()
-  const result = await (promise = promiseWorker.postMessage<Equipment, Message>({ objective, condition }))
+  const result = await (promise = promiseWorker.postMessage<Record<string, number>, any>(lp))
 
   if (current !== _current) {
     return null

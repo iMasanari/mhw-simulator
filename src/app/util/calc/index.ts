@@ -34,8 +34,10 @@ const getSlots = (result: Record<string, number>) => {
   return [slot1, slot2, slot3, slot4]
 }
 
-export default async (objective: string, condition: Condition): Promise<Equipment> => {
+export default async (objective: string, condition: Condition): Promise<Equipment | null> => {
   const result = await execute(objective, condition)
+
+  if (!result) return null
 
   const list = Object.keys(result).filter(key => result[key])
 

@@ -1,12 +1,4 @@
 import register from 'promise-worker/register'
-import calc, { Equipment } from './service/calc'
-import { Condition } from './service/execute'
+import executeGlpk from './util/executeGlpk'
 
-export interface Message {
-  objective: string
-  condition: Condition
-}
-
-register<Message, Equipment>(({ condition, objective }) =>
-  calc(objective, condition)
-)
+register(executeGlpk)
