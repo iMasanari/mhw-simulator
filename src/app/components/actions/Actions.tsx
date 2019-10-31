@@ -7,7 +7,7 @@ import { useResultActions } from '../../hooks/result'
 import { useSkillLogActions } from '../../hooks/skillLog'
 import { useTabActions } from '../../hooks/tab'
 import { useWeaponSlots } from '../../hooks/weaponSlots'
-import { terminate } from '../../util/calc'
+import { terminate } from '../../util/calc/worker'
 import ActionButton from './ActionButton'
 
 interface Props {

@@ -1,35 +1,39 @@
 import React, { useCallback, useState } from 'react'
-import { deco } from '~/app/data'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import { getDecoInfo } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
 import Modal from '../modal/Modal'
+import SkillTable from './SkillTable'
+import SlotTable from './SlotTable'
 
 require('./DecoName.css')
 
 interface Props {
-  id: string | undefined
+  name: string
 }
 
-const DecoName: React.FC<Props> = ({ id }) => {
-  const name = id ? (deco as Record<string, string>)[id] : '装備なし'
-
+const DecoName: React.FC<Props> = ({ name }) => {
   const decos = useDecos()
   const { set } = useDecosActions()
 
   const setDeco = useCallback((e: React.ChangeEvent<HTMLInputElement>) => (
-    id && set(id, toNumber(e.currentTarget.value)), [id]
-  ), [id])
+    name && set(name, toNumber(e.currentTarget.value))
+  ), [name])
 
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])
 
+  const info = isModalOpen ? getDecoInfo(name) : null
+
   return (
     <>
-      <span className={`DecoName ${id ? 'on' : ''}`} onClick={id ? toggleModal : undefined}>
+      <span className={`DecoName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
         {name}
       </span>
-      {isModalOpen &&
-        <Modal title="装備設定" onClose={toggleModal}>
+      {info &&
+        <Modal title={name} onClose={toggleModal}>
+          <SlotTable slots={[info.slot1]} />
+          <SkillTable skillList={info.skill} />
           <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
           <label>
             {name}
@@ -38,7 +42,7 @@ const DecoName: React.FC<Props> = ({ id }) => {
               type="number"
               min="0"
               max="9"
-              value={decos[id!] != null ? decos[id!] : ''}
+              value={decos[name!] != null ? decos[name!] : ''}
               onChange={setDeco}
             />
           </label>

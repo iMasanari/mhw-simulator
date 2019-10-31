@@ -9,6 +9,9 @@
     "dev": "parcel src/index.html",
     "prebuild": "npm run clean && npm run cp-wasm",
     "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
+    "scripts:fetch": "ts-node -P tsconfig.ts-node.json scripts/fetch.ts",
+    "scripts:generate": "ts-node -P tsconfig.ts-node.json scripts/generate.ts",
+    "generate": "npm run scripts:fetch && npm run scripts:generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "iMasanari",
@@ -26,12 +29,15 @@
   },
   "devDependencies": {
     "@types/node": "^12.7.5",
+    "@types/node-fetch": "^2.5.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.4",
     "cpx": "^1.5.0",
+    "node-fetch": "^2.6.0",
     "parcel-bundler": "^1.12.4",
     "rimraf": "^3.0.0",
+    "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
   },
   "browserslist": [

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { arm, body, charm, head, leg, wst } from '~/app/data'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
+import { arm, body, charm, head, leg, wst } from '~/app/util/generatedUtil'
 import ArmorList from './ArmorList'
 
 require('./Armors.css')
@@ -8,10 +8,8 @@ require('./Armors.css')
 interface Props {
 }
 
-const createList = (armorData: Record<string, string>, filter: string) =>
-  Object.keys(armorData)
-    .filter(id => ~armorData[id].indexOf(filter))
-    .map(id => [id, armorData[id]])
+const createList = (armorData: Record<string, unknown>, filter: string) =>
+  Object.keys(armorData).filter(name => ~name.indexOf(filter))
 
 const Armors: React.FC<Props> = () => {
   const ignoreArmors = useIgnoreArmors()

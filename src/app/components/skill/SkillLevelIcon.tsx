@@ -4,13 +4,13 @@ import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 require('./SkillLevelIcon.css')
 
 interface Props {
-  id: string
+  name: string
   value: number
   addableValue: number | null
   items: number[]
 }
 
-const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items }) => {
+const SkillLevelIcon: React.FC<Props> = ({ name, value, addableValue, items }) => {
   const { update } = useActiveSkillActions()
 
   return (
@@ -23,7 +23,7 @@ const SkillLevelIcon: React.FC<Props> = ({ id, value, addableValue, items }) => 
             value === level ? 'on' : ''} ${
             addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
           }
-          onClick={() => update(id, level)}
+          onClick={() => update(name, level)}
         />
       )}
     </ul>

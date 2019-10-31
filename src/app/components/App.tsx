@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import baseSkillList from '../data/skill.json'
+import baseSkillList from '~/generated/skillList.json'
 import { useSkillLog } from '../hooks/skillLog'
 import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   const skillList = useMemo(() => {
     const sorted = allSkillList.sort((a, b) =>
-      (skillLog[b.id] || 0) - (skillLog[a.id] || 0)
+      (skillLog[b.name] || 0) - (skillLog[a.name] || 0)
     )
 
     const [t, f] = partition(sorted, (v) =>
@@ -60,7 +60,7 @@ const App: React.FC = () => {
           <Weapon />
           <div className="App-actions">
             <Actions
-              skillList={skillList.map((skill => skill.id))}
+              skillList={skillList.map((skill => skill.name))}
               resetSkillScroll={resetSkillScroll}
               scrollOutputArea={scrollOutputArea}
             />

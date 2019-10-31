@@ -1,7 +1,7 @@
 import React from 'react'
-import skillList from '~/app/data/skill.json'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useAddableSkill } from '~/app/hooks/addableSkill'
+import skillList from '~/generated/skillList.json'
 import SkillRow from './SkillRow'
 
 require('./Skill.css')
@@ -16,13 +16,12 @@ const Skill: React.FC<Props> = ({ skillList }) => {
 
   return (
     <ul className="Skill">
-      {skillList.map(({ id, name, items }) =>
-        <li key={id} className="Skill-li">
+      {skillList.map(({ name, items }) =>
+        <li key={name} className="Skill-li">
           <SkillRow
-            id={id}
             name={name}
-            value={activeSkill[id]}
-            addableValue={addableSkill[id]}
+            value={activeSkill[name]}
+            addableValue={addableSkill[name]}
             items={items}
           />
         </li>

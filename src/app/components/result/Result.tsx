@@ -1,6 +1,6 @@
 import React from 'react'
 import { useResult } from '~/app/hooks/result'
-import { Equipment as IEquipment } from '~/worker/service/calc'
+import { Equipment as IEquipment } from '~/app/util/calc'
 import Equipment from './Equipment'
 
 interface Props {
