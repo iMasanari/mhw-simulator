@@ -27,8 +27,9 @@ export const leg = require('~/generated/leg.json') as Record<string, EquipData>
 export const charm = require('~/generated/charm.json') as Record<string, EquipData>
 export const deco = require('~/generated/deco.json') as Record<string, EquipData>
 export const skillList = require('~/generated/skillList.json') as SkillInfo[]
+export const allSkill = require('~/generated/allSkill.json') as string[]
 
-const skillNameMap = new Map(skillList.map((v, i) => [i, v.name]))
+const skillNameMap = new Map(allSkill.map((name, i) => [i, name]))
 
 const getEquipInfo = ([skillData, slot1, slot2, slot3, def, maxDef, customDef, fire, water, thunder, ice, dragon]: EquipData) => {
   const skill = Object.keys(skillData).map((name) =>

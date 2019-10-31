@@ -7,10 +7,11 @@ import fromEntries from './util/fromEntries'
 
 const main = async () => {
   // スキル
-  const skillList = await getSkillList()
+  const { skillList, allSkill } = await getSkillList()
   await writeJson('src/generated/skillList.json', skillList)
+  await writeJson('src/generated/allSkill.json', allSkill)
 
-  const skillIndexMap = new Map(skillList.map((v, i) => [v.name, i]))
+  const skillIndexMap = new Map(allSkill.map((name, i) => [name, i]))
 
   // 防具
   const equipTypes = ['head', 'body', 'arm', 'wst', 'leg']
