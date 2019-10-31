@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import skill from '~/app/data/skill.json'
-import { Equipment } from '~/worker/service/calc'
+import { Equipment } from '~/app/util/calc'
 import EquipmentTable from './EquipmentTable'
 import SkillTable from './SkillTable'
 
@@ -11,8 +10,6 @@ interface Props {
   result: Equipment
   initState?: boolean
 }
-
-const skillMap = new Map(skill.map(({ id, name }) => [id, name]))
 
 const Equipment: React.FC<Props> = ({ title, result, initState }) => {
   const [isOpen, setOpen] = useState(initState)
@@ -33,7 +30,7 @@ const Equipment: React.FC<Props> = ({ title, result, initState }) => {
             <EquipmentTable equipment={result} />
           </div>
           <div className="Equipment-column">
-            <SkillTable skillList={result.skills.map(v => [skillMap.get(v.id)!, v.count])} />
+            <SkillTable skillList={result.skills} />
           </div>
         </div>
       }

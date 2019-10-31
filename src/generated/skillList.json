@@ -337,287 +337,416 @@
   {
     "name": "蛮顎竜の力",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "蛮顎竜の闘志",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "蛮顎竜の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "火竜の力",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "火竜の奥義",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "火竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "桜火竜の奥義",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "雌火竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "角竜の力",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "角竜の奥義",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "角竜の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "熔山龍の奥義",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "熔山龍の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "風漂竜の恩恵",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "風漂竜の恩寵",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "風漂竜の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "惨爪竜の力",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "惨爪竜の奥義",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "惨爪竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "爆鱗竜の守護",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "爆鱗竜の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "爆鎚竜の守護",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "爆鎚竜の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "滅尽龍の飢餓",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "炎王龍の武技",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "滅尽龍の覇気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "鋼龍の飛翔",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "屍套龍の命脈",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "屍套龍の霊脈",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "幻獣の恩恵",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      4
+    ]
   },
   {
     "name": "幻獣の恩寵",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "幻獣の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "冥灯龍の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "ギルドの導き",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      4
+    ]
   },
   {
     "name": "調査団の導き",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      4
+    ]
   },
   {
     "name": "炎妃龍の恩寵",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "炎妃龍の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "竜騎士の証",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "アステラの祝福",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      5
+    ]
   },
   {
     "name": "ウィッチャーの心得",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "太古の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "調査団の錬金術",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "氷牙竜の秘技",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "迅竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "斬竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "砕竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "轟竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "教官の導き",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2
+    ]
   },
   {
     "name": "恐暴竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "雷狼竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      3
+    ]
   },
   {
     "name": "ギルドの見識",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "冰龍の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "溟龍の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "地啼龍の神秘",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      4,
+      5
+    ]
   },
   {
     "name": "金火竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "銀火竜の真髄",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "金獅子の怒気",
     "category": "シリーズスキル",
-    "items": []
+    "items": [
+      2,
+      4
+    ]
   },
   {
     "name": "雷耐性",
@@ -911,7 +1040,7 @@
   },
   {
     "name": "鈍器使い",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
@@ -1002,35 +1131,35 @@
   },
   {
     "name": "心眼／弾導強化",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
   },
   {
     "name": "無属性強化",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
   },
   {
     "name": "弓溜め段階解放",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
   },
   {
     "name": "剛刃研磨",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
   },
   {
     "name": "業物／弾丸節約",
-    "category": "シリーズスキル",
+    "category": "戦闘(攻撃)",
     "items": [
       1
     ]
@@ -1077,7 +1206,7 @@
   },
   {
     "name": "根性",
-    "category": "シリーズスキル",
+    "category": "戦闘(生存)",
     "items": [
       1
     ]
@@ -1129,14 +1258,14 @@
   },
   {
     "name": "奮起",
-    "category": "シリーズスキル",
+    "category": "戦闘(生存)",
     "items": [
       1
     ]
   },
   {
     "name": "ガード強化",
-    "category": "シリーズスキル",
+    "category": "戦闘(生存)",
     "items": [
       1
     ]
@@ -1407,244 +1536,6 @@
   {
     "name": "受け身術",
     "category": "戦闘(生存)",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "スタミナ上限突破",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "会心撃【属性】",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "毒ダメージ強化",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "ＫＯ術・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "会心撃【特殊】",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "砲術・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "幸運",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "抜刀術【力】",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "加速再生",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "達人芸",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "風圧完全無効",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "超回復力",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "捕獲名人",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "強運",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "剥ぎ取り名人",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "整備・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "飛燕【属性】",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "イグニの印力",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "ボマー・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "真・業物／弾丸節約",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "渾身・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "挑戦者・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "満足感・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "スタミナ奪取・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "力の解放・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "冰気錬成",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "属性加速",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "真・属性加速",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "大地縫纏",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "真・大地縫纏",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "精霊の加護・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "真・会心撃【特殊】",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "スリンガー装填数・極意",
-    "category": "シリーズスキル",
-    "items": [
-      1
-    ]
-  },
-  {
-    "name": "真・会心撃【属性】",
-    "category": "シリーズスキル",
     "items": [
       1
     ]

@@ -20,34 +20,34 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) =>
       </tr>
       <tr>
         <th>頭</th>
-        <td><ArmorName id={equipment.head} /></td>
+        <td><ArmorName type="head" name={equipment.head} /></td>
       </tr>
       <tr>
         <th>胴</th>
-        <td><ArmorName id={equipment.body} /></td>
+        <td><ArmorName type="body" name={equipment.body} /></td>
       </tr>
       <tr>
         <th>腕</th>
-        <td><ArmorName id={equipment.arm} /></td>
+        <td><ArmorName type="arm" name={equipment.arm} /></td>
       </tr>
       <tr>
         <th>腰</th>
-        <td><ArmorName id={equipment.wst} /></td>
+        <td><ArmorName type="wst" name={equipment.wst} /></td>
       </tr>
       <tr>
         <th>足</th>
-        <td><ArmorName id={equipment.leg} /></td>
+        <td><ArmorName type="leg" name={equipment.leg} /></td>
       </tr>
       <tr>
         <th>護石</th>
-        <td><CharmName id={equipment.charm} /></td>
+        <td><CharmName name={equipment.charm} /></td>
       </tr>
       <tr>
         <th>装飾品</th>
         <td>
           <ul className="EquipmentTable-decos">
-            {equipment.decos.map(({ id, count }) =>
-              <li key={id}><DecoName id={id} />x{count}</li>
+            {equipment.decos.map(({ name, value }) =>
+              <li key={name}><DecoName name={name} />x{value}</li>
             )}
             {!!equipment.slot1 &&
               <li>空きスロット【１】x{equipment.slot1}</li>

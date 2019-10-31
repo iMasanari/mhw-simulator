@@ -21,7 +21,11 @@ export const getEquip = async (type: string, skillIndexMap: Map<string, number>)
         .map(([name, point]) => [skillIndexMap.get(name)!, point])
     )
 
-    return [名前, skill, +スロット1, +スロット2, +スロット3, +初期防御力, +最終防御力, +カスタム強化防御力, +火耐性, +水耐性, +雷耐性, +氷耐性, +龍耐性] as const
+    return {
+      name: 名前,
+      list: [skill, +スロット1, +スロット2, +スロット3, +初期防御力, +最終防御力, +カスタム強化防御力, +火耐性, +水耐性, +雷耐性, +氷耐性, +龍耐性] as const,
+      oneset: ワンセット防具 === '1',
+    }
   })
 
   return list
