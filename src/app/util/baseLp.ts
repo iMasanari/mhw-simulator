@@ -1,4 +1,5 @@
 import onesetList from '../../generated/oneset.json'
+import seriesSkill from '../../generated/seriesSkill.json'
 import { GLP_FX, GLP_LO } from '../constants/glpk'
 import { flat } from './array'
 import { allSkill, arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, wst } from './generatedUtil'
@@ -136,6 +137,26 @@ const createBaseLp = () => {
     }))
   ))
 
+  const series = flat(Object.entries(seriesSkill).map(([skill, v]) => {
+    const entries = Object.entries(v)
+
+    const condition = {
+      vars: [
+        { name: `_${skill}`, coef: -1 },
+        { name: skill, coef: 1 },
+        ...entries.map(([name]) => ({ name: `_${skill}_${name}`, coef: 1 })),
+      ],
+      bnds: fx0,
+    }
+
+    const flagList = entries.map(([name, value]) => ({
+      vars: [{ name: `_${skill}_${name}`, coef: -1 * value! }, { name, coef: 1 }],
+      bnds: lo0,
+    }))
+
+    return [condition, ...flagList]
+  }))
+
   const subjectTo = [
     ...armorCountsSubject,
     slotLv1Subject,
@@ -143,9 +164,10 @@ const createBaseLp = () => {
     slotLv3Subject,
     slotLv4Subject,
     defSubject,
-    ...[...skillSubjectMap.values()].filter(v => v.vars.length > 1),
+    ...skillSubjectMap.values(),
     ...emptySlots,
     ...oneset,
+    ...series,
   ]
 
   const bounds = [
@@ -169,10 +191,10 @@ const createBaseLp = () => {
     // x軸
     ...equips.map(([name]) => name),
     ...decoList.map(([name]) => name),
+    ...series.map(v => v.vars[0].name),
   ]
 
   return { subjectTo, bounds, generals }
-
 }
 
 export default createBaseLp()
