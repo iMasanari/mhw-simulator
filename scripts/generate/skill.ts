@@ -1,4 +1,5 @@
 import { readCsv } from '../util/fileUtil'
+import fromEntries from '../util/fromEntries'
 
 const SERIES_SKILL = 'シリーズスキル'
 
@@ -9,14 +10,16 @@ export const getSkillList = async () => {
     ({ スキル系統, 発動スキル, 必要ポイント, カテゴリ, 効果, 系統番号, 仮番号 })
   )
 
+  const seriesSkillList = Array.from(new Set(skills.filter(v => v.カテゴリ === SERIES_SKILL).map(v => v.発動スキル)))
+
   const allSkill = Array.from(new Set([
     ...skills.map(v => v.スキル系統),
-    ...skills.filter(v => v.カテゴリ === SERIES_SKILL).map(v => v.発動スキル),
+    ...seriesSkillList,
   ]))
 
   const skillNames = Array.from(new Set([
     ...skills.filter(v => v.カテゴリ !== SERIES_SKILL).map(v => v.スキル系統),
-    ...skills.filter(v => v.カテゴリ === SERIES_SKILL).map(v => v.発動スキル),
+    ...seriesSkillList,
   ]))
 
   const skillList = skillNames.map((name) => {
@@ -32,5 +35,15 @@ export const getSkillList = async () => {
     return { name, category, items }
   })
 
-  return { allSkill, skillList }
+  const seriesSkill = fromEntries(
+    seriesSkillList.map(name =>
+      [name, fromEntries(
+        skills
+          .filter(v => v.発動スキル === name)
+          .map(v => [v.スキル系統, +v.必要ポイント])
+      )]
+    )
+  )
+
+  return { allSkill, skillList, seriesSkill }
 }

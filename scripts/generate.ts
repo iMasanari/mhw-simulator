@@ -7,9 +7,10 @@ import fromEntries from './util/fromEntries'
 
 const main = async () => {
   // スキル
-  const { skillList, allSkill } = await getSkillList()
+  const { skillList, allSkill, seriesSkill } = await getSkillList()
   await writeJson('src/generated/skillList.json', skillList)
   await writeJson('src/generated/allSkill.json', allSkill)
+  await writeJson('src/generated/seriesSkill.json', seriesSkill)
 
   const skillIndexMap = new Map(allSkill.map((name, i) => [name, i]))
 
