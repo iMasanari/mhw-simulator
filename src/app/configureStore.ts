@@ -2,11 +2,8 @@ import { createStore } from 'redux'
 import { createMigrate, MigrationManifest, PersistConfig, PersistedState, persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import modules, { RootState } from './modules'
-import { flat } from './util/array'
+import { flat, fromEntries } from './util/array'
 import { arm, body, charm, deco, head, leg, skillList, wst } from './util/generatedUtil'
-
-const fromEntries = <T>(list: [string, T][]) =>
-  list.reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, T>)
 
 const migrateState0 = (state: RootState & PersistedState): RootState & PersistedState => {
   const skillMap = new Map(skillList.map((v, i) => [`ys${i}`, v.name]))

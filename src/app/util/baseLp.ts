@@ -1,7 +1,8 @@
 import onesetList from '../../generated/oneset.json'
+import seriesSkill from '../../generated/seriesSkill.json'
 import { GLP_FX, GLP_LO } from '../constants/glpk'
 import { flat } from './array'
-import { arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, skillList, wst } from './generatedUtil'
+import { allSkill, arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, wst } from './generatedUtil'
 
 const fx0 = {
   type: GLP_FX,
@@ -48,7 +49,7 @@ const createBaseLp = () => {
   const slotLv3Subject = { vars: [{ name: 'y_3', coef: -1 }, { name: 'cs3', coef: 1 }], bnds: fx0 }
   const slotLv4Subject = { vars: [{ name: 'y_4', coef: -1 }, { name: 'cs4', coef: 1 }], bnds: fx0 }
 
-  const skillSubjectMap = new Map(skillList.map(({ name }) =>
+  const skillSubjectMap = new Map(allSkill.map(name =>
     [name, { vars: [{ name, coef: -1 }], bnds: fx0 }]
   ))
 
@@ -136,6 +137,26 @@ const createBaseLp = () => {
     }))
   ))
 
+  const series = flat(Object.entries(seriesSkill).map(([skill, v]) => {
+    const entries = Object.entries(v)
+
+    const condition = {
+      vars: [
+        { name: `_${skill}`, coef: -1 },
+        { name: skill, coef: 1 },
+        ...entries.map(([name]) => ({ name: `_${skill}_${name}`, coef: 1 })),
+      ],
+      bnds: fx0,
+    }
+
+    const flagList = entries.map(([name, value]) => ({
+      vars: [{ name: `_${skill}_${name}`, coef: -1 * value! }, { name, coef: 1 }],
+      bnds: lo0,
+    }))
+
+    return [condition, ...flagList]
+  }))
+
   const subjectTo = [
     ...armorCountsSubject,
     slotLv1Subject,
@@ -143,9 +164,10 @@ const createBaseLp = () => {
     slotLv3Subject,
     slotLv4Subject,
     defSubject,
-    ...[...skillSubjectMap.values()].filter(v => v.vars.length > 1),
+    ...skillSubjectMap.values(),
     ...emptySlots,
     ...oneset,
+    ...series,
   ]
 
   const bounds = [
@@ -165,14 +187,14 @@ const createBaseLp = () => {
     'y_3',
     'y_4',
     'ydl',
-    ...skillList.map(v => v.name),
+    ...allSkill,
     // x軸
     ...equips.map(([name]) => name),
     ...decoList.map(([name]) => name),
+    ...series.map(v => v.vars[0].name),
   ]
 
   return { subjectTo, bounds, generals }
-
 }
 
 export default createBaseLp()

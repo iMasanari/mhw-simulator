@@ -1,8 +1,15 @@
 import { ActiveSkill } from '~/app/modules/activeSkill'
+import seriesSkill from '~/generated/seriesSkill.json'
+import { fromEntries } from '../array'
 
 export default (skill: ActiveSkill) => {
-  // clone
-  skill = { ...skill }
+  // シリーズスキル展開
+  // オブジェクトのcloneも兼ねている
+  skill = fromEntries(
+    Object.entries(skill).map(([name, value]) =>
+      [name in seriesSkill ? `_${name}` : name, value]
+    )
+  )
 
   if (skill['スリンガー装填数ＵＰ'] > 3) {
     skill['銀火竜の真髄'] = Math.max(skill['銀火竜の真髄'] || 0, 2)

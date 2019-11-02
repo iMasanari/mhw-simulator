@@ -7,3 +7,6 @@ export const partition = <T>(list: T[], predicate: (v: T, i: number) => any) =>
 
 export const flat = <T>(list: T[][]) =>
   (emptyArray as T[]).concat(...list)
+
+export const fromEntries = <T>(list: [string, T][]) =>
+  list.reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, T>)

@@ -1,7 +1,7 @@
 import * as data from '~/app/util/generatedUtil'
 import execute, { Condition } from './execute'
 
-const skillSet = new Set(data.skillList.map(v => v.name))
+const skillSet = new Set(data.allSkill)
 
 export interface Equipment {
   head: string | undefined
