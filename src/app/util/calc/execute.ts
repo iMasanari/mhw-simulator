@@ -1,9 +1,10 @@
-import { GLP_FX, GLP_LO, GLP_UP } from '~/app/constants/glpk'
+import { GLP_FX, GLP_LO, GLP_MAX, GLP_UP } from '~/app/constants/glpk'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import baseLp from '~/app/util/baseLp'
+import seriesSkill from '~/generated/seriesSkill.json'
 import normalizeSkill from './normalizeSkill'
 import worker from './worker'
 
@@ -42,11 +43,11 @@ export default (objectiveName: string, condition: Condition) => {
   ]
 
   const objective = {
-    direction: 2,
-    name: objectiveName,
-    vars: [
-      { name: objectiveName, coef: 1 },
-    ],
+    direction: GLP_MAX,
+    vars: [{
+      name: objectiveName in seriesSkill ? `_${objectiveName}` : objectiveName,
+      coef: 1,
+    }],
   }
 
   const lp = {

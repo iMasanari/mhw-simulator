@@ -1,4 +1,5 @@
 import PromiseWorker from 'promise-worker'
+import { Result } from '~/worker/util/executeGlpk'
 
 let worker: Worker | undefined
 let promiseWorker: PromiseWorker
@@ -29,7 +30,7 @@ export default async (lp: any) => {
   isRunning = true
 
   const current = _current = Symbol()
-  const result = await (promise = promiseWorker.postMessage<Record<string, number>, any>(lp))
+  const result = await (promise = promiseWorker.postMessage<Result, any>(lp))
 
   if (current !== _current) {
     return null

@@ -33,9 +33,7 @@ export const useAddableSkillActions = () => {
 
       if (!result) break
 
-      const ref = result.skills.find(skill => skill.name === key)
-
-      dispatch(actions.update({ key, value: ref ? ref.value : 0 }))
+      dispatch(actions.update({ key, value: result.z }))
     }
   }, [])
 

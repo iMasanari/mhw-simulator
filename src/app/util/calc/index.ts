@@ -4,6 +4,7 @@ import execute, { Condition } from './execute'
 const skillSet = new Set(data.allSkill)
 
 export interface Equipment {
+  z: number
   head: string | undefined
   body: string | undefined
   arm: string | undefined
@@ -39,7 +40,7 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
 
   if (!result) return null
 
-  const list = Object.keys(result).filter(key => result[key])
+  const list = Object.keys(result.vars).filter(key => result.vars[key])
 
   const head = findArmor(list, data.head)
   const body = findArmor(list, data.body)
@@ -50,17 +51,18 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
 
   const decos = list
     .filter(name => data.deco[name])
-    .map(name => ({ name, value: result[name] }))
+    .map(name => ({ name, value: result.vars[name] }))
 
   const skills = list
     .filter(name => skillSet.has(name))
-    .map(name => ({ name, value: result[name] }))
+    .map(name => ({ name, value: result.vars[name] }))
     .sort((a, b) => b.value - a.value)
 
-  const { ydl: def } = result
-  const [slot1, slot2, slot3, slot4] = getSlots(result)
+  const { ydl: def } = result.vars
+  const [slot1, slot2, slot3, slot4] = getSlots(result.vars)
 
   return {
+    z: result.z,
     head,
     body,
     arm,
