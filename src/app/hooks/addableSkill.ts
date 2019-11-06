@@ -29,13 +29,12 @@ export const useAddableSkillActions = () => {
     clear()
 
     for (const key of skillList) {
-      const result = await calc(key, { skill, weaponSlots: slots, armors, decos, prev })
+      const { [key]: _removed, ...searchSkill } = skill
+      const result = await calc(key, { skill: searchSkill, weaponSlots: slots, armors, decos, prev })
 
       if (!result) break
 
-      const ref = result.skills.find(skill => skill.name === key)
-
-      dispatch(actions.update({ key, value: ref ? ref.value : 0 }))
+      dispatch(actions.update({ key, value: result.z }))
     }
   }, [])
 
