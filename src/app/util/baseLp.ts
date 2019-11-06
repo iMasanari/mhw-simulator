@@ -181,7 +181,6 @@ const createBaseLp = () => {
 
   const generals = [
     // y軸
-    ...Object.keys(armorCounts),
     'y_1',
     'y_2',
     'y_3',
@@ -189,12 +188,18 @@ const createBaseLp = () => {
     'ydl',
     ...allSkill,
     // x軸
-    ...equips.map(([name]) => name),
     ...decoList.map(([name]) => name),
     ...series.map(v => v.vars[0].name),
   ]
 
-  return { subjectTo, bounds, generals }
+  const binaries = [
+    // y軸
+    // ...Object.keys(armorCounts), // 他条件で達成しているため記述しない
+    // x軸
+    ...equips.map(([name]) => name),
+  ]
+
+  return { subjectTo, bounds, generals, binaries }
 }
 
 export default createBaseLp()

@@ -62,7 +62,7 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
   const [slot1, slot2, slot3, slot4] = getSlots(result.vars)
 
   return {
-    z: result.z,
+    z: Math.round(result.z), // 一部、整数条件を外しており、小数誤差が発生するため
     head,
     body,
     arm,
