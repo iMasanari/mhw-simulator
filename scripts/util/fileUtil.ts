@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs'
+import { dirname } from 'path'
 
 export const readCsv = async (path: string) => {
   const text = await fs.readFile(path, 'utf-8')
@@ -8,5 +9,8 @@ export const readCsv = async (path: string) => {
     .filter(([cel]) => cel)
 }
 
-export const writeJson = (path: string, json: any) =>
-  fs.writeFile(path, JSON.stringify(json, null, 2))
+export const writeJson = async (path: string, json: any) => {
+  await fs.mkdir(dirname(path), { recursive: true })
+
+  return fs.writeFile(path, JSON.stringify(json, null, 2))
+}
