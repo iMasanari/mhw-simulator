@@ -1,4 +1,2 @@
-const fromEntries: <T = any>(entries: Iterable<readonly [PropertyKey, T]>) => { [k in PropertyKey]: T } = (entries) =>
-  (Object as any).fromEntries(entries)
-
-export default fromEntries
+export default <T>(list: [string | number, T][]) =>
+  list.reduce((acc, [k, v]) => (acc[k] = v, acc), {} as Record<string, T>)
