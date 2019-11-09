@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import { arm, body, charm, head, leg, wst } from '~/app/util/generatedUtil'
+import { arm, body, head, leg, wst } from '~/app/util/generatedUtil'
 import ArmorList from './ArmorList'
 
 require('./Armors.css')
@@ -17,12 +17,13 @@ const Armors: React.FC<Props> = () => {
 
   const [filter, setFilter] = useState('')
 
-  const headList = useMemo(() => createList(head, filter), [filter])
-  const bodyList = useMemo(() => createList(body, filter), [filter])
-  const armList = useMemo(() => createList(arm, filter), [filter])
-  const wstList = useMemo(() => createList(wst, filter), [filter])
-  const legList = useMemo(() => createList(leg, filter), [filter])
-  const charmList = useMemo(() => createList(charm, filter), [filter])
+  const deps = [filter]
+
+  const headList = useMemo(() => createList(head, filter), deps)
+  const bodyList = useMemo(() => createList(body, filter), deps)
+  const armList = useMemo(() => createList(arm, filter), deps)
+  const wstList = useMemo(() => createList(wst, filter), deps)
+  const legList = useMemo(() => createList(leg, filter), deps)
 
   return (
     <div>
@@ -42,7 +43,6 @@ const Armors: React.FC<Props> = () => {
         <ArmorList armors={armList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
         <ArmorList armors={wstList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
         <ArmorList armors={legList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
-        <ArmorList armors={charmList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
       </div>
     </div>
   )
