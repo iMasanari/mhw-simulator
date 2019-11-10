@@ -4,7 +4,7 @@ import fromEntries from '../util/fromEntries'
 const SERIES_SKILL = 'シリーズスキル'
 
 export const getSkillList = async () => {
-  const csv = await readCsv('./lib/skill.csv')
+  const csv = await readCsv('./lib/fetched/skill.csv')
 
   const skills = csv.map(([スキル系統, 発動スキル, 必要ポイント, カテゴリ, 効果, 系統番号, 仮番号]) =>
     ({ スキル系統, 発動スキル, 必要ポイント, カテゴリ, 効果, 系統番号, 仮番号 })

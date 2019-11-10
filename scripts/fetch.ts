@@ -20,7 +20,7 @@ const main = async () => {
     const res = await fetch(url)
     const text = await res.text()
 
-    await fs.writeFile(`lib/${id}.csv`, text)
+    await fs.writeFile(`lib/fetched/${id}.csv`, text)
 
     await sleap(1000)
   }

@@ -1,3 +1,4 @@
+import { getArmorGroup } from './generate/armorGroup'
 import { getCharm } from './generate/charm'
 import { getDeco } from './generate/deco'
 import { getEquip } from './generate/equips'
@@ -32,10 +33,15 @@ const main = async () => {
 
   await writeJson('src/generated/oneset.json', oneset[0].map((_, i) => oneset.map(v => v[i])))
 
+  // 防具グループ
+  const armorGroup = await getArmorGroup(equips.map(([type, list]) => list.map(v => v.name)))
+  await writeJson('src/generated/armorGroup.json', armorGroup)
+
   // 護石
-  const charm = await getCharm(skillIndexMap)
+  const { charm, charmGroup } = await getCharm(skillIndexMap)
   const charmHash = fromEntries(charm.map(([name, ...list]) => [name, list]))
   await writeJson('src/generated/charm.json', charmHash)
+  await writeJson('src/generated/charmGroup.json', charmGroup)
 
   // 装飾品
   const deco = await getDeco(skillIndexMap)
