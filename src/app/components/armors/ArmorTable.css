@@ -1,0 +1,16 @@
+.ArmorTable th:first-child,
+.ArmorTable td:first-child {
+  width: 40%;
+}
+
+.ArmorTable th {
+  background-color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+}
+
+.ArmorTable .ArmorTable-checkboxCell {
+  text-align: center;
+}
