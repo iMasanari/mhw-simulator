@@ -260,4 +260,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("TUK3");b.register("js",require("Yi9z"));
 },{}]},{},[0,"iUHz"], null)
-//# sourceMappingURL=https://imasanari.github.io/mhw-simulator/app.0554dbb3.js.map
+//# sourceMappingURL=https://imasanari.github.io/mhw-simulator/app.b98e38ad.js.map
