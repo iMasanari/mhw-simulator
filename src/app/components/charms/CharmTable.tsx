@@ -14,7 +14,7 @@ interface Props {
 const levelList = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ']
 
 const CharmTable: React.FC<Props> = ({ charmGroups, ignoreArmors, toggleIgnoreArmors }) =>
-  <Table className="CharmTable">
+  <Table className="CharmTable" hoverable>
     <tbody>
       <tr>
         <th></th>

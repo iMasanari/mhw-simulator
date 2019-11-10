@@ -13,7 +13,7 @@ interface Props {
 const armorList = ['頭', '胴', '腕', '腰', '足']
 
 const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreArmors }) =>
-  <Table className="ArmorTable">
+  <Table className="ArmorTable" hoverable>
     <tbody>
       <tr>
         <th></th>
