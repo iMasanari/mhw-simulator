@@ -13,12 +13,12 @@ interface Props {
 }
 
 const Result: React.FC<Props> = () => {
-  const { def, slot1, slot2, slot3, slot4, list } = useResult()
+  const { list } = useResult()
 
   return (
     <>
-      {list
-        ? list.filter(Boolean).map((result, i) =>
+      {!!list &&
+        list.filter(Boolean).map((result, i) =>
           <Equipment
             key={i}
             title={`10件検索: 装備${i + 1} `}
@@ -26,39 +26,6 @@ const Result: React.FC<Props> = () => {
             initState={i === 0}
           />
         )
-        : <>
-          {!!def &&
-            <Equipment
-              title={`防御力最大: ${def.z}`}
-              result={def}
-              initState={true}
-            />
-          }
-          {!!slot1 &&
-            <Equipment
-              title={`空きスロット最大: ${slot1.z}`}
-              result={slot1}
-            />
-          }
-          {!!slot2 &&
-            <Equipment
-              title={`空きスロット(Lv2以上)最大: ${slot2.z}`}
-              result={slot2}
-            />
-          }
-          {!!slot3 &&
-            <Equipment
-              title={`空きスロット(Lv3以上)最大: ${slot3.z}`}
-              result={slot3}
-            />
-          }
-          {!!slot4 &&
-            <Equipment
-              title={`空きスロット(Lv4)最大: ${slot4.z}`}
-              result={slot4}
-            />
-          }
-        </>
       }
     </>
   )

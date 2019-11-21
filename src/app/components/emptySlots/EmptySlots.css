@@ -1,0 +1,12 @@
+.EmptySlots {
+  padding: 0 1em;
+}
+
+.EmptySlots-table {
+  width: 100%;
+}
+
+.EmptySlots-slot {
+  width: 2em;
+  text-align: center;
+}

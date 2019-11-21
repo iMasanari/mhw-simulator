@@ -64,13 +64,12 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   // 初回検索
   useEffect(() => {
     searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-  }, [])
+  }, [activeSkill, weaponSlots])
 
   return (
     <>
-      <ActionButton label="検索" onClick={onSearchSummary} primary />
+      <ActionButton label="検索" onClick={onSearchList} primary />
       <ActionButton label="クリア" onClick={onClear} />
-      <ActionButton label="10件検索β" onClick={onSearchList} />
       <ActionButton label="追加スキルβ" onClick={onSearchAddableSkill} />
     </>
   )

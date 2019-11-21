@@ -7,6 +7,7 @@ import Actions from './actions/Actions'
 import Armors from './armors/Armors'
 import Charms from './charms/Charms'
 import Decos from './decos/Decos'
+import EmptySlots from './emptySlots/EmptySlots'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
@@ -66,6 +67,7 @@ const App: React.FC = () => {
               scrollOutputArea={scrollOutputArea}
             />
           </div>
+          <EmptySlots />
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
           <div className="App-outputTab">
