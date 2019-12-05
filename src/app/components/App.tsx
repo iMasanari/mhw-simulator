@@ -5,6 +5,7 @@ import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'
 import Actions from './actions/Actions'
 import Armors from './armors/Armors'
+import Charms from './charms/Charms'
 import Decos from './decos/Decos'
 import Header from './header/Header'
 import Result from './result/Result'
@@ -76,6 +77,9 @@ const App: React.FC = () => {
             }
             {tab === 'armors' &&
               <Armors />
+            }
+            {tab === 'charms' &&
+              <Charms />
             }
             {tab === 'decos' &&
               <Decos />

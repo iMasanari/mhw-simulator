@@ -1,5 +1,5 @@
 import React from 'react'
-import { Equipment } from '~/worker/service/calc'
+import { Equipment } from '~/app/util/calc'
 import Table from '../common/Table'
 import ArmorName from './ArmorName'
 import CharmName from './CharmName'

@@ -12,7 +12,7 @@
     "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
     "predev": "npm run prebuild",
     "dev": "parcel src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc -p . --noEmit"
   },
   "author": "iMasanari",
   "license": "GPLv3",

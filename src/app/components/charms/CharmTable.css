@@ -1,0 +1,16 @@
+.CharmTable th:first-child,
+.CharmTable td:first-child {
+  width: 40%;
+}
+
+.CharmTable th {
+  background-color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+}
+
+.CharmTable .CharmTable-checkboxCell {
+  text-align: center;
+}

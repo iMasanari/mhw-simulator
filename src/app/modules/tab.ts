@@ -1,6 +1,6 @@
 import ActionReducer from 'action-reducer'
 
-export type Tab = 'result' | 'armors' | 'decos'
+export type Tab = 'result' | 'armors' | 'charms' | 'decos'
 
 const { reducer, createAction } = ActionReducer<Tab>('result', 'result/')
 

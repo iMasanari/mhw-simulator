@@ -25,3 +25,7 @@
 .Table td:last-child {
   padding-right: 1em;
 }
+
+.Table-hoverable tr:hover {
+  background-color: #eee;
+}
