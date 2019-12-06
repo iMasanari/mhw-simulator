@@ -7,6 +7,7 @@ type Migrations = Record<string, (state: RootState & PersistedState) => unknown>
 
 const migrations: Migrations = {
   0: (state) => import('~/migrations/v0').then(v => v.default(state)),
+  1: (state) => import('~/migrations/v1').then(v => v.default(state)),
 }
 
 const whitelist: (keyof RootState)[] = ['decos', 'ignoreArmors', 'skillLog']
@@ -15,7 +16,7 @@ const persistConfig: PersistConfig<RootState> = {
   key: 'mhw-simulator',
   storage,
   whitelist,
-  version: 0,
+  version: 1,
   migrate: createMigrate(migrations as MigrationManifest),
 }
 
