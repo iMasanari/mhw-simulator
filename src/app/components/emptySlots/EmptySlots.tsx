@@ -9,6 +9,7 @@ import { Armors } from '~/app/modules/ignoreArmors'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import calc, { Equipment } from '~/app/util/calc'
 import { Condition } from '~/app/util/calc/execute'
+import Accordion from '../common/Accordion'
 
 require('./EmptySlots.css')
 
@@ -68,36 +69,28 @@ const EmptySlots: React.FC<Props> = () => {
   const slot4Count = slot4 ? slot4.z : '-'
 
   return (
-    <div className="EmptySlots">
+    <Accordion title={`空きスロット数 ${slot1 ? slot1.z : ''}`}>
       <table className="EmptySlots-table">
         <tbody>
           <tr>
-            <th className="EmptySlots-text">
-              空きスロット数Lv1以上
-            </th>
+            <th className="EmptySlots-text">Lv1以上</th>
             <td className="EmptySlots-slot">{slot1Count}</td>
           </tr>
           <tr>
-            <th className="EmptySlots-text">
-              空きスロット数Lv2以上
-            </th>
+            <th className="EmptySlots-text">Lv2以上</th>
             <td className="EmptySlots-slot">{slot2Count}</td>
           </tr>
           <tr>
-            <th className="EmptySlots-text">
-              空きスロット数Lv3以上
-            </th>
+            <th className="EmptySlots-text">Lv3以上</th>
             <td className="EmptySlots-slot">{slot3Count}</td>
           </tr>
           <tr>
-            <th className="EmptySlots-text">
-              空きスロット数Lv4以上
-            </th>
+            <th className="EmptySlots-text">Lv4以上</th>
             <td className="EmptySlots-slot">{slot4Count}</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </Accordion>
   )
 }
 
