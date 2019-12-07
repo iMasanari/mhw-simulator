@@ -22,7 +22,7 @@
   color: #67c5ff;
 }
 
-.SearchButton.primary:hover {
+.ActionButton.primary:hover {
   background-color: #67c5ff;
   color: white;
 }

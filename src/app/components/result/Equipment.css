@@ -6,36 +6,6 @@
   border-bottom: 1px solid #bbb;
 }
 
-.Equipment-thumb {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  cursor: pointer;
-}
-
-.Equipment-thumb::after {
-  content: '';
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  margin: 0.25em;
-  border-top: 2px solid #bbb;
-  border-right: 2px solid #bbb;
-  transform: rotate(45deg);
-}
-
-.Equipment-thumb.on::after {
-  transform: rotate(135deg);
-}
-
-.Equipment-thumb:hover {
-  background: #ddd;
-}
-
-.Equipment-title {
-  font-weight: bold;
-}
-
 .Equipment-content {
   display: flex;
 }

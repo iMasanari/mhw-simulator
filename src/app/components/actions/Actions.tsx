@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
 import { useDecos } from '../../hooks/decos'
@@ -9,6 +9,8 @@ import { useTabActions } from '../../hooks/tab'
 import { useWeaponSlots } from '../../hooks/weaponSlots'
 import { terminate } from '../../util/calc/worker'
 import ActionButton from './ActionButton'
+
+require('./Actions.css')
 
 interface Props {
   skillList: string[]
@@ -25,18 +27,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const { set: setTab } = useTabActions()
-  const { searchSummary, searchList } = useResultActions()
-
-  const onSearchSummary = useCallback(() => {
-    clearAddableSkill()
-    updateSkillLog(activeSkill)
-
-    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-    setTab('result')
-
-    resetSkillScroll()
-    scrollOutputArea()
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchSummary])
+  const { searchList } = useResultActions()
 
   const onSearchList = useCallback(() => {
     clearAddableSkill()
@@ -61,18 +52,12 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     terminate()
   }, [])
 
-  // 初回検索
-  useEffect(() => {
-    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-  }, [])
-
   return (
-    <>
-      <ActionButton label="検索" onClick={onSearchSummary} primary />
+    <div className="Actions">
+      <ActionButton label="検索" onClick={onSearchList} primary />
       <ActionButton label="クリア" onClick={onClear} />
-      <ActionButton label="10件検索β" onClick={onSearchList} />
       <ActionButton label="追加スキルβ" onClick={onSearchAddableSkill} />
-    </>
+    </div>
   )
 }
 

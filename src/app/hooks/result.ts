@@ -18,14 +18,6 @@ export const useResult = () => {
   return result
 }
 
-const list = Object.entries({
-  def: 'ydl',
-  slot1: 'y_1',
-  slot2: 'z_2',
-  slot3: 'z_3',
-  slot4: 'z_4',
-})
-
 const isntEmpty = (s: string | undefined): s is string =>
   s as any
 
@@ -34,20 +26,6 @@ export const useResultActions = () => {
 
   const clear = useCallback(() => {
     dispatch(actions.clear())
-  }, [])
-
-  const searchSummary = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
-    clear()
-
-    const condition: Condition = { skill, weaponSlots: slots, armors, decos, prev: [] }
-
-    for (const [key, objective] of list) {
-      const value = await calc(objective, condition)
-
-      if (!value) return
-
-      dispatch(actions.updateSummary({ [key]: value }))
-    }
   }, [])
 
   const searchList = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
@@ -70,5 +48,5 @@ export const useResultActions = () => {
     }
   }, [])
 
-  return { searchSummary, searchList }
+  return { searchList }
 }

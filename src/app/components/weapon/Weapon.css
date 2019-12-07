@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5em;
+  margin: 0.5em 1em;
 }
 
 .Weapon-select {
