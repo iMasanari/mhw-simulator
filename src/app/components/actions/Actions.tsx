@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
 import { useDecos } from '../../hooks/decos'
@@ -25,18 +25,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const { set: setTab } = useTabActions()
-  const { searchSummary, searchList } = useResultActions()
-
-  const onSearchSummary = useCallback(() => {
-    clearAddableSkill()
-    updateSkillLog(activeSkill)
-
-    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-    setTab('result')
-
-    resetSkillScroll()
-    scrollOutputArea()
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchSummary])
+  const { searchList } = useResultActions()
 
   const onSearchList = useCallback(() => {
     clearAddableSkill()
@@ -60,11 +49,6 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     clearAddableSkill()
     terminate()
   }, [])
-
-  // 初回検索
-  useEffect(() => {
-    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-  }, [activeSkill, weaponSlots])
 
   return (
     <>
