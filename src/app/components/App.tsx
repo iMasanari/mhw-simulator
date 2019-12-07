@@ -60,14 +60,14 @@ const App: React.FC = () => {
             <Skill skillList={skillList} />
           </div>
           <Weapon />
-          <div className="App-actions">
+          <div className="App-sticky">
             <Actions
               skillList={skillList.map((skill => skill.name))}
               resetSkillScroll={resetSkillScroll}
               scrollOutputArea={scrollOutputArea}
             />
+            <EmptySlots />
           </div>
-          <EmptySlots />
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
           <div className="App-outputTab">

@@ -12,7 +12,7 @@ const Accordion: React.FC<Props> = ({ title, initState, className, children }) =
   const [isOpen, setOpen] = useState(initState)
 
   return (
-    <div className={`Accordion ${className}`}>
+    <div className={`Accordion ${className || ''}`}>
       <div
         className={`Accordion-thumb ${isOpen ? 'on' : ''}`}
         onClick={() => setOpen(state => !state)}

@@ -37,7 +37,7 @@ body {
 .App-inputArea {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 360px;
 }
 
 .App-skill {
@@ -45,10 +45,9 @@ body {
   overflow: auto;
 }
 
-.App-actions {
-  text-align: center;
+.App-sticky {
+  overflow: hidden;
   background: #fff;
-  padding: 0.5em;
 }
 
 .App-outputArea {
@@ -82,7 +81,7 @@ body {
     position: relative;
   }
 
-  .App-actions {
+  .App-sticky {
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;

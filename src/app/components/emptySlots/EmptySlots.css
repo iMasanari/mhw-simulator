@@ -2,11 +2,19 @@
   padding: 0 1em;
 }
 
+.EmptySlots-content {
+  padding: 0 1em 0.5em;
+}
+
 .EmptySlots-table {
   width: 100%;
 }
 
+.EmptySlots-text {
+  text-align: left;
+}
+
 .EmptySlots-slot {
   width: 2em;
-  text-align: center;
+  text-align: right;
 }

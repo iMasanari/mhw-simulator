@@ -10,6 +10,8 @@ import { useWeaponSlots } from '../../hooks/weaponSlots'
 import { terminate } from '../../util/calc/worker'
 import ActionButton from './ActionButton'
 
+require('./Actions.css')
+
 interface Props {
   skillList: string[]
   resetSkillScroll: () => void
@@ -51,11 +53,11 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   }, [])
 
   return (
-    <>
+    <div className="Actions">
       <ActionButton label="検索" onClick={onSearchList} primary />
       <ActionButton label="クリア" onClick={onClear} />
       <ActionButton label="追加スキルβ" onClick={onSearchAddableSkill} />
-    </>
+    </div>
   )
 }
 

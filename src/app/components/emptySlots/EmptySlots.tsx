@@ -70,26 +70,28 @@ const EmptySlots: React.FC<Props> = () => {
 
   return (
     <Accordion title={`空きスロット数 ${slot1 ? slot1.z : ''}`}>
-      <table className="EmptySlots-table">
-        <tbody>
-          <tr>
-            <th className="EmptySlots-text">Lv1以上</th>
-            <td className="EmptySlots-slot">{slot1Count}</td>
-          </tr>
-          <tr>
-            <th className="EmptySlots-text">Lv2以上</th>
-            <td className="EmptySlots-slot">{slot2Count}</td>
-          </tr>
-          <tr>
-            <th className="EmptySlots-text">Lv3以上</th>
-            <td className="EmptySlots-slot">{slot3Count}</td>
-          </tr>
-          <tr>
-            <th className="EmptySlots-text">Lv4以上</th>
-            <td className="EmptySlots-slot">{slot4Count}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="EmptySlots-content">
+        <table className="EmptySlots-table">
+          <tbody>
+            <tr>
+              <th className="EmptySlots-text">空きスロット数 Lv1以上</th>
+              <td className="EmptySlots-slot">{slot1Count}</td>
+            </tr>
+            <tr>
+              <th className="EmptySlots-text">空きスロット数 Lv2以上</th>
+              <td className="EmptySlots-slot">{slot2Count}</td>
+            </tr>
+            <tr>
+              <th className="EmptySlots-text">空きスロット数 Lv3以上</th>
+              <td className="EmptySlots-slot">{slot3Count}</td>
+            </tr>
+            <tr>
+              <th className="EmptySlots-text">空きスロット数 Lv4以上</th>
+              <td className="EmptySlots-slot">{slot4Count}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </Accordion>
   )
 }
