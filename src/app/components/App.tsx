@@ -3,6 +3,7 @@ import baseSkillList from '~/generated/skillList.json'
 import { useSkillLog } from '../hooks/skillLog'
 import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'
+import About from './about/About'
 import Actions from './actions/Actions'
 import Armors from './armors/Armors'
 import Charms from './charms/Charms'
@@ -74,6 +75,9 @@ const App: React.FC = () => {
             <Tab />
           </div>
           <div className="App-outputContent">
+            {tab === 'about' &&
+              <About />
+            }
             {tab === 'result' &&
               <Result />
             }
