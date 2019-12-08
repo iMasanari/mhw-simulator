@@ -6,7 +6,7 @@ require('./Tab.css')
 interface Props {
 }
 
-const tabKeyList = ['result', 'armors', 'charms', 'decos'] as const
+const tabKeyList = ['about', 'result', 'armors', 'charms', 'decos'] as const
 
 const Tab: React.FC<Props> = () => {
   const tab = useTab()

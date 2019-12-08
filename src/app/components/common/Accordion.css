@@ -1,0 +1,29 @@
+.Accordion-thumb {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.Accordion-thumb::after {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0.25em;
+  border-top: 2px solid #bbb;
+  border-right: 2px solid #bbb;
+  transform: rotate(45deg);
+}
+
+.Accordion-thumb.on::after {
+  transform: rotate(135deg);
+}
+
+.Accordion-thumb:hover {
+  background: #ddd;
+}
+
+.Accordion-title {
+  font-weight: bold;
+}

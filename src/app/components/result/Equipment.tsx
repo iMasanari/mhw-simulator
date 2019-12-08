@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { Equipment } from '~/app/util/calc'
+import Accordion from '../common/Accordion'
 import EquipmentTable from './EquipmentTable'
 import SkillTable from './SkillTable'
 
@@ -11,31 +12,16 @@ interface Props {
   initState?: boolean
 }
 
-const Equipment: React.FC<Props> = ({ title, result, initState }) => {
-  const [isOpen, setOpen] = useState(initState)
-
-  const toggleOpen = useCallback(() => setOpen(v => !v), [])
-
-  return (
-    <div className="Equipment">
-      <div
-        className={`Equipment-thumb ${isOpen ? 'on' : ''}`}
-        onClick={toggleOpen}
-      >
-        <div className="Equipment-title">{title}</div>
+const Equipment: React.FC<Props> = ({ title, result, initState }) =>
+  <Accordion className="Equipment" title={title} initState={initState}>
+    <div className="Equipment-content">
+      <div className="Equipment-column">
+        <EquipmentTable equipment={result} />
       </div>
-      {isOpen &&
-        <div className="Equipment-content">
-          <div className="Equipment-column">
-            <EquipmentTable equipment={result} />
-          </div>
-          <div className="Equipment-column">
-            <SkillTable skillList={result.skills} />
-          </div>
-        </div>
-      }
+      <div className="Equipment-column">
+        <SkillTable skillList={result.skills} />
+      </div>
     </div>
-  )
-}
+  </Accordion>
 
 export default Equipment

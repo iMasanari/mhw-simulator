@@ -3,10 +3,12 @@ import baseSkillList from '~/generated/skillList.json'
 import { useSkillLog } from '../hooks/skillLog'
 import { useTab } from '../hooks/tab'
 import { partition } from '../util/array'
+import About from './about/About'
 import Actions from './actions/Actions'
 import Armors from './armors/Armors'
 import Charms from './charms/Charms'
 import Decos from './decos/Decos'
+import EmptySlots from './emptySlots/EmptySlots'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
@@ -59,12 +61,13 @@ const App: React.FC = () => {
             <Skill skillList={skillList} />
           </div>
           <Weapon />
-          <div className="App-actions">
+          <div className="App-sticky">
             <Actions
               skillList={skillList.map((skill => skill.name))}
               resetSkillScroll={resetSkillScroll}
               scrollOutputArea={scrollOutputArea}
             />
+            <EmptySlots />
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
@@ -72,6 +75,9 @@ const App: React.FC = () => {
             <Tab />
           </div>
           <div className="App-outputContent">
+            {tab === 'about' &&
+              <About />
+            }
             {tab === 'result' &&
               <Result />
             }
