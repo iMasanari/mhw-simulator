@@ -3,12 +3,12 @@ import { useWeaponSlots, useWeaponSlotsActions } from '~/app/hooks/weaponSlots'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import Select from '../common/Select'
 
-require('./Weapon.css')
+require('./WeaponSlots.css')
 
 interface Props {
 }
 
-const Weapon: React.FC<Props> = () => {
+const WeaponSlots: React.FC<Props> = () => {
   const slots = useWeaponSlots()
   const { set } = useWeaponSlotsActions()
 
@@ -16,7 +16,7 @@ const Weapon: React.FC<Props> = () => {
     set(e.currentTarget.value.split('-').map(Number) as WeaponSlots)
 
   return (
-    <div className="Weapon">
+    <div className="WeaponSlots">
       <div>武器スロット</div>
       <Select value={slots.join('-')} onChange={onChange}      >
         <optgroup label="武器スロットなし">
@@ -68,4 +68,5 @@ const Weapon: React.FC<Props> = () => {
     </div>
   )
 }
-export default Weapon
+
+export default WeaponSlots

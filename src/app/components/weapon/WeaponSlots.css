@@ -1,10 +1,6 @@
-.Weapon {
+.WeaponSlots {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0.5em 1em;
-}
-
-.Weapon-select {
-  width: 60px;
 }
