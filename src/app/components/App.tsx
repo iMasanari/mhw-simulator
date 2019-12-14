@@ -14,7 +14,7 @@ import Result from './result/Result'
 import Skill from './skill/Skill'
 import SkillFilter from './skill/SkillFilter'
 import Tab from './tab/Tab'
-import Weapon from './weapon/WeaponSlots'
+import Weapon from './weapon/Weapon'
 
 require('./App.css')
 
