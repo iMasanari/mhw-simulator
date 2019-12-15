@@ -37,7 +37,7 @@ const useSlots = () => {
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
 
-  const searchSummary = useCallback(async (skill: ActiveSkill, weaponSlots: WeaponSlots, weaponSkills: WeaponSkill, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: ActiveSkill, weaponSlots: WeaponSlots, weaponSkill: WeaponSkill, armors: Armors, decos: Decos) => {
     setSlots({})
 
     const condition: Condition = { skill, weaponSlots, weaponSkill, armors, decos, prev: [] }
@@ -54,7 +54,7 @@ const useSlots = () => {
   // 初回検索
   useEffect(() => {
     searchSummary(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos)
-  }, [activeSkill, weaponSkill, weaponSlots])
+  }, [activeSkill, weaponSlots, weaponSkill])
 
   return slots
 }
