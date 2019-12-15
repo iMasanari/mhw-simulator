@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useWeaponSkill } from '~/app/hooks/weaponSkill'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
 import { useDecos } from '../../hooks/decos'
@@ -24,6 +25,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
   const { update: updateSkillLog } = useSkillLogActions()
   const weaponSlots = useWeaponSlots()
+  const weaponSkill = useWeaponSkill()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const { set: setTab } = useTabActions()
@@ -33,18 +35,20 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     clearAddableSkill()
     updateSkillLog(activeSkill)
 
-    searchList(activeSkill, weaponSlots, ignoreArmors, decos)
+    searchList(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos)
     setTab('result')
 
     resetSkillScroll()
     scrollOutputArea()
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, searchList])
+  }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, searchList])
 
   const onSearchAddableSkill = useCallback(() => {
-    searchAddableSkill(activeSkill, weaponSlots, ignoreArmors, decos, skillList)
+    searchAddableSkill(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList)
 
     resetSkillScroll()
-  }, [activeSkill, weaponSlots, ignoreArmors, decos, skillList])
+  }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList])
+
+  console.log(weaponSkill)
 
   const onClear = useCallback(() => {
     clearActiveSkill()

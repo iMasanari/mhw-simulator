@@ -18,6 +18,12 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) =>
         <th>防御力</th>
         <td>{equipment.def}</td>
       </tr>
+      {equipment.weaponSkill !== 'none' && (
+        <tr>
+          <th>武器スキル</th>
+          <td>{equipment.weaponSkill}</td>
+        </tr>
+      )}
       <tr>
         <th>頭</th>
         <td><ArmorName type="head" name={equipment.head} /></td>

@@ -6,6 +6,7 @@ import ignoreArmors, { Armors } from './ignoreArmors'
 import result, { Result } from './result'
 import skillLog, { SkillLog } from './skillLog'
 import tab, { Tab } from './tab'
+import weaponSkill, { WeaponSkill } from './weaponSkill'
 import weaponSlots, { WeaponSlots } from './weaponSlots'
 
 export interface RootState {
@@ -17,6 +18,7 @@ export interface RootState {
   skillLog: SkillLog
   tab: Tab
   weaponSlots: WeaponSlots
+  weaponSkill: WeaponSkill
 }
 
 export default combineReducers<RootState>({
@@ -28,4 +30,5 @@ export default combineReducers<RootState>({
   skillLog,
   tab,
   weaponSlots,
+  weaponSkill,
 })
