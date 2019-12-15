@@ -18,10 +18,17 @@ export interface Equipment {
   slot2: number
   slot3: number
   slot4: number
+  weaponSkill: string | undefined
 }
 
 const findArmor = (list: string[], data: Record<string, any>) =>
   list.find(name => data[name])
+
+const findWeaponSkill = (list: string[]) => {
+  const id = list.find(name => name.startsWith('yws_'))
+
+  return id ? id.slice(4) : undefined
+}
 
 const getSlots = (result: Record<string, number>) => {
   const slot3Over = Math.min(result.y_1, result.y_2, result.y_3)
@@ -61,6 +68,8 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
   const { ydl: def } = result.vars
   const [slot1, slot2, slot3, slot4] = getSlots(result.vars)
 
+  const weaponSkill = findWeaponSkill(list)
+
   return {
     z: Math.round(result.z), // 一部、整数条件を外しており、小数誤差が発生するため
     head,
@@ -76,5 +85,6 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
     slot2,
     slot3,
     slot4,
+    weaponSkill,
   }
 }

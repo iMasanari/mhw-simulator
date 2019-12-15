@@ -2,7 +2,7 @@ import onesetList from '../../generated/oneset.json'
 import seriesSkill from '../../generated/seriesSkill.json'
 import { GLP_FX, GLP_LO } from '../constants/glpk'
 import { flat } from './array'
-import { allSkill, arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, wst } from './generatedUtil'
+import { allSkill, arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, weaponSkills, wst } from './generatedUtil'
 
 const fx0 = {
   type: GLP_FX,
@@ -42,6 +42,10 @@ const createBaseLp = () => {
   const armorCountsSubject = Object.entries(armorCounts).map(([type, list]) =>
     createArmorFlag(type, list.map(([name]) => name))
   )
+
+  const weaponSkillList = ['yws_none', ...weaponSkills.map((name) => `yws_${name}`)]
+
+  const weaponSkillCountsSubject = createArmorFlag(`yws`, weaponSkillList)
 
   const defSubject = { vars: [{ name: 'ydl', coef: -1 }], bnds: fx0 }
   const slotLv1Subject = { vars: [{ name: 'y_1', coef: -1 }, { name: 'cs1', coef: 1 }], bnds: fx0 }
@@ -117,6 +121,18 @@ const createBaseLp = () => {
     }
   }
 
+  // 武器スロット
+  for (const skillName of weaponSkills) {
+    const name = `yws_${skillName}`
+    const ref = skillSubjectMap.get(skillName)
+
+    if (!ref) {
+      throw new Error(`error: ${skillName} is not find @${name}`)
+    }
+
+    ref.vars.push({ name, coef: 1 })
+  }
+
   // 空きスロット数
   const emptySlots = [
     { vars: [{ name: 'y_1', coef: 1 }, { name: 'z_2', coef: -1 }], bnds: lo0 },
@@ -159,6 +175,7 @@ const createBaseLp = () => {
 
   const subjectTo = [
     ...armorCountsSubject,
+    weaponSkillCountsSubject,
     slotLv1Subject,
     slotLv2Subject,
     slotLv3Subject,
@@ -177,6 +194,7 @@ const createBaseLp = () => {
     { name: 'y_w', type: 4, ub: 1, lb: 0 },
     { name: 'y_l', type: 4, ub: 1, lb: 0 },
     { name: 'y_c', type: 4, ub: 1, lb: 0 },
+    { name: 'yws', type: 4, ub: 1, lb: 0 },
   ]
 
   const generals = [
@@ -197,6 +215,8 @@ const createBaseLp = () => {
     // ...Object.keys(armorCounts), // 他条件で達成しているため記述しない
     // x軸
     ...equips.map(([name]) => name),
+    ...weaponSkillList,
+    'yws_auto',
   ]
 
   return { subjectTo, bounds, generals, binaries }

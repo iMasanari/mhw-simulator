@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useWeaponSkill, useWeaponSkillActions } from '~/app/hooks/weaponSkill'
 import { weaponSkills } from '~/app/util/generatedUtil'
 import Select from '../common/Select'
 
@@ -8,19 +9,20 @@ interface Props {
 }
 
 const WeaponSkills: React.FC<Props> = () => {
-  const [value, setValue] = useState(0)
+  const value = useWeaponSkill()
+  const { set } = useWeaponSkillActions()
 
   const onChange = (e: React.FormEvent<HTMLSelectElement>) =>
-    setValue(+e.currentTarget.value)
+    set(e.currentTarget.value)
 
   return (
     <div className="WeaponSkills">
       <div>武器スキル</div>
       <Select value={value} onChange={onChange}>
-        <option value="0">なし</option>
-        <option>自動</option>
+        <option value="yws_none">なし</option>
+        <option value="yws_auto">自動</option>
         {weaponSkills.map(skill =>
-          <option>{skill}</option>
+          <option key={skill} value={`yws_${skill}`}>{skill}</option>
         )}
       </Select>
     </div>

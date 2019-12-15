@@ -2,6 +2,7 @@ import { GLP_FX, GLP_LO, GLP_MAX, GLP_UP } from '~/app/constants/glpk'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
 import { Armors } from '~/app/modules/ignoreArmors'
+import { WeaponSkill } from '~/app/modules/weaponSkill'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import baseLp from '~/app/util/baseLp'
 import seriesSkill from '~/generated/seriesSkill.json'
@@ -13,6 +14,7 @@ export interface Condition {
   armors: Armors
   decos: Decos
   weaponSlots: WeaponSlots
+  weaponSkill: WeaponSkill
   prev: string[][]
 }
 
@@ -39,6 +41,7 @@ export default (objectiveName: string, condition: Condition) => {
     ...createSubject(condition.armors, GLP_FX),
     ...createSubject(condition.decos, GLP_UP),
     ...createSubject(slots, GLP_FX),
+    ...createSubject({ [condition.weaponSkill]: 1 }, GLP_FX),
     ...prevs,
   ]
 

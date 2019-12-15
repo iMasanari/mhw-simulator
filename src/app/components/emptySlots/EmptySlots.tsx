@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useDecos } from '~/app/hooks/decos'
 import { useIgnoreArmors } from '~/app/hooks/ignoreArmors'
+import { useWeaponSkill } from '~/app/hooks/weaponSkill'
 import { useWeaponSlots } from '~/app/hooks/weaponSlots'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
 import { Armors } from '~/app/modules/ignoreArmors'
+import { WeaponSkill } from '~/app/modules/weaponSkill'
 import { WeaponSlots } from '~/app/modules/weaponSlots'
 import calc, { Equipment } from '~/app/util/calc'
 import { Condition } from '~/app/util/calc/execute'
@@ -31,13 +33,14 @@ const useSlots = () => {
   const [slots, setSlots] = useState({} as Slots)
   const activeSkill = useActiveSkill()
   const weaponSlots = useWeaponSlots()
+  const weaponSkill = useWeaponSkill()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
 
-  const searchSummary = useCallback(async (skill: ActiveSkill, slots: WeaponSlots, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: ActiveSkill, weaponSlots: WeaponSlots, weaponSkills: WeaponSkill, armors: Armors, decos: Decos) => {
     setSlots({})
 
-    const condition: Condition = { skill, weaponSlots: slots, armors, decos, prev: [] }
+    const condition: Condition = { skill, weaponSlots, weaponSkill, armors, decos, prev: [] }
 
     for (const [key, objective] of list) {
       const value = await calc(objective, condition)
@@ -50,9 +53,8 @@ const useSlots = () => {
 
   // 初回検索
   useEffect(() => {
-    searchSummary(activeSkill, weaponSlots, ignoreArmors, decos)
-  }, [activeSkill, weaponSlots])
-
+    searchSummary(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos)
+  }, [activeSkill, weaponSkill, weaponSlots])
 
   return slots
 }
