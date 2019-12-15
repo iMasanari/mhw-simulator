@@ -15,7 +15,7 @@ export default (state: RootState & PersistedState): RootState & PersistedState =
     'EX龍紋ヲ刻マレシ封帯α': 0,
     'EX龍紋ヲ刻マレシ封帯β': 0,
     'EX龍紋ヲ刻マレシ封靴α': 0,
-    'EX龍紋ヲ刻マレシ封靴β': 0
+    'EX龍紋ヲ刻マレシ封靴β': 0,
   }
 
   return {

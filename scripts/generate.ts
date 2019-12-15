@@ -3,6 +3,7 @@ import { getCharm } from './generate/charm'
 import { getDeco } from './generate/deco'
 import { getEquip } from './generate/equips'
 import { getSkillList } from './generate/skill'
+import { getWeaponSkills } from './generate/weaponSkills'
 import { writeJson } from './util/fileUtil'
 import fromEntries from './util/fromEntries'
 
@@ -47,6 +48,10 @@ const main = async () => {
   const deco = await getDeco(skillIndexMap)
   const decoHash = fromEntries(deco.map(([name, ...list]) => [name, list]))
   await writeJson('src/generated/deco.json', decoHash)
+
+  // 武器スキル
+  const weaponSkills = await getWeaponSkills()
+  await writeJson('src/generated/weaponSkills.json', weaponSkills)
 }
 
 main()
