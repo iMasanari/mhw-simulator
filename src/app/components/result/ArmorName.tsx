@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import { getArmInfo, getBodyInfo, getCharmInfo, getHeadInfo, getLegInfo, getWstInfo } from '~/app/util/generatedUtil'
+import { arm, body, charm, head, leg, wst } from '~/app/util/generatedUtil'
 import Table from '../common/Table'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
@@ -8,19 +8,12 @@ import SlotTable from './SlotTable'
 
 require('./ArmorName.css')
 
-const info: Record<string, typeof getHeadInfo> = {
-  head: getHeadInfo,
-  body: getBodyInfo,
-  arm: getArmInfo,
-  wst: getWstInfo,
-  leg: getLegInfo,
-  xc: getCharmInfo,
-}
+const info: Record<string, typeof arm> = { arm, body, charm, head, leg, wst }
 
 const getEquipInfo = (type: string, name: string) => {
-  const fn = info[type]
+  const ref = info[type]
 
-  return fn ? fn(name) : null
+  return ref ? ref[name] : null
 }
 
 interface Props {

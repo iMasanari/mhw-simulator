@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
-import { getDecoInfo } from '~/app/util/generatedUtil'
+import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
@@ -23,7 +23,7 @@ const DecoName: React.FC<Props> = ({ name }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])
 
-  const info = isModalOpen ? getDecoInfo(name) : null
+  const info = isModalOpen ? deco[name] : null
 
   return (
     <>

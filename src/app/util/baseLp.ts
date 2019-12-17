@@ -2,7 +2,7 @@ import onesetList from '../../generated/oneset.json'
 import seriesSkill from '../../generated/seriesSkill.json'
 import { GLP_FX, GLP_LO } from '../constants/glpk'
 import { flat } from './array'
-import { allSkill, arm, body, charm, deco, getArmInfo, getBodyInfo, getCharmInfo, getDecoInfo, getHeadInfo, getLegInfo, getWstInfo, head, leg, weaponSkills, wst } from './generatedUtil'
+import { allSkill, arm, body, charm, deco, head, leg, weaponSkills, wst } from './generatedUtil'
 
 const fx0 = {
   type: GLP_FX,
@@ -22,13 +22,13 @@ const createArmorFlag = (type: string, armors: string[]) => ({
 })
 
 const createBaseLp = () => {
-  const headList = Object.keys(head).map(name => [name, getHeadInfo(name)] as const)
-  const bodyList = Object.keys(body).map(name => [name, getBodyInfo(name)] as const)
-  const armList = Object.keys(arm).map(name => [name, getArmInfo(name)] as const)
-  const wstList = Object.keys(wst).map(name => [name, getWstInfo(name)] as const)
-  const legList = Object.keys(leg).map(name => [name, getLegInfo(name)] as const)
-  const charmList = Object.keys(charm).map(name => [name, getCharmInfo(name)] as const)
-  const decoList = Object.keys(deco).map(name => [name, getDecoInfo(name)] as const)
+  const headList = Object.entries(head)
+  const bodyList = Object.entries(body)
+  const armList = Object.entries(arm)
+  const wstList = Object.entries(wst)
+  const legList = Object.entries(leg)
+  const charmList = Object.entries(charm)
+  const decoList = Object.entries(deco)
 
   const armorCounts = {
     'y_h': headList,

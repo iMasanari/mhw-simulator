@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import { getCharmInfo } from '~/app/util/generatedUtil'
+import { charm } from '~/app/util/generatedUtil'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
 
@@ -20,7 +20,7 @@ const CharmName: React.FC<Props> = ({ name }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])
 
-  const info = isModalOpen ? getCharmInfo(name!) : null
+  const info = isModalOpen ? charm[name!] : null
 
   return (
     <>
