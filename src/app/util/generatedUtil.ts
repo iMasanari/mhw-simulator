@@ -1,3 +1,5 @@
+import { fromEntries } from "./array"
+
 type EquipData = [
   Record<string, number>,
   number,
@@ -19,13 +21,14 @@ interface SkillInfo {
   items: number[]
 }
 
-export const head = require('~/generated/head.json') as Record<string, EquipData>
-export const body = require('~/generated/body.json') as Record<string, EquipData>
-export const arm = require('~/generated/arm.json') as Record<string, EquipData>
-export const wst = require('~/generated/wst.json') as Record<string, EquipData>
-export const leg = require('~/generated/leg.json') as Record<string, EquipData>
-export const charm = require('~/generated/charm.json') as Record<string, EquipData>
-export const deco = require('~/generated/deco.json') as Record<string, EquipData>
+const headData = require('~/generated/head.json') as Record<string, EquipData>
+const bodyData = require('~/generated/body.json') as Record<string, EquipData>
+const armData = require('~/generated/arm.json') as Record<string, EquipData>
+const wstData = require('~/generated/wst.json') as Record<string, EquipData>
+const legData = require('~/generated/leg.json') as Record<string, EquipData>
+const charmData = require('~/generated/charm.json') as Record<string, EquipData>
+const decoData = require('~/generated/deco.json') as Record<string, EquipData>
+
 export const skillList = require('~/generated/skillList.json') as SkillInfo[]
 export const allSkill = require('~/generated/allSkill.json') as string[]
 export const weaponSkills = require('~/generated/weaponSkills.json') as string[]
@@ -40,10 +43,15 @@ const getEquipInfo = ([skillData, slot1, slot2, slot3, def, maxDef, customDef, f
   return { skill, slot1, slot2, slot3, def, maxDef, customDef, fire, water, thunder, ice, dragon }
 }
 
-export const getHeadInfo = (name: string) => getEquipInfo(head[name])
-export const getBodyInfo = (name: string) => getEquipInfo(body[name])
-export const getArmInfo = (name: string) => getEquipInfo(arm[name])
-export const getWstInfo = (name: string) => getEquipInfo(wst[name])
-export const getLegInfo = (name: string) => getEquipInfo(leg[name])
-export const getCharmInfo = (name: string) => getEquipInfo(charm[name])
-export const getDecoInfo = (name: string) => getEquipInfo(deco[name])
+const getEquipData = (data: Record<string, EquipData>) =>
+  fromEntries(
+    Object.entries(data).map(([name, value]) => [name, getEquipInfo(value)])
+  )
+
+export const head = getEquipData(headData)
+export const body = getEquipData(bodyData)
+export const arm = getEquipData(armData)
+export const wst = getEquipData(wstData)
+export const leg = getEquipData(legData)
+export const charm = getEquipData(charmData)
+export const deco = getEquipData(decoData)
