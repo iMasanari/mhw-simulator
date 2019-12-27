@@ -48,8 +48,6 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     resetSkillScroll()
   }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList])
 
-  console.log(weaponSkill)
-
   const onClear = useCallback(() => {
     clearActiveSkill()
     clearAddableSkill()
