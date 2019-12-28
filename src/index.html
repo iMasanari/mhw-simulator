@@ -11,6 +11,22 @@
 
     gtag('config', 'UA-74494516-6');
   </script>
+  <!-- 非サポートブラウザへのメッセージ -->
+  <script>
+    if (typeof WebAssembly === 'undefined') {
+      window.onload = function () {
+        var body = document.body;
+        var message = document.createElement('p');
+
+        message.innerHTML =
+          'お使いのインターネットブラウザは、サポートしておりません。<br>' +
+          '<a href="https://www.google.com/chrome/">Google Chrome</a> 等のモダンブラウザを使用してください。';
+
+        body.insertBefore(message, body.firstChild);
+      }
+    }
+  </script>
+  <!--  -->
   <meta charset="utf-8">
   <title>MHW:ICEBORNE スキルシミュ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
