@@ -42,7 +42,7 @@ const DecoName: React.FC<Props> = ({ name }) => {
               type="number"
               min="0"
               max="9"
-              value={decos[name!] != null ? decos[name!] : ''}
+              value={decos[name!] ?? ''}
               onChange={setDeco}
             />
           </label>

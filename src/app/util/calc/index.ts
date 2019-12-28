@@ -24,11 +24,8 @@ export interface Equipment {
 const findArmor = (list: string[], data: Record<string, any>) =>
   list.find(name => data[name])
 
-const findWeaponSkill = (list: string[]) => {
-  const id = list.find(name => name.startsWith('yws_'))
-
-  return id ? id.slice(4) : undefined
-}
+const findWeaponSkill = (list: string[]) =>
+  list.find(name => name.startsWith('yws_'))?.slice(4)
 
 const getSlots = (result: Record<string, number>) => {
   const slot3Over = Math.min(result.y_1, result.y_2, result.y_3)

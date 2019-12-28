@@ -65,10 +65,10 @@ interface Props {
 const EmptySlots: React.FC<Props> = () => {
   const { slot1, slot2, slot3, slot4 } = useSlots()
 
-  const slot1Count = slot1 ? slot1.z : '-'
-  const slot2Count = slot2 ? slot2.z : '-'
-  const slot3Count = slot3 ? slot3.z : '-'
-  const slot4Count = slot4 ? slot4.z : '-'
+  const slot1Count = slot1?.z ?? '-'
+  const slot2Count = slot2?.z ?? '-'
+  const slot3Count = slot3?.z ?? '-'
+  const slot4Count = slot4?.z ?? '-'
 
   return (
     <Accordion title={`空きスロット数 ${slot1 ? slot1.z : ''}`}>
