@@ -30,6 +30,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@types/gtag.js": "0.0.3",
     "@types/node": "^12.7.5",
     "@types/node-fetch": "^2.5.2",
     "@types/react": "^16.9.2",

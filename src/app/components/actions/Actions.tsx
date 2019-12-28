@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useWeaponSkill } from '~/app/hooks/weaponSkill'
+import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
 import { useDecos } from '../../hooks/decos'
@@ -31,7 +32,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const { set: setTab } = useTabActions()
   const { searchList } = useResultActions()
 
-  const onSearchList = useCallback(() => {
+  const onSearchResult = useCallback(() => {
     clearAddableSkill()
     updateSkillLog(activeSkill)
 
@@ -40,12 +41,14 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
 
     resetSkillScroll()
     scrollOutputArea()
+    sendSearchResultEvent()
   }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, searchList])
 
-  const onSearchAddableSkill = useCallback(() => {
+  const onSearchSkill = useCallback(() => {
     searchAddableSkill(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList)
 
     resetSkillScroll()
+    sendSearchSkillEvent()
   }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList])
 
   const onClear = useCallback(() => {
@@ -56,9 +59,9 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
 
   return (
     <div className="Actions">
-      <ActionButton label="検索" onClick={onSearchList} primary />
+      <ActionButton label="検索" onClick={onSearchResult} primary />
       <ActionButton label="クリア" onClick={onClear} />
-      <ActionButton label="追加スキルβ" onClick={onSearchAddableSkill} />
+      <ActionButton label="追加スキルβ" onClick={onSearchSkill} />
     </div>
   )
 }
