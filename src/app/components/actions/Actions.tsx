@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { useWeaponSkill } from '~/app/hooks/weaponSkill'
+import { useWeapon } from '~/app/hooks/weapon'
 import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
@@ -8,7 +8,6 @@ import { useIgnoreArmors } from '../../hooks/ignoreArmors'
 import { useResultActions } from '../../hooks/result'
 import { useSkillLogActions } from '../../hooks/skillLog'
 import { useTabActions } from '../../hooks/tab'
-import { useWeaponSlots } from '../../hooks/weaponSlots'
 import { terminate } from '../../util/calc/worker'
 import ActionButton from './ActionButton'
 
@@ -25,8 +24,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const { clear: clearActiveSkill } = useActiveSkillActions()
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
   const { update: updateSkillLog } = useSkillLogActions()
-  const weaponSlots = useWeaponSlots()
-  const weaponSkill = useWeaponSkill()
+  const weapon = useWeapon()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const { set: setTab } = useTabActions()
@@ -36,20 +34,20 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     clearAddableSkill()
     updateSkillLog(activeSkill)
 
-    searchList(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos)
+    searchList(activeSkill, weapon, ignoreArmors, decos)
     setTab('result')
 
     resetSkillScroll()
     scrollOutputArea()
     sendSearchResultEvent()
-  }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, searchList])
+  }, [activeSkill, weapon, ignoreArmors, decos, searchList])
 
   const onSearchSkill = useCallback(() => {
-    searchAddableSkill(activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList)
+    searchAddableSkill(activeSkill, weapon, ignoreArmors, decos, skillList)
 
     resetSkillScroll()
     sendSearchSkillEvent()
-  }, [activeSkill, weaponSlots, weaponSkill, ignoreArmors, decos, skillList])
+  }, [activeSkill, weapon, ignoreArmors, decos, skillList])
 
   const onClear = useCallback(() => {
     clearActiveSkill()

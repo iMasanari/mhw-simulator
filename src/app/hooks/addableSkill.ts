@@ -5,8 +5,7 @@ import { ActiveSkill } from '../modules/activeSkill'
 import * as actions from '../modules/addableSkill'
 import { Decos } from '../modules/decos'
 import { Armors } from '../modules/ignoreArmors'
-import { WeaponSkill } from '../modules/weaponSkill'
-import { WeaponSlots } from '../modules/weaponSlots'
+import { Weapon } from '../modules/weapon'
 import calc from '../util/calc'
 
 const selector = (state: RootState) => state.addableSkill
@@ -26,12 +25,12 @@ export const useAddableSkillActions = () => {
     dispatch(actions.clear())
   }, [])
 
-  const search = useCallback(async (skill: ActiveSkill, weaponSlots: WeaponSlots, weaponSkill: WeaponSkill, armors: Armors, decos: Decos, skillList: string[]) => {
+  const search = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos, skillList: string[]) => {
     clear()
 
     for (const key of skillList) {
       const { [key]: _removed, ...searchSkill } = skill
-      const result = await calc(key, { skill: searchSkill, weaponSlots, weaponSkill, armors, decos, prev })
+      const result = await calc(key, { skill: searchSkill, weapon, armors, decos, prev })
 
       if (!result) break
 
