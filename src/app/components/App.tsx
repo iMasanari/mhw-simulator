@@ -33,16 +33,14 @@ const App: React.FC = () => {
     )
 
     const [t, f] = partition(sorted, (v) =>
-      !skillFilter || ~v.name.indexOf(skillFilter) || v.category === skillFilter
+      !skillFilter || v.name.includes(skillFilter) || v.category === skillFilter
     )
 
     return [...t, ...f]
   }, [skillFilter, skillLog])
 
   const resetSkillScroll = useCallback(() => {
-    if (skillRef.current) {
-      skillRef.current.scrollTo(0, 0)
-    }
+    skillRef.current?.scrollTo(0, 0)
   }, [])
 
   const scrollOutputArea = useCallback(() => {

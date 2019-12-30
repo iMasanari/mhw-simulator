@@ -2,8 +2,7 @@ import { GLP_FX, GLP_LO, GLP_MAX, GLP_UP } from '~/app/constants/glpk'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
 import { Armors } from '~/app/modules/ignoreArmors'
-import { WeaponSkill } from '~/app/modules/weaponSkill'
-import { WeaponSlots } from '~/app/modules/weaponSlots'
+import { Weapon } from '~/app/modules/weapon'
 import baseLp from '~/app/util/baseLp'
 import seriesSkill from '~/generated/seriesSkill.json'
 import normalizeSkill from './normalizeSkill'
@@ -13,8 +12,7 @@ export interface Condition {
   skill: ActiveSkill
   armors: Armors
   decos: Decos
-  weaponSlots: WeaponSlots
-  weaponSkill: WeaponSkill
+  weapon: Weapon
   prev: string[][]
 }
 
@@ -27,7 +25,7 @@ export default (objectiveName: string, condition: Condition) => {
   const skill = normalizeSkill(condition.skill)
 
   const slots = [1, 2, 3, 4]
-    .map(slot => [`cs${slot}`, condition.weaponSlots.filter(v => v >= slot).length] as const)
+    .map(slot => [`cs${slot}`, condition.weapon.slots.filter(v => v >= slot).length] as const)
     .reduce((acc, [key, value]) => (acc[key] = value, acc), {} as Record<string, number>)
 
   const prevs = condition.prev.map((equips) => ({
@@ -41,7 +39,7 @@ export default (objectiveName: string, condition: Condition) => {
     ...createSubject(condition.armors, GLP_FX),
     ...createSubject(condition.decos, GLP_UP),
     ...createSubject(slots, GLP_FX),
-    ...createSubject({ [condition.weaponSkill]: 1 }, GLP_FX),
+    ...createSubject({ [condition.weapon.skill]: 1 }, GLP_FX),
     ...prevs,
   ]
 

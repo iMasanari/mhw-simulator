@@ -35,9 +35,6 @@ const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreAr
               }
             </td>
           )}
-          {Array.from({ length: 5 - list.length }).map((_, i) =>
-            <td key={i}></td>
-          )}
         </tr>
       )}
     </tbody>

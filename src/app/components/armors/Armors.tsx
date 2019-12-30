@@ -17,8 +17,8 @@ const Armors: React.FC<Props> = () => {
 
   const list = useMemo(() => (
     armorGroupEntries
-      .map(([group, equips]) => [group, equips.map(name => (name && ~name.indexOf(filter)) ? name : null)] as const)
-      .filter(([group, equips]) => equips.find(Boolean))
+      .map(([group, equips]) => [group, equips.map(name => name?.includes(filter) ? name : null)] as const)
+      .filter(([group, equips]) => equips.some(Boolean))
   ), [filter])
 
   return (

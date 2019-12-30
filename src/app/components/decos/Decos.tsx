@@ -9,7 +9,7 @@ interface Props {
 }
 
 const createList = (filter: string) =>
-  Object.keys(decoData).filter(name => ~name.indexOf(filter))
+  Object.keys(decoData).filter(name => name.includes(filter))
 
 const Decos: React.FC<Props> = () => {
   const decos = useDecos()
@@ -40,7 +40,7 @@ const Decos: React.FC<Props> = () => {
                 type="number"
                 min="0"
                 max="9"
-                value={decos[name] != null ? decos[name] : ''}
+                value={decos[name] ?? ''}
                 onChange={e => set(name, toNumber(e.currentTarget.value))}
               />
             </li>
