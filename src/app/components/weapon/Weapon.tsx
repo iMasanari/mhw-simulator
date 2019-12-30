@@ -1,5 +1,5 @@
 import React from 'react'
-import { useWeaponSlots } from '~/app/hooks/weaponSlots'
+import { useWeapon } from '~/app/hooks/weapon'
 import WeaponSkills from './WeaponSkills'
 import WeaponSlots from './WeaponSlots'
 
@@ -9,12 +9,12 @@ interface Props {
 }
 
 const Weapon: React.FC<Props> = () => {
-  const [s1, s2, s3, weaponSkill] = useWeaponSlots()
+  const { skill } = useWeapon()
 
   return (
     <div>
       <WeaponSlots />
-      {!!weaponSkill && <WeaponSkills />}
+      {skill !== 'yws_none' && <WeaponSkills />}
     </div>
   )
 }

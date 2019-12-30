@@ -1,6 +1,5 @@
 import React from 'react'
-import { useWeaponSlots, useWeaponSlotsActions } from '~/app/hooks/weaponSlots'
-import { WeaponSlots } from '~/app/modules/weaponSlots'
+import { useWeapon, useWeaponActions } from '~/app/hooks/weapon'
 import Select from '../common/Select'
 
 require('./WeaponSlots.css')
@@ -9,16 +8,17 @@ interface Props {
 }
 
 const WeaponSlots: React.FC<Props> = () => {
-  const slots = useWeaponSlots()
-  const { set } = useWeaponSlotsActions()
+  const { slots, skill } = useWeapon()
+  const { setSlots } = useWeaponActions()
+  const value = [...slots, skill === 'yws_none' ? 0 : 1].join('-')
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    set(e.currentTarget.value.split('-').map(Number) as WeaponSlots)
+    setSlots(e.currentTarget.value.split('-').map(Number) as [number, number, number, 0 | 1])
 
   return (
     <div className="WeaponSlots">
       <div>武器スロット</div>
-      <Select value={slots.join('-')} onChange={onChange}      >
+      <Select value={value} onChange={onChange}>
         <optgroup label="武器スロットなし">
           <option value="0-0-0-0">なし</option>
         </optgroup>
