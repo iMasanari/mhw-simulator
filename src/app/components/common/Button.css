@@ -1,4 +1,4 @@
-.ActionButton {
+.Button {
   padding: 0.5em 1em;
   margin: 1px 0.5em;
   border: none;
@@ -12,17 +12,17 @@
   appearance: none;
 }
 
-.ActionButton:hover {
+.Button:hover {
   background-color: #eee;
 }
 
-.ActionButton.primary {
+.Button.primary {
   border: solid 2px #67c5ff;
   background-color: white;
   color: #67c5ff;
 }
 
-.ActionButton.primary:hover {
+.Button.primary:hover {
   background-color: #67c5ff;
   color: white;
 }

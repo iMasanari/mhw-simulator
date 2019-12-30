@@ -9,7 +9,7 @@ import { useResultActions } from '../../hooks/result'
 import { useSkillLogActions } from '../../hooks/skillLog'
 import { useTabActions } from '../../hooks/tab'
 import { terminate } from '../../util/calc/worker'
-import ActionButton from './ActionButton'
+import Button from '../common/Button'
 
 require('./Actions.css')
 
@@ -57,9 +57,9 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
 
   return (
     <div className="Actions">
-      <ActionButton label="検索" onClick={onSearchResult} primary />
-      <ActionButton label="クリア" onClick={onClear} />
-      <ActionButton label="追加スキルβ" onClick={onSearchSkill} />
+      <Button label="検索" onClick={onSearchResult} primary />
+      <Button label="クリア" onClick={onClear} />
+      <Button label="追加スキルβ" onClick={onSearchSkill} />
     </div>
   )
 }

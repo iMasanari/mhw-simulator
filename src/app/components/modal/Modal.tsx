@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
-import ActionButton from '../actions/ActionButton'
+import Button from '../common/Button'
 
 require('./Modal.css')
 
@@ -34,7 +34,7 @@ const Modal: React.FC<Props> = ({ title, onClose, children }) => {
         }
         {children}
         <div className="Modal-actions">
-          <ActionButton label="閉じる" onClick={onClose} />
+          <Button label="閉じる" onClick={onClose} />
         </div>
       </div>
     </div>,
