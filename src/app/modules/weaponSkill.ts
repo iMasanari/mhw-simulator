@@ -2,7 +2,7 @@ import ActionReducer from 'action-reducer'
 
 export type WeaponSkill = string
 
-const initState: WeaponSkill = 'yws_none'
+const initState: WeaponSkill = 'yws_auto'
 
 const { reducer, createAction } = ActionReducer(initState, 'weaponSkill/')
 

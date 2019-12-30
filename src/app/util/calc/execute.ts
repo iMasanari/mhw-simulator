@@ -26,8 +26,12 @@ const createSubject = (data: Record<string, number>, type: number) =>
 export default (objectiveName: string, condition: Condition) => {
   const skill = normalizeSkill(condition.skill)
 
+  const [s1, s2, s3, weaponSkillFlag] = condition.weaponSlots
+  const weaponSlots = [s1, s2, s3]
+  const weaponSkill = weaponSkillFlag ? condition.weaponSkill : 'yws_none'
+
   const slots = [1, 2, 3, 4]
-    .map(slot => [`cs${slot}`, condition.weaponSlots.filter(v => v >= slot).length] as const)
+    .map(slot => [`cs${slot}`, weaponSlots.filter(v => v >= slot).length] as const)
     .reduce((acc, [key, value]) => (acc[key] = value, acc), {} as Record<string, number>)
 
   const prevs = condition.prev.map((equips) => ({
@@ -41,7 +45,7 @@ export default (objectiveName: string, condition: Condition) => {
     ...createSubject(condition.armors, GLP_FX),
     ...createSubject(condition.decos, GLP_UP),
     ...createSubject(slots, GLP_FX),
-    ...createSubject({ [condition.weaponSkill]: 1 }, GLP_FX),
+    ...createSubject({ [weaponSkill]: 1 }, GLP_FX),
     ...prevs,
   ]
 
