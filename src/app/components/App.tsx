@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import baseSkillList from '~/generated/skillList.json'
 import { useSkillLog } from '../hooks/skillLog'
 import { useTab } from '../hooks/tab'
@@ -48,6 +48,9 @@ const App: React.FC = () => {
       window.scrollTo(0, window.pageYOffset + outputAreaRef.current.getBoundingClientRect().top)
     }
   }, [])
+
+  // スキルの並びが変更したとき、スキルのスクロールをリセットする
+  useEffect(() => { skillRef.current?.scrollTo(0, 0) }, skillList.map(v => v.name))
 
   return (
     <div className="App">
