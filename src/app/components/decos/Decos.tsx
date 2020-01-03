@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import { Decos } from '~/app/modules/decos'
 import toNumber from '~/app/util/toNumber'
 import decoData from '~/generated/deco.json'
 
@@ -8,15 +9,20 @@ require('./Decos.css')
 interface Props {
 }
 
-const createList = (filter: string) =>
-  Object.keys(decoData).filter(name => name.includes(filter))
+const createList = (filter: string, decos: Decos, isInputedOnly: boolean) => {
+  const list = Object.keys(decoData).filter(name => name.includes(filter))
+
+  return isInputedOnly ? list.filter(name => decos[name] != null) : list
+}
 
 const Decos: React.FC<Props> = () => {
   const decos = useDecos()
   const { set } = useDecosActions()
   const [filter, setFilter] = useState('')
+  const [isInputedOnly, setInputedOnly] = useState(false)
 
-  const decoList = useMemo(() => createList(filter), [filter])
+  // decosはdepsに入れない
+  const decoList = useMemo(() => createList(filter, decos, isInputedOnly), [filter, isInputedOnly])
 
   return (
     <div>
@@ -30,6 +36,12 @@ const Decos: React.FC<Props> = () => {
         onChange={e => { setFilter(e.currentTarget.value) }}
         placeholder="フィルタ: 装飾品名"
       />
+      <br />
+      <label>
+        <input type="checkbox" checked={isInputedOnly} onChange={() => setInputedOnly(!isInputedOnly)} />
+        {' '}
+        入力済みの装飾品のみを表示
+      </label>
       <div className="Decos-contents">
         <ul>
           {decoList.map(name =>
