@@ -56,3 +56,6 @@ export const wst = getEquipData(wstData)
 export const leg = getEquipData(legData)
 export const charm = getEquipData(charmData)
 export const deco = getEquipData(decoData)
+
+export const getEquip = (name: string) =>
+  head[name] || body[name] || arm[name] || wst[name] || leg[name] || charm[name] || deco[name]

@@ -1,18 +1,28 @@
 import React, { useMemo, useState } from 'react'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import useId from '~/app/hooks/useId'
 import { Decos } from '~/app/modules/decos'
+import { flat, unique } from '~/app/util/array'
+import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
-import decoData from '~/generated/deco.json'
 
 require('./Decos.css')
 
 interface Props {
 }
 
-const createList = (filter: string, decos: Decos, isInputedOnly: boolean) => {
-  const list = Object.keys(decoData).filter(name => name.includes(filter))
+const allDecoList = Object.keys(deco)
 
-  return isInputedOnly ? list.filter(name => decos[name] != null) : list
+const skillList = unique(flat(allDecoList.map(key => deco[key].skill.map(s => s.name))))
+
+const createList = (filter: string, inputed: Decos, isInputedOnly: boolean) => {
+  const decoList = isInputedOnly ? allDecoList.filter(name => inputed[name] != null) : allDecoList
+
+  const matchList = decoList.filter(name =>
+    name.includes(filter) || deco[name].skill.some(s => s.name === filter)
+  )
+
+  return matchList
 }
 
 const Decos: React.FC<Props> = () => {
@@ -20,9 +30,12 @@ const Decos: React.FC<Props> = () => {
   const { set } = useDecosActions()
   const [filter, setFilter] = useState('')
   const [isInputedOnly, setInputedOnly] = useState(false)
+  const listId = useId()
 
   // decosはdepsに入れない
-  const decoList = useMemo(() => createList(filter, decos, isInputedOnly), [filter, isInputedOnly])
+  const decoList = useMemo(() => (
+    createList(filter, decos, isInputedOnly)
+  ), [filter, isInputedOnly])
 
   return (
     <div>
@@ -34,8 +47,14 @@ const Decos: React.FC<Props> = () => {
       <input type="text"
         value={filter}
         onChange={e => { setFilter(e.currentTarget.value) }}
-        placeholder="フィルタ: 装飾品名"
+        placeholder="フィルタ: 装飾品名 or スキル"
+        list={listId}
       />
+      <datalist id={listId}>
+        {skillList.map((item) =>
+          <option key={item} value={item} />
+        )}
+      </datalist>
       <br />
       <label>
         <input type="checkbox" checked={isInputedOnly} onChange={() => setInputedOnly(!isInputedOnly)} />
