@@ -1,5 +1,6 @@
 import React from 'react'
 import { Armors } from '~/app/modules/ignoreArmors'
+import { charm } from '~/app/util/generatedUtil'
 import Table from '../common/Table'
 
 require('./CharmTable.css')
@@ -9,7 +10,6 @@ interface Props {
   ignoreArmors: Armors
   toggleIgnoreArmors: (armor: string) => void
 }
-
 
 const levelList = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ']
 
@@ -24,7 +24,12 @@ const CharmTable: React.FC<Props> = ({ charmGroups, ignoreArmors, toggleIgnoreAr
       </tr>
       {charmGroups.map(([group, list]) =>
         <tr key={group}>
-          <td>{group}</td>
+          <td>
+            {group}
+            <span className="CharmTable-skills">
+              {charm[list[0]].skill.map(v => v.name).join(' ')}
+            </span>
+          </td>
           {list.map((name) =>
             <td key={name} className="CharmTable-checkboxCell">
               <input

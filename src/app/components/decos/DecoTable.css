@@ -1,14 +1,9 @@
-.CharmTable th,
-.CharmTable td {
+.DecoTable th,
+.DecoTable td {
   vertical-align: middle;
 }
 
-.CharmTable th:first-child,
-.CharmTable td:first-child {
-  width: 40%;
-}
-
-.CharmTable th {
+.DecoTable th {
   background-color: #fff;
   position: -webkit-sticky;
   position: sticky;
@@ -16,15 +11,16 @@
   z-index: 1;
 }
 
-.CharmTable .CharmTable-checkboxCell {
-  text-align: center;
-}
-
-.CharmTable-skills {
+.DecoTable-skills {
   display: block;
   font-size: 0.8em;
   color: #aaa;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.DecoTable-numberInput {
+  text-align: right;
+  width: 3em;
 }

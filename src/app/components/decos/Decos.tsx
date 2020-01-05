@@ -4,7 +4,7 @@ import useId from '~/app/hooks/useId'
 import { Decos } from '~/app/modules/decos'
 import { flat, unique } from '~/app/util/array'
 import { deco } from '~/app/util/generatedUtil'
-import toNumber from '~/app/util/toNumber'
+import DecoTable from './DecoTable'
 
 require('./Decos.css')
 
@@ -61,23 +61,7 @@ const Decos: React.FC<Props> = () => {
         {' '}
         入力済みの装飾品のみを表示
       </label>
-      <div className="Decos-contents">
-        <ul>
-          {decoList.map(name =>
-            <li key={name}>
-              {name}
-              <input
-                className="Decos-numberInput"
-                type="number"
-                min="0"
-                max="9"
-                value={decos[name] ?? ''}
-                onChange={e => set(name, toNumber(e.currentTarget.value))}
-              />
-            </li>
-          )}
-        </ul>
-      </div>
+      <DecoTable decoList={decoList} decos={decos} setDeco={set} />
     </div>
   )
 }
