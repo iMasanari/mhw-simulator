@@ -32,6 +32,7 @@ const decoData = require('~/generated/deco.json') as Record<string, EquipData>
 export const skillList = require('~/generated/skillList.json') as SkillInfo[]
 export const allSkill = require('~/generated/allSkill.json') as string[]
 export const weaponSkills = require('~/generated/weaponSkills.json') as string[]
+export const seriesSkill = require('~/generated/seriesSkill.json') as Record<string, Record<string, number>>
 
 const skillNameMap = new Map(allSkill.map((name, i) => [i, name]))
 
@@ -55,3 +56,6 @@ export const wst = getEquipData(wstData)
 export const leg = getEquipData(legData)
 export const charm = getEquipData(charmData)
 export const deco = getEquipData(decoData)
+
+export const getEquip = (name: string) =>
+  head[name] || body[name] || arm[name] || wst[name] || leg[name] || charm[name] || deco[name]

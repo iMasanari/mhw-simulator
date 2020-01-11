@@ -1,7 +1,8 @@
-import { useCallback } from 'react'
+import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { RootState } from '../modules'
-import * as actions from '../modules/ignoreArmors'
+import { clearFromList, ignoreFromList, toggle } from '../modules/ignoreArmors'
 
 const selector = (state: RootState) =>
   state.ignoreArmors
@@ -15,9 +16,10 @@ export const useIgnoreArmors = () => {
 export const useIgnoreArmorsActions = () => {
   const dispatch = useDispatch()
 
-  const toggle = useCallback((armor: string) => {
-    dispatch(actions.toggle({ armor }))
-  }, [])
+  const actions = useMemo(
+    () => bindActionCreators({ toggle, ignoreFromList, clearFromList }, dispatch),
+    [dispatch],
+  )
 
-  return { toggle }
+  return actions
 }
