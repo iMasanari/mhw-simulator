@@ -1,0 +1,27 @@
+.PageTop {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 0.5rem;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  color: #fff;
+  background-color: #555;
+  opacity: 0.5;
+  z-index: 10;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+.PageTop:hover {
+  opacity: 0.7;
+}
+
+@media screen and (min-width:700px) {
+  .PageTop {
+    display: none;
+  }
+}

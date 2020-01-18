@@ -6,6 +6,7 @@ import About from './about/About'
 import Actions from './actions/Actions'
 import EmptySlots from './emptySlots/EmptySlots'
 import Header from './header/Header'
+import PageTop from './pageTop/PageTop'
 import Result from './result/Result'
 import Skill from './skill/Skill'
 import Weapon from './weapon/Weapon'
@@ -70,6 +71,7 @@ const App: React.FC = () => {
           {isShowAbout ? <About /> : <Result />}
         </div>
       </main>
+      <PageTop />
     </div>
   )
 }
