@@ -1,7 +1,4 @@
 .Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
   padding: 8px;
 }
 
@@ -10,17 +7,10 @@
   white-space: nowrap;
 }
 
-.Header-githubLink {
-  color: #1A0DAB;
-  text-decoration: none;
-}
-
-.Header-githubLink:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width:480px) {
-  .Header-pc-only {
-    display: none;
+@media screen and (min-width:700px) {
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
 }
