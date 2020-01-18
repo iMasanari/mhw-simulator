@@ -1,5 +1,4 @@
 body {
-  overflow: hidden;
   padding: 0;
   margin: 0;
   font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
@@ -22,68 +21,52 @@ body {
   background-color: #ccc;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.App-main {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
-.App-inputArea {
-  display: flex;
-  flex-direction: column;
-  width: 360px;
-}
-
-.App-inputScroll {
-  flex: 1;
-  overflow: auto;
-}
-
 .App-sticky {
   overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
   background: #fff;
 }
 
 .App-outputArea {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  /* 検索時のスクロール用 */
+  min-height: 100vh;
 }
 
-.App-outputContent {
-  overflow-y: scroll;
-  flex: 1;
-}
-
-@media screen and (max-width:480px) {
+@media screen and (min-width:700px) {
   body {
-    overflow: visible;
+    overflow: hidden;
   }
 
-  .App,
-  .App-main,
-  .App-inputArea,
-  .App-outputArea,
-  .App-outputContent {
-    display: block;
-    width: auto;
-    height: auto;
-    overflow: visible;
+  .App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .App-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
   }
 
   .App-inputArea {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
   }
 
-  .App-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
+  .App-inputScroll {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .App-outputArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    min-height: auto;
   }
 }

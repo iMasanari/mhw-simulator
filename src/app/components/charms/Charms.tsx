@@ -54,8 +54,10 @@ const Charms: React.FC<Props> = () => {
         placeholder="フィルタ: 護石名 or スキル"
         datalist={skillList}
       />
-      <Button label="表示をすべて除外" onClick={uncheckFromDisplay} />
-      <Button label="表示をすべてチェック" onClick={checkFromDisplay} />
+      <div>
+        <Button label="表示をすべてチェック" onClick={checkFromDisplay} />
+        <Button label="表示をすべて除外" onClick={uncheckFromDisplay} />
+      </div>
       <CharmTable charmGroups={charmList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
     </div>
   )

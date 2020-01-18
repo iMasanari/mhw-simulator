@@ -67,9 +67,7 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="App-outputArea" ref={outputAreaRef}>
-          <div className="App-outputContent">
-            {isShowAbout ? <About /> : <Result />}
-          </div>
+          {isShowAbout ? <About /> : <Result />}
         </div>
       </main>
     </div>

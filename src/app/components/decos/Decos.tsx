@@ -50,12 +50,13 @@ const Decos: React.FC<Props> = () => {
         placeholder="フィルタ: 装飾品名 or スキル"
         datalist={skillList}
       />
-      <br />
-      <label>
-        <input type="checkbox" checked={isInputedOnly} onChange={() => setInputedOnly(!isInputedOnly)} />
-        {' '}
-        入力済みの装飾品のみを表示
-      </label>
+      <div className="Decos-actions">
+        <label>
+          <input type="checkbox" checked={isInputedOnly} onChange={() => setInputedOnly(!isInputedOnly)} />
+          {' '}
+          入力済みの装飾品のみを表示
+        </label>
+      </div>
       <DecoTable decoList={decoList} decos={decos} setDeco={set} />
     </div>
   )
