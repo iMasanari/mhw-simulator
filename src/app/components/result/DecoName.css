@@ -6,3 +6,8 @@
 .DecoName.on:hover {
   text-decoration: underline;
 }
+
+.DecoName-numberInput {
+  text-align: right;
+  width: 4em;
+}

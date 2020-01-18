@@ -38,8 +38,9 @@ const DecoName: React.FC<Props> = ({ name }) => {
           <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
           <label>
             {name}
+            {' '}
             <TextFild
-              className="Decos-numberInput"
+              className="DecoName-numberInput"
               type="number"
               min="0"
               max="9"
