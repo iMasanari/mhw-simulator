@@ -1,9 +1,11 @@
 .Header {
-  padding: 8px;
+  padding: 0.5rem 0.5rem 0;
+  border-bottom: 1px solid #bbb;
 }
 
 .Header-title {
-  font-size: 1.4em;
+  margin: 0;
+  font-size: 1.2em;
   white-space: nowrap;
 }
 
@@ -12,5 +14,10 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    padding: 0.5rem;
+  }
+
+  .Header-title {
+    font-size: 1.4em;
   }
 }

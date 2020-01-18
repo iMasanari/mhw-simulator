@@ -8,7 +8,6 @@ import EmptySlots from './emptySlots/EmptySlots'
 import Header from './header/Header'
 import Result from './result/Result'
 import Skill from './skill/Skill'
-import SkillFilter from './skill/SkillFilter'
 import Weapon from './weapon/Weapon'
 
 require('./App.css')
@@ -19,7 +18,7 @@ const App: React.FC = () => {
   const skillLog = useSkillLog()
   const [skillFilter, setSkillFilter] = useState('')
   const [isShowAbout, hideAbout] = useReducer(() => false, true)
-  const skillRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const outputAreaRef = useRef<HTMLDivElement>(null)
 
   const skillList = useMemo(() => {
@@ -35,7 +34,7 @@ const App: React.FC = () => {
   }, [skillFilter, skillLog])
 
   const resetSkillScroll = useCallback(() => {
-    skillRef.current?.scrollTo(0, 0)
+    scrollRef.current?.scrollTo(0, 0)
   }, [])
 
   const scrollOutputArea = useCallback(() => {
@@ -47,18 +46,17 @@ const App: React.FC = () => {
   }, [])
 
   // スキルの並びが変更したとき、スキルのスクロールをリセットする
-  useEffect(() => { skillRef.current?.scrollTo(0, 0) }, skillList.map(v => v.name))
+  useEffect(() => { scrollRef.current?.scrollTo(0, 0) }, skillList.map(v => v.name))
 
   return (
     <div className="App">
       <Header />
       <main className="App-main">
         <div className="App-inputArea">
-          <SkillFilter value={skillFilter} setValue={setSkillFilter} />
-          <div className="App-skill" ref={skillRef}>
-            <Skill skillList={skillList} />
+          <div className="App-inputScroll" ref={scrollRef}>
+            <Weapon />
+            <Skill skillList={skillList} skillFilter={skillFilter} setSkillFilter={setSkillFilter} />
           </div>
-          <Weapon />
           <div className="App-sticky">
             <Actions
               skillList={skillList.map((skill => skill.name))}
