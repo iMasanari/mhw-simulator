@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import useId from '~/app/hooks/useId'
 import { flat, unique } from '~/app/util/array'
 import { charm } from '~/app/util/generatedUtil'
 import charmGroup from '~/generated/charmGroup.json'
 import Button from '../common/Button'
+import TextFild from '../common/TextFild'
 import CharmTable from './CharmTable'
 
 interface Props {
@@ -19,7 +19,6 @@ const Charms: React.FC<Props> = () => {
   const ignoreArmors = useIgnoreArmors()
   const { toggle, ignoreFromList, clearFromList } = useIgnoreArmorsActions()
   const [filter, setFilter] = useState('')
-  const listId = useId()
 
   // フィルタを適応した、護石のリスト
   // スキル名によるフィルタは、護石のレベルでスキルが変動しないことが前提
@@ -48,17 +47,13 @@ const Charms: React.FC<Props> = () => {
         <br />
         内容は自動的に保存されますが、開発の都合でリセットされることがあります。
       </p>
-      <input type="text"
+      <TextFild
+        type="text"
         value={filter}
         onChange={e => { setFilter(e.currentTarget.value) }}
         placeholder="フィルタ: 護石名 or スキル"
-        list={listId}
+        datalist={skillList}
       />
-      <datalist id={listId}>
-        {skillList.map((item) =>
-          <option key={item} value={item} />
-        )}
-      </datalist>
       <Button label="表示をすべて除外" onClick={uncheckFromDisplay} />
       <Button label="表示をすべてチェック" onClick={checkFromDisplay} />
       <CharmTable charmGroups={charmList} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />

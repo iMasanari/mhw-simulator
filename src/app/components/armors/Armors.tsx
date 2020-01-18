@@ -1,13 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import useId from '~/app/hooks/useId'
 import { flat, unique } from '~/app/util/array'
 import { arm, body, getEquip, head, leg, wst } from '~/app/util/generatedUtil'
 import armorGroup from '~/generated/armorGroup.json'
 import Button from '../common/Button'
+import TextFild from '../common/TextFild'
 import ArmorTable from './ArmorTable'
-
-require('./Armors.css')
 
 interface Props {
 }
@@ -31,7 +29,6 @@ const Armors: React.FC<Props> = () => {
   const ignoreArmors = useIgnoreArmors()
   const { toggle, ignoreFromList, clearFromList } = useIgnoreArmorsActions()
   const [filter, setFilter] = useState('')
-  const listId = useId()
 
   const armorGroups = useMemo(() => (
     armorGroupEntries
@@ -58,17 +55,13 @@ const Armors: React.FC<Props> = () => {
         <br />
         内容は自動的に保存されますが、開発の都合でリセットされることがあります。
       </p>
-      <input type="text"
+      <TextFild
+        type="text"
         value={filter}
         onChange={e => { setFilter(e.currentTarget.value) }}
         placeholder="フィルタ: 防具名 or スキル"
-        list={listId}
+        datalist={skillList}
       />
-      <datalist id={listId}>
-        {skillList.map((item) =>
-          <option key={item} value={item} />
-        )}
-      </datalist>
       <Button label="表示をすべて除外" onClick={uncheckFromDisplay} />
       <Button label="表示をすべてチェック" onClick={checkFromDisplay} />
       <ArmorTable armorGroups={armorGroups} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />

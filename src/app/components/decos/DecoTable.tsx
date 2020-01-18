@@ -3,6 +3,7 @@ import { Decos } from '~/app/modules/decos'
 import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
 import Table from '../common/Table'
+import TextFild from '../common/TextFild'
 
 require('./DecoTable.css')
 
@@ -28,7 +29,7 @@ const DecoTable: React.FC<Props> = ({ decoList, decos, setDeco }) =>
             </span>
           </td>
           <td key={name}>
-            <input
+            <TextFild
               className="DecoTable-numberInput"
               type="number"
               min="0"

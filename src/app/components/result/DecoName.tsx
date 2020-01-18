@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
 import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
+import TextFild from '../common/TextFild'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
 import SlotTable from './SlotTable'
@@ -37,7 +38,7 @@ const DecoName: React.FC<Props> = ({ name }) => {
           <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
           <label>
             {name}
-            <input
+            <TextFild
               className="Decos-numberInput"
               type="number"
               min="0"
