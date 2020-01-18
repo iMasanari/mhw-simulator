@@ -29,11 +29,13 @@ const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
 
   return createPortal(
     <div className="Modal" onClick={onClick}>
-      <div className={`Modal-content ${className || ''}`}>
+      <div className={`Modal-contener ${className || ''}`}>
         {!!title &&
           <div className="Modal-title">{title}</div>
         }
-        {children}
+        <div className="Modal-contents">
+          {children}
+        </div>
         <div className="Modal-actions">
           <Button label="閉じる" onClick={onClose} />
         </div>
