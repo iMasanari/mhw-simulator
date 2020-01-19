@@ -20,28 +20,28 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) =>
       </tr>
       {equipment.weaponSkill !== 'none' && (
         <tr>
-          <th>武器スキル</th>
+          <th>覚醒スキル</th>
           <td>{equipment.weaponSkill}</td>
         </tr>
       )}
       <tr>
-        <th>頭</th>
+        <th>頭装備</th>
         <td><ArmorName type="head" name={equipment.head} /></td>
       </tr>
       <tr>
-        <th>胴</th>
+        <th>胴装備</th>
         <td><ArmorName type="body" name={equipment.body} /></td>
       </tr>
       <tr>
-        <th>腕</th>
+        <th>腕装備</th>
         <td><ArmorName type="arm" name={equipment.arm} /></td>
       </tr>
       <tr>
-        <th>腰</th>
+        <th>腰装備</th>
         <td><ArmorName type="wst" name={equipment.wst} /></td>
       </tr>
       <tr>
-        <th>足</th>
+        <th>足装備</th>
         <td><ArmorName type="leg" name={equipment.leg} /></td>
       </tr>
       <tr>
@@ -49,7 +49,7 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) =>
         <td><CharmName name={equipment.charm} /></td>
       </tr>
       <tr>
-        <th>装飾品</th>
+        <th>装飾品例</th>
         <td>
           <ul className="EquipmentTable-decos">
             {equipment.decos.map(({ name, value }) =>
