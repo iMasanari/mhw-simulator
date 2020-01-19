@@ -33,6 +33,7 @@ const CharmName: React.FC<Props> = ({ name }) => {
           <p>検索で防具を除外する場合、下記のチェックを外してください。</p>
           <label>
             <input type="checkbox" checked={!isIgnore} onChange={toggleArmor} />
+            {' '}
             {name}
           </label>
         </Modal>

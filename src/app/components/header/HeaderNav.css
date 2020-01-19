@@ -1,4 +1,4 @@
-.Tab {
+.HeaderNav {
   display: inline-flex;
   overflow-x: auto;
   max-width: 100%;
@@ -7,18 +7,22 @@
   list-style: none;
 }
 
-.Tab-li {
+.HeaderNav-li {
   padding: 0.5em 1em;
   border-radius: 3px;
   color: #666;
   cursor: pointer;
 }
 
-.Tab-li:hover {
+.HeaderNav-li:hover {
   background: #eee;
 }
 
-.Tab-li.on {
+.HeaderNav-li.on {
   color: #67c5ff;
   background: #fff;
+}
+
+.HeaderNav-modal {
+  height: calc(100vh - 2em);
 }

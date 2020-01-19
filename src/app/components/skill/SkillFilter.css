@@ -1,5 +1,9 @@
 .SkillFilter {
-  padding: 0 1em;
+  padding: 2px 1em 0;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
 }
 
 .SkillFilter-input {

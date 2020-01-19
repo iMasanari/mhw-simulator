@@ -1,26 +1,23 @@
 .Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 8px;
+  padding: 0.5rem 0.5rem 0;
+  border-bottom: 1px solid #bbb;
 }
 
 .Header-title {
-  font-size: 1.4em;
+  margin: 0;
+  font-size: 1.2em;
   white-space: nowrap;
 }
 
-.Header-githubLink {
-  color: #1A0DAB;
-  text-decoration: none;
-}
+@media screen and (min-width:700px) {
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.5rem;
+  }
 
-.Header-githubLink:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width:480px) {
-  .Header-pc-only {
-    display: none;
+  .Header-title {
+    font-size: 1.4em;
   }
 }

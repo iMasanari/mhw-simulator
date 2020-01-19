@@ -1,33 +1,20 @@
 import React from 'react'
-import { useActiveSkill } from '~/app/hooks/activeSkill'
-import { useAddableSkill } from '~/app/hooks/addableSkill'
 import skillList from '~/generated/skillList.json'
-import SkillRow from './SkillRow'
-
-require('./Skill.css')
+import HeadingTitle from '../common/HeadingTitle'
+import SkillFilter from './SkillFilter'
+import Skill from './SkillList'
 
 interface Props {
+  skillFilter: string
   skillList: typeof skillList
+  setSkillFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Skill: React.FC<Props> = ({ skillList }) => {
-  const activeSkill = useActiveSkill()
-  const addableSkill = useAddableSkill()
+const Skills: React.FC<Props> = ({ skillFilter, setSkillFilter, skillList }) =>
+  <div className="App-skill">
+    <HeadingTitle title="スキル" />
+    <SkillFilter value={skillFilter} setValue={setSkillFilter} />
+    <Skill skillList={skillList} />
+  </div>
 
-  return (
-    <ul className="Skill">
-      {skillList.map(({ name, items }) =>
-        <li key={name} className="Skill-li">
-          <SkillRow
-            name={name}
-            value={activeSkill[name]}
-            addableValue={addableSkill[name]}
-            items={items}
-          />
-        </li>
-      )}
-    </ul>
-  )
-}
-
-export default Skill
+export default Skills

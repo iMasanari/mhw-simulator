@@ -1,9 +1,8 @@
 import React from 'react'
 import { useWeapon } from '~/app/hooks/weapon'
+import HeadingTitle from '../common/HeadingTitle'
 import WeaponSkills from './WeaponSkills'
 import WeaponSlots from './WeaponSlots'
-
-require('./WeaponSlots.css')
 
 interface Props {
 }
@@ -13,6 +12,7 @@ const Weapon: React.FC<Props> = () => {
 
   return (
     <div>
+      <HeadingTitle title="武器" />
       <WeaponSlots />
       {skill !== 'yws_none' && <WeaponSkills />}
     </div>

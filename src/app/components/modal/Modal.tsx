@@ -6,6 +6,7 @@ require('./Modal.css')
 
 interface Props {
   title?: string
+  className?: string
   onClose: () => void
 }
 
@@ -13,7 +14,7 @@ const rootEl = document.getElementById('root')!
 
 const ESC = 27
 
-const Modal: React.FC<Props> = ({ title, onClose, children }) => {
+const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
   const onClick = useCallback((e: React.MouseEvent) => e.currentTarget === e.target && onClose(), [])
 
   useLayoutEffect(() => {
@@ -28,11 +29,13 @@ const Modal: React.FC<Props> = ({ title, onClose, children }) => {
 
   return createPortal(
     <div className="Modal" onClick={onClick}>
-      <div className="Modal-content">
+      <div className={`Modal-contener ${className || ''}`}>
         {!!title &&
           <div className="Modal-title">{title}</div>
         }
-        {children}
+        <div className="Modal-contents">
+          {children}
+        </div>
         <div className="Modal-actions">
           <Button label="閉じる" onClick={onClose} />
         </div>
