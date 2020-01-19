@@ -1,0 +1,13 @@
+.TextFild {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 4px 0.5em;
+  border: 1px solid #ddd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.TextFild-number {
+  text-align: right;
+}

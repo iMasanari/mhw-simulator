@@ -7,7 +7,6 @@ import { useDecos } from '../../hooks/decos'
 import { useIgnoreArmors } from '../../hooks/ignoreArmors'
 import { useResultActions } from '../../hooks/result'
 import { useSkillLogActions } from '../../hooks/skillLog'
-import { useTabActions } from '../../hooks/tab'
 import { terminate } from '../../util/calc/worker'
 import Button from '../common/Button'
 
@@ -27,7 +26,6 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const weapon = useWeapon()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
-  const { set: setTab } = useTabActions()
   const { searchList } = useResultActions()
 
   const onSearchResult = useCallback(() => {
@@ -35,7 +33,6 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     updateSkillLog(activeSkill)
 
     searchList(activeSkill, weapon, ignoreArmors, decos)
-    setTab('result')
 
     resetSkillScroll()
     scrollOutputArea()
