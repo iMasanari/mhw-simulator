@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import skillList from '~/generated/skillList.json'
 import TextFild from '../common/TextFild'
 
@@ -12,6 +13,8 @@ interface Props {
 const categories = Array.from(new Set(skillList.map(v => v.category)))
 
 const SkillFilter: React.FC<Props> = ({ value, setValue }) => {
+  const { t } = useTranslation()
+
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }, [setValue])
@@ -22,7 +25,7 @@ const SkillFilter: React.FC<Props> = ({ value, setValue }) => {
         className="SkillFilter-input"
         value={value}
         onChange={onChange}
-        placeholder="フィルタ: スキル名 or カテゴリ"
+        placeholder={t('フィルタ: スキル名 or カテゴリ')}
         datalist={value ? undefined : categories}
       />
     </div>

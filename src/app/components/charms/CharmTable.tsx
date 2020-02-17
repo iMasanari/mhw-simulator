@@ -11,6 +11,7 @@ interface Props {
   toggleIgnoreArmors: (armor: string) => void
 }
 
+// TODO: i18n
 const levelList = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ']
 
 const CharmTable: React.FC<Props> = ({ charmGroups, ignoreArmors, toggleIgnoreArmors }) =>

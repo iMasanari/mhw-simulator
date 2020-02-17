@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useDecos } from '~/app/hooks/decos'
 import { useIgnoreArmors } from '~/app/hooks/ignoreArmors'
@@ -60,6 +61,7 @@ interface Props {
 }
 
 const EmptySlots: React.FC<Props> = () => {
+  const { t } = useTranslation()
   const { slot1, slot2, slot3, slot4 } = useSlots()
 
   const slot1Count = slot1?.z ?? '-'
@@ -68,24 +70,24 @@ const EmptySlots: React.FC<Props> = () => {
   const slot4Count = slot4?.z ?? '-'
 
   return (
-    <Accordion title={`空きスロット数 ${slot1 ? slot1.z : ''}`}>
+    <Accordion title={`${t('空きスロット数')} ${slot1 ? slot1.z : ''}`}>
       <div className="EmptySlots-content">
         <table className="EmptySlots-table">
           <tbody>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv1以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv1以上')}</th>
               <td className="EmptySlots-slot">{slot1Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv2以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv2以上')}</th>
               <td className="EmptySlots-slot">{slot2Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv3以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv3以上')}</th>
               <td className="EmptySlots-slot">{slot3Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv4以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv4以上')}</th>
               <td className="EmptySlots-slot">{slot4Count}</td>
             </tr>
           </tbody>

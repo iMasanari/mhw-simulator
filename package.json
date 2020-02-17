@@ -14,6 +14,7 @@
     "build": "parcel build src/index.html --public-url https://imasanari.github.io/mhw-simulator/",
     "predev": "npm run prebuild",
     "dev": "parcel src/index.html",
+    "i18next-extract": "NODE_ENV=development babel './src/**/*.{js,jsx,ts,tsx}' > /dev/null",
     "test": "tsc -p . --noEmit"
   },
   "author": "iMasanari",
@@ -32,12 +33,16 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/gtag.js": "0.0.3",
     "@types/node": "^13.1.1",
     "@types/node-fetch": "^2.5.4",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "@types/react-redux": "^7.1.5",
+    "babel-plugin-i18next-extract": "^0.6.1",
     "cpx": "^1.5.0",
     "marked": "^0.8.0",
     "node-fetch": "^2.6.0",
@@ -45,6 +50,24 @@
     "rimraf": "^3.0.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      [
+        "i18next-extract",
+        {
+          "nsSeparator": false,
+          "locales": [
+            "ja",
+            "en"
+          ],
+          "outputPath": "./src/locales/{{locale}}.json"
+        }
+      ]
+    ]
   },
   "browserslist": [
     "last 1 Chrome version"

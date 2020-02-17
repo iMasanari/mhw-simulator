@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Armors } from '~/app/modules/ignoreArmors'
 import Table from '../common/Table'
 
@@ -10,34 +11,38 @@ interface Props {
   toggleIgnoreArmors: (armor: string) => void
 }
 
-const armorList = ['頭', '胴', '腕', '腰', '足']
+const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreArmors }) => {
+  const { t } = useTranslation()
+  const armorList = [t('頭'), t('胴'), t('腕'), t('腰'), t('足')]
 
-const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreArmors }) =>
-  <Table className="ArmorTable" hoverable>
-    <tbody>
-      <tr>
-        <th></th>
-        {armorList.map((v) =>
-          <th key={v} className="ArmorTable-checkboxCell">{v}</th>
-        )}
-      </tr>
-      {armorGroups.map(([group, list]) =>
-        <tr key={group}>
-          <td>{group}</td>
-          {list.map((name, i) =>
-            <td key={i} className="ArmorTable-checkboxCell">
-              {!!name &&
-                <input
-                  type="checkbox"
-                  checked={ignoreArmors[name] !== 0}
-                  onChange={() => { toggleIgnoreArmors(name) }}
-                />
-              }
-            </td>
+  return (
+    <Table className="ArmorTable" hoverable>
+      <tbody>
+        <tr>
+          <th></th>
+          {armorList.map((v) =>
+            <th key={v} className="ArmorTable-checkboxCell">{v}</th>
           )}
         </tr>
-      )}
-    </tbody>
-  </Table>
+        {armorGroups.map(([group, list]) =>
+          <tr key={group}>
+            <td>{group}</td>
+            {list.map((name, i) =>
+              <td key={i} className="ArmorTable-checkboxCell">
+                {!!name &&
+                  <input
+                    type="checkbox"
+                    checked={ignoreArmors[name] !== 0}
+                    onChange={() => { toggleIgnoreArmors(name) }}
+                  />
+                }
+              </td>
+            )}
+          </tr>
+        )}
+      </tbody>
+    </Table>
+  )
+}
 
 export default ArmorTable
