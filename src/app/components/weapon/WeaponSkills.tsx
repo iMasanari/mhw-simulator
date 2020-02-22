@@ -11,6 +11,7 @@ interface Props {
 
 const WeaponSkills: React.FC<Props> = () => {
   const { t } = useTranslation()
+  const [tSkill] = useTranslation('skills')
   const { skill } = useWeapon()
   const { setSkill } = useWeaponActions()
 
@@ -23,7 +24,7 @@ const WeaponSkills: React.FC<Props> = () => {
       <Select value={skill} onChange={onChange}>
         <option value="yws_auto">{t('自動')}</option>
         {weaponSkills.map(skill =>
-          <option key={skill} value={`yws_${skill}`}>{skill}</option>
+          <option key={skill} value={`yws_${skill}`}>{tSkill(skill)}</option>
         )}
       </Select>
     </div>

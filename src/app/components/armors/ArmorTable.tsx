@@ -13,6 +13,7 @@ interface Props {
 
 const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreArmors }) => {
   const { t } = useTranslation()
+  const [tEquips] = useTranslation('equips')
   const armorList = [t('頭'), t('胴'), t('腕'), t('腰'), t('足')]
 
   return (
@@ -26,7 +27,7 @@ const ArmorTable: React.FC<Props> = ({ armorGroups, ignoreArmors, toggleIgnoreAr
         </tr>
         {armorGroups.map(([group, list]) =>
           <tr key={group}>
-            <td>{group}</td>
+            <td>{tEquips(group)}</td>
             {list.map((name, i) =>
               <td key={i} className="ArmorTable-checkboxCell">
                 {!!name &&

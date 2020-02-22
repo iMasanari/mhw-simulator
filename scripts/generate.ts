@@ -1,7 +1,9 @@
+import { flat } from '../src/app/util/array'
 import { getArmorGroup } from './generate/armorGroup'
 import { getCharm } from './generate/charm'
 import { getDeco } from './generate/deco'
 import { getEquip } from './generate/equips'
+import { overrideI18n } from './generate/i18n'
 import { getSkillList } from './generate/skill'
 import { getWeaponSkills } from './generate/weaponSkills'
 import { writeJson } from './util/fileUtil'
@@ -52,6 +54,19 @@ const main = async () => {
   // 武器スキル
   const weaponSkills = await getWeaponSkills()
   await writeJson('src/generated/weaponSkills.json', weaponSkills)
+
+  // i18n
+  await overrideI18n('skills', [
+    ...allSkill,
+    ...skillList.map(v => v.category)
+  ])
+
+  await overrideI18n('equips', [
+    ...flat(Object.entries(armorGroup).map(([k, v]) => [k, ...v.filter(Boolean)] as string[])),
+    ...flat(Object.entries(charmGroup).map(([k, v]) => [k, ...v])),
+  ])
+
+  await overrideI18n('decos', deco.map(([name]) => name))
 }
 
 main()

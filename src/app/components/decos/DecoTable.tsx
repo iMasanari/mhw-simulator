@@ -16,6 +16,8 @@ interface Props {
 
 const DecoTable: React.FC<Props> = ({ decoList, decos, setDeco }) => {
   const { t } = useTranslation()
+  const [tDeco] = useTranslation('decos')
+  const [tSkill] = useTranslation('skills')
 
   return (
     <Table className="DecoTable" hoverable>
@@ -27,9 +29,9 @@ const DecoTable: React.FC<Props> = ({ decoList, decos, setDeco }) => {
         {decoList.map((name) =>
           <tr key={name}>
             <td>
-              {name}
+              {tDeco(name)}
               <span className="DecoTable-skills">
-                {deco[name].skill.map(v => v.name).join(' ')}
+                {deco[name].skill.map(v => tSkill(v.name)).join(' ')}
               </span>
             </td>
             <td key={name}>

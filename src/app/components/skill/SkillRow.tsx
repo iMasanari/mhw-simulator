@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import SkillLevelIcon from './SkillLevelIcon'
 import SkillSelect from './SkillSelect'
 
@@ -11,13 +12,18 @@ interface Props {
   items: number[]
 }
 
-const SkillRow: React.FC<Props> = ({ name, value, addableValue, items }) =>
-  <div className="SkillRow">
-    <div className="SkillRow-name">
-      {name}
-      <SkillLevelIcon name={name} value={value} addableValue={addableValue} items={items} />
+const SkillRow: React.FC<Props> = ({ name, value, addableValue, items }) => {
+  const [tSkill] = useTranslation('skills')
+
+  return (
+    <div className="SkillRow">
+      <div className="SkillRow-name">
+        {tSkill(name)}
+        <SkillLevelIcon name={name} value={value} addableValue={addableValue} items={items} />
+      </div>
+      <SkillSelect name={name} value={value} items={items} />
     </div>
-    <SkillSelect name={name} value={value} items={items} />
-  </div>
+  )
+}
 
 export default SkillRow

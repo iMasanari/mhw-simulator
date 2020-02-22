@@ -24,6 +24,7 @@ interface Props {
 
 const ArmorName: React.FC<Props> = ({ name, type }) => {
   const { t } = useTranslation()
+  const [tEquip] = useTranslation('equips')
   const ignoreArmor = useIgnoreArmors()
   const { toggle } = useIgnoreArmorsActions()
   const toggleArmor = useCallback(() => name && toggle(name), [name])
@@ -38,10 +39,10 @@ const ArmorName: React.FC<Props> = ({ name, type }) => {
   return (
     <>
       <span className={`ArmorName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
-        {name || t('装備なし')}
+        {name ? tEquip(name) : t('装備なし')}
       </span>
       {info &&
-        <Modal title={name} onClose={toggleModal}>
+        <Modal title={tEquip(name!)} onClose={toggleModal}>
           <Table className="ArmorName-table">
             <tbody>
               <tr>
@@ -76,7 +77,7 @@ const ArmorName: React.FC<Props> = ({ name, type }) => {
           <label>
             <input type="checkbox" checked={!isIgnore} onChange={toggleArmor} />
             {' '}
-            {name}
+            {tEquip(name!)}
           </label>
         </Modal>
       }

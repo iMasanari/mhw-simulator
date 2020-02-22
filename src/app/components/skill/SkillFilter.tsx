@@ -14,6 +14,7 @@ const categories = Array.from(new Set(skillList.map(v => v.category)))
 
 const SkillFilter: React.FC<Props> = ({ value, setValue }) => {
   const { t } = useTranslation()
+  const [tSkill] = useTranslation('skills')
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
@@ -26,7 +27,7 @@ const SkillFilter: React.FC<Props> = ({ value, setValue }) => {
         value={value}
         onChange={onChange}
         placeholder={t('フィルタ: スキル名 or カテゴリ')}
-        datalist={value ? undefined : categories}
+        datalist={value ? undefined : categories.map(name => tSkill(name))}
       />
     </div>
   )

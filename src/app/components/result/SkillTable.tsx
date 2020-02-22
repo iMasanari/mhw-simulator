@@ -10,6 +10,7 @@ interface Props {
 
 const SkillTable: React.FC<Props> = ({ skillList }) => {
   const { t } = useTranslation()
+  const [tSkill] = useTranslation('skills')
 
   return (
     <Table>
@@ -20,7 +21,7 @@ const SkillTable: React.FC<Props> = ({ skillList }) => {
         </tr>
         {skillList.map(({ name, value }) =>
           <tr key={name}>
-            <td>{name}</td>
+            <td>{tSkill(name)}</td>
             <td className="SkillTable-number">{value}</td>
           </tr>
         )}

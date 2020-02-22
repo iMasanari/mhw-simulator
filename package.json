@@ -64,7 +64,7 @@
             "ja",
             "en"
           ],
-          "outputPath": "./src/locales/{{locale}}.json"
+          "outputPath": "./src/locales/{{locale}}/{{ns}}.json"
         }
       ]
     ]

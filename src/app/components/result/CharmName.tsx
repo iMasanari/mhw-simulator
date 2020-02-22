@@ -13,6 +13,7 @@ interface Props {
 
 const CharmName: React.FC<Props> = ({ name }) => {
   const { t } = useTranslation()
+  const [tEquips] = useTranslation('equips')
   const ignoreArmor = useIgnoreArmors()
   const { toggle } = useIgnoreArmorsActions()
   const toggleArmor = useCallback(() => name && toggle(name), [name])
@@ -27,16 +28,16 @@ const CharmName: React.FC<Props> = ({ name }) => {
   return (
     <>
       <span className={`CharmName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
-        {name || t('装備なし')}
+        {name ? tEquips(name) : t('装備なし')}
       </span>
       {info &&
-        <Modal title={name} onClose={toggleModal}>
+        <Modal title={tEquips(name!)} onClose={toggleModal}>
           <SkillTable skillList={info.skill} />
           <p>{t('検索で防具を除外する場合、下記のチェックを外してください。')}</p>
           <label>
             <input type="checkbox" checked={!isIgnore} onChange={toggleArmor} />
             {' '}
-            {name}
+            {tEquips(name!)}
           </label>
         </Modal>
       }
