@@ -1,5 +1,5 @@
 import React from 'react'
-import { Equipment } from '~/app/util/calc'
+import { Equipment as IEquipment } from '~/app/util/calc'
 import Accordion from '../common/Accordion'
 import EquipmentTable from './EquipmentTable'
 import SkillTable from './SkillTable'
@@ -8,7 +8,7 @@ require('./Equipment.css')
 
 interface Props {
   title: string
-  result: Equipment
+  result: IEquipment
   initState?: boolean
 }
 

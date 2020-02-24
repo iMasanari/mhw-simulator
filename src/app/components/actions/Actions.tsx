@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useWeapon } from '~/app/hooks/weapon'
 import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputArea }) => {
+  const { t } = useTranslation()
   const activeSkill = useActiveSkill()
   const { clear: clearActiveSkill } = useActiveSkillActions()
   const { search: searchAddableSkill, clear: clearAddableSkill } = useAddableSkillActions()
@@ -54,9 +56,9 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
 
   return (
     <div className="Actions">
-      <Button label="検索" onClick={onSearchResult} primary />
-      <Button label="クリア" onClick={onClear} />
-      <Button label="追加スキルβ" onClick={onSearchSkill} />
+      <Button label={t('検索')} onClick={onSearchResult} primary />
+      <Button label={t('クリア')} onClick={onClear} />
+      <Button label={t('追加スキルβ')} onClick={onSearchSkill} />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useCallback, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 import Button from '../common/Button'
 
 require('./Modal.css')
@@ -15,6 +16,7 @@ const rootEl = document.getElementById('root')!
 const ESC = 27
 
 const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
+  const { t } = useTranslation()
   const onClick = useCallback((e: React.MouseEvent) => e.currentTarget === e.target && onClose(), [])
 
   useLayoutEffect(() => {
@@ -37,7 +39,7 @@ const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
           {children}
         </div>
         <div className="Modal-actions">
-          <Button label="閉じる" onClick={onClose} />
+          <Button label={t('閉じる')} onClick={onClose} />
         </div>
       </div>
     </div>,

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useWeapon } from '~/app/hooks/weapon'
 import HeadingTitle from '../common/HeadingTitle'
 import WeaponSkills from './WeaponSkills'
@@ -8,11 +9,12 @@ interface Props {
 }
 
 const Weapon: React.FC<Props> = () => {
+  const { t } = useTranslation()
   const { skill } = useWeapon()
 
   return (
     <div>
-      <HeadingTitle title="武器" />
+      <HeadingTitle title={t('武器')} />
       <WeaponSlots />
       {skill !== 'yws_none' && <WeaponSkills />}
     </div>
