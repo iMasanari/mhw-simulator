@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import HeaderNav from './HeaderNav'
+import Langages from './Languages'
 
 require('./Header.css')
 
@@ -16,6 +17,7 @@ const Header: React.FC<Props> = () => {
         {t('MHW:ICEBORNE スキルシミュ')}
       </h1>
       <HeaderNav />
+      <Langages />
     </header>
   )
 }
