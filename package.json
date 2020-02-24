@@ -61,7 +61,6 @@
         {
           "nsSeparator": false,
           "locales": [
-            "ja",
             "en"
           ],
           "outputPath": "./src/locales/{{locale}}/{{ns}}.json"

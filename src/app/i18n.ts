@@ -4,22 +4,13 @@ import enDecos from '~/locales/en/decos.json'
 import enEquips from '~/locales/en/equips.json'
 import enSkills from '~/locales/en/skills.json'
 import enTranslation from '~/locales/en/translation.json'
-import jaDecos from '~/locales/ja/decos.json'
-import jaEquips from '~/locales/ja/equips.json'
-import jaSkills from '~/locales/ja/skills.json'
-import jaTranslation from '~/locales/ja/translation.json'
 
 const lng = navigator.languages.find(v => /^(ja|en)/.test(v))?.slice(0, 2) || 'ja'
 
 const options = {
   lng,
   resources: {
-    ja: {
-      translation: jaTranslation,
-      skills: jaSkills,
-      equips: jaEquips,
-      decos: jaDecos,
-    },
+    ja: {}, // keyをそのまま表示する
     en: {
       translation: enTranslation,
       skills: enSkills,
