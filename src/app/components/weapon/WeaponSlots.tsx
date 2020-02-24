@@ -24,12 +24,12 @@ const WeaponSlots: React.FC<Props> = () => {
         <optgroup label={t('武器スロットなし')}>
           <option value="0-0-0-0">{t('なし')}</option>
         </optgroup>
-        <optgroup label={t('最大Lv1')}>
+        <optgroup label={t('最大Lv{{level}}', { level: 1 })}>
           <option value="1-0-0-0">【1】</option>
           <option value="1-1-0-0">【1】【1】</option>
           <option value="1-1-1-0">【1】【1】【1】</option>
         </optgroup>
-        <optgroup label={t('最大Lv2')}>
+        <optgroup label={t('最大Lv{{level}}', { level: 2 })}>
           <option value="2-0-0-0">【2】</option>
           <option value="2-1-0-0">【2】【1】</option>
           <option value="2-1-1-0">【2】【1】【1】</option>
@@ -37,7 +37,7 @@ const WeaponSlots: React.FC<Props> = () => {
           <option value="2-2-1-0">【2】【2】【1】</option>
           <option value="2-2-2-0">【2】【2】【2】</option>
         </optgroup>
-        <optgroup label={t('最大Lv3')}>
+        <optgroup label={t('最大Lv{{level}}', { level: 3 })}>
           <option value="3-0-0-0">【3】</option>
           <option value="3-1-0-0">【3】【1】</option>
           <option value="3-1-1-0">【3】【1】【1】</option>
@@ -49,7 +49,7 @@ const WeaponSlots: React.FC<Props> = () => {
           <option value="3-3-2-0">【3】【3】【2】</option>
           <option value="3-3-3-0">【3】【3】【3】</option>
         </optgroup>
-        <optgroup label={t('最大Lv4')}>
+        <optgroup label={t('最大Lv{{level}}', { level: 4 })}>
           <option value="4-0-0-0">【4】</option>
           <option value="4-1-0-0">【4】【1】</option>
           <option value="4-1-1-0">【4】【1】【1】</option>

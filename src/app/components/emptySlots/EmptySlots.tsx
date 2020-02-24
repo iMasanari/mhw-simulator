@@ -75,19 +75,19 @@ const EmptySlots: React.FC<Props> = () => {
         <table className="EmptySlots-table">
           <tbody>
             <tr>
-              <th className="EmptySlots-text">{t('空きスロット数 Lv1以上')}</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 1 })}</th>
               <td className="EmptySlots-slot">{slot1Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">{t('空きスロット数 Lv2以上')}</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 2 })}</th>
               <td className="EmptySlots-slot">{slot2Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">{t('空きスロット数 Lv3以上')}</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 3 })}</th>
               <td className="EmptySlots-slot">{slot3Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">{t('空きスロット数 Lv4以上')}</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 4 })}</th>
               <td className="EmptySlots-slot">{slot4Count}</td>
             </tr>
           </tbody>

@@ -60,16 +60,16 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) => {
                 <li key={name}><DecoName name={name} /> x{value}</li>
               )}
               {!!equipment.slot1 &&
-                <li>{t('空きスロット【１】')} x{equipment.slot1}</li>
+                <li>{t('空きスロット【{{level}}】', { level: 1 })} x{equipment.slot1}</li>
               }
               {!!equipment.slot2 &&
-                <li>{t('空きスロット【２】')} x{equipment.slot2}</li>
+                <li>{t('空きスロット【{{level}}】', { level: 2 })} x{equipment.slot2}</li>
               }
               {!!equipment.slot3 &&
-                <li>{t('空きスロット【３】')} x{equipment.slot3}</li>
+                <li>{t('空きスロット【{{level}}】', { level: 3 })} x{equipment.slot3}</li>
               }
               {!!equipment.slot4 &&
-                <li>{t('空きスロット【４】')} x{equipment.slot4}</li>
+                <li>{t('空きスロット【{{level}}】', { level: 4 })} x{equipment.slot4}</li>
               }
             </ul>
           </td>
