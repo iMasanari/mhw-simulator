@@ -1,0 +1,8 @@
+.Languages-link {
+  color: #1A0DAB;
+  cursor: pointer;
+}
+
+.Languages-link:hover {
+  text-decoration: underline;
+}

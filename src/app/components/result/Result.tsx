@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useResult } from '~/app/hooks/result'
 import HeadingTitle from '../common/HeadingTitle'
 import Equipment from './Equipment'
@@ -7,15 +8,16 @@ interface Props {
 }
 
 const Result: React.FC<Props> = () => {
+  const { t } = useTranslation()
   const list = useResult()
 
   return (
     <>
-      <HeadingTitle title="検索結果" />
+      <HeadingTitle title={t('検索結果')} />
       {list.filter(Boolean).map((result, i) =>
         <Equipment
           key={i}
-          title={`10件検索: 装備${i + 1} `}
+          title={`${t('10件検索: 装備')}${i + 1}`}
           result={result}
           initState={i === 0}
         />

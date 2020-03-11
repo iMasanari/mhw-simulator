@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 require('./PageTop.css')
 
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const PageTop: React.FC<Props> = () => {
+  const { t } = useTranslation()
   const [isTop, setTop] = useState(true)
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const PageTop: React.FC<Props> = () => {
       style={{ display: isTop ? 'none' : undefined }}
       onClick={() => scrollTo(0, 0)}
     >
-      TOP
+      {t('TOP')}
     </div>
   )
 }

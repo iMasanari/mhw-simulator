@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useDecos } from '~/app/hooks/decos'
+import { useDefs } from '~/app/hooks/defs'
 import { useIgnoreArmors } from '~/app/hooks/ignoreArmors'
 import { useWeapon } from '~/app/hooks/weapon'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
+import { Defs } from '~/app/modules/defs'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { Weapon } from '~/app/modules/weapon'
 import calc, { Equipment } from '~/app/util/calc'
@@ -33,11 +36,12 @@ const useSlots = () => {
   const weapon = useWeapon()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
+  const defs = useDefs()
 
-  const searchSummary = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos, defs: Defs) => {
     setSlots({})
 
-    const condition: Condition = { skill, weapon, armors, decos, prev: [] }
+    const condition: Condition = { skill, weapon, armors, decos, defs, prev: [] }
 
     for (const [key, objective] of list) {
       const value = await calc(objective, condition)
@@ -50,7 +54,7 @@ const useSlots = () => {
 
   // 初回検索
   useEffect(() => {
-    searchSummary(activeSkill, weapon, ignoreArmors, decos)
+    searchSummary(activeSkill, weapon, ignoreArmors, decos, defs)
   }, [activeSkill, weapon])
 
   return slots
@@ -60,6 +64,7 @@ interface Props {
 }
 
 const EmptySlots: React.FC<Props> = () => {
+  const { t } = useTranslation()
   const { slot1, slot2, slot3, slot4 } = useSlots()
 
   const slot1Count = slot1?.z ?? '-'
@@ -68,24 +73,24 @@ const EmptySlots: React.FC<Props> = () => {
   const slot4Count = slot4?.z ?? '-'
 
   return (
-    <Accordion title={`空きスロット数 ${slot1 ? slot1.z : ''}`}>
+    <Accordion title={`${t('空きスロット数')} ${slot1 ? slot1.z : ''}`}>
       <div className="EmptySlots-content">
         <table className="EmptySlots-table">
           <tbody>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv1以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 1 })}</th>
               <td className="EmptySlots-slot">{slot1Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv2以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 2 })}</th>
               <td className="EmptySlots-slot">{slot2Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv3以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 3 })}</th>
               <td className="EmptySlots-slot">{slot3Count}</td>
             </tr>
             <tr>
-              <th className="EmptySlots-text">空きスロット数 Lv4以上</th>
+              <th className="EmptySlots-text">{t('空きスロット数 Lv{{level}}以上', { level: 4 })}</th>
               <td className="EmptySlots-slot">{slot4Count}</td>
             </tr>
           </tbody>

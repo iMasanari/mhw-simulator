@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../modules'
 import { ActiveSkill } from '../modules/activeSkill'
 import { Decos } from '../modules/decos'
+import { Defs } from '../modules/defs'
 import { Armors } from '../modules/ignoreArmors'
 import * as actions from '../modules/result'
 import { Weapon } from '../modules/weapon'
@@ -28,10 +29,10 @@ export const useResultActions = () => {
     dispatch(actions.clear())
   }, [])
 
-  const searchList = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos) => {
+  const searchList = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos, defs: Defs) => {
     clear()
 
-    const condition: Condition = { skill, weapon, armors, decos, prev: [] }
+    const condition: Condition = { skill, weapon, armors, decos, defs, prev: [] }
 
     for (let i = 0; i < 10; ++i) {
       const value = await calc('ydl', condition)

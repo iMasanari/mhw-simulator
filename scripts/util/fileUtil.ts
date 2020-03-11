@@ -9,6 +9,12 @@ export const readCsv = async (path: string) => {
     .filter(([cel]) => cel)
 }
 
+export const readJson = async (path: string) => {
+  const text = await fs.readFile(path, 'utf-8')
+
+  return JSON.parse(text) as unknown
+}
+
 export const writeJson = async (path: string, json: any) => {
   await fs.mkdir(dirname(path), { recursive: true })
 

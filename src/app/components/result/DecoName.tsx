@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
 import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const DecoName: React.FC<Props> = ({ name }) => {
+  const { t } = useTranslation()
+  const [tDeco] = useTranslation('decos')
   const decos = useDecos()
   const { set } = useDecosActions()
 
@@ -29,15 +32,15 @@ const DecoName: React.FC<Props> = ({ name }) => {
   return (
     <>
       <span className={`DecoName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
-        {name}
+        {tDeco(name)}
       </span>
       {info &&
-        <Modal title={name} onClose={toggleModal}>
+        <Modal title={tDeco(name)} onClose={toggleModal}>
           <SlotTable slots={[info.slot1]} />
           <SkillTable skillList={info.skill} />
-          <p>検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。</p>
+          <p>{t('検索で装飾品の所持数を制限する場合、下記にその個数を指定してください。')}</p>
           <label>
-            {name}
+            {tDeco(name)}
             {' '}
             <TextFild
               className="DecoName-numberInput"

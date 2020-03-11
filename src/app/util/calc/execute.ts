@@ -1,6 +1,7 @@
 import { GLP_FX, GLP_LO, GLP_MAX, GLP_UP } from '~/app/constants/glpk'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
+import { Defs } from '~/app/modules/defs'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { Weapon } from '~/app/modules/weapon'
 import baseLp from '~/app/util/baseLp'
@@ -13,6 +14,7 @@ export interface Condition {
   armors: Armors
   decos: Decos
   weapon: Weapon
+  defs: Defs
   prev: string[][]
 }
 
@@ -36,6 +38,7 @@ export default (objectiveName: string, condition: Condition) => {
   const subjectTo = [
     ...baseLp.subjectTo,
     ...createSubject(skill, GLP_LO),
+    ...createSubject(condition.defs, GLP_LO),
     ...createSubject(condition.armors, GLP_FX),
     ...createSubject(condition.decos, GLP_UP),
     ...createSubject(slots, GLP_FX),

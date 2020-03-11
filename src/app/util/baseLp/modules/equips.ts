@@ -3,7 +3,7 @@ import onesetList from '~/generated/oneset.json'
 import { flat, fromEntries } from '../../array'
 import { arm, body, charm, head, leg, wst } from '../../generatedUtil'
 import { LpModule } from '../createLp'
-import { DEF } from './def'
+import { DEF, DRAGON, FIRE, ICE, THUNDER, WATER } from './def'
 import { SLOT_1_OVER, SLOT_2_OVER, SLOT_3_OVER, SLOT_4_OVER } from './slots'
 
 
@@ -24,6 +24,11 @@ const equipModule = (equipCounter: string, equips: typeof head): LpModule => {
       value: {
         [equipCounter]: 1,
         [DEF]: equip.customDef,
+        [FIRE]: equip.fire,
+        [WATER]: equip.water,
+        [THUNDER]: equip.thunder,
+        [ICE]: equip.ice,
+        [DRAGON]: equip.dragon,
         [SLOT_1_OVER]: slotList.filter(s => s >= 1).length,
         [SLOT_2_OVER]: slotList.filter(s => s >= 2).length,
         [SLOT_3_OVER]: slotList.filter(s => s >= 3).length,

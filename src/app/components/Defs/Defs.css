@@ -1,0 +1,21 @@
+.Defs-content {
+  padding: 0 1em 0.5em;
+}
+
+.Defs-table {
+  width: 100%;
+}
+
+.Defs-text {
+  text-align: left;
+}
+
+.Defs-slot {
+  width: 4rem;
+  text-align: right;
+}
+
+.Defs-input {
+  width: 4rem;
+  text-align: right;
+}
