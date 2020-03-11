@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "i18next-extract",
+      {
+        "nsSeparator": false,
+        "locales": [
+          "en"
+        ],
+        "outputPath": "./src/locales/{{locale}}/{{ns}}.json"
+      }
+    ]
+  ]
+}
