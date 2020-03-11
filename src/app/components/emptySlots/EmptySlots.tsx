@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useDecos } from '~/app/hooks/decos'
+import { useDefs } from '~/app/hooks/defs'
 import { useIgnoreArmors } from '~/app/hooks/ignoreArmors'
 import { useWeapon } from '~/app/hooks/weapon'
 import { ActiveSkill } from '~/app/modules/activeSkill'
 import { Decos } from '~/app/modules/decos'
+import { Defs } from '~/app/modules/defs'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { Weapon } from '~/app/modules/weapon'
 import calc, { Equipment } from '~/app/util/calc'
@@ -34,11 +36,12 @@ const useSlots = () => {
   const weapon = useWeapon()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
+  const defs = useDefs()
 
-  const searchSummary = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos) => {
+  const searchSummary = useCallback(async (skill: ActiveSkill, weapon: Weapon, armors: Armors, decos: Decos, defs: Defs) => {
     setSlots({})
 
-    const condition: Condition = { skill, weapon, armors, decos, prev: [] }
+    const condition: Condition = { skill, weapon, armors, decos, defs, prev: [] }
 
     for (const [key, objective] of list) {
       const value = await calc(objective, condition)
@@ -51,7 +54,7 @@ const useSlots = () => {
 
   // 初回検索
   useEffect(() => {
-    searchSummary(activeSkill, weapon, ignoreArmors, decos)
+    searchSummary(activeSkill, weapon, ignoreArmors, decos, defs)
   }, [activeSkill, weapon])
 
   return slots

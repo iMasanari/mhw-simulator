@@ -4,6 +4,7 @@ import { useSkillLog } from '../hooks/skillLog'
 import { partition } from '../util/array'
 import About from './about/About'
 import Actions from './actions/Actions'
+import Defs from './Defs/Defs'
 import EmptySlots from './emptySlots/EmptySlots'
 import Header from './header/Header'
 import PageTop from './pageTop/PageTop'
@@ -59,6 +60,7 @@ const App: React.FC = () => {
             <Skill skillList={skillList} skillFilter={skillFilter} setSkillFilter={setSkillFilter} />
           </div>
           <div className="App-sticky">
+            <Defs />
             <Actions
               skillList={skillList.map((skill => skill.name))}
               resetSkillScroll={resetSkillScroll}

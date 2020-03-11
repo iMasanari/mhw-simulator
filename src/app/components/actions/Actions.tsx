@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDefs } from '~/app/hooks/defs'
 import { useWeapon } from '~/app/hooks/weapon'
 import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
@@ -28,25 +29,26 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const weapon = useWeapon()
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
+  const defs = useDefs()
   const { searchList } = useResultActions()
 
   const onSearchResult = useCallback(() => {
     clearAddableSkill()
     updateSkillLog(activeSkill)
 
-    searchList(activeSkill, weapon, ignoreArmors, decos)
+    searchList(activeSkill, weapon, ignoreArmors, decos, defs)
 
     resetSkillScroll()
     scrollOutputArea()
     sendSearchResultEvent()
-  }, [activeSkill, weapon, ignoreArmors, decos, searchList])
+  }, [activeSkill, weapon, ignoreArmors, decos, defs])
 
   const onSearchSkill = useCallback(() => {
-    searchAddableSkill(activeSkill, weapon, ignoreArmors, decos, skillList)
+    searchAddableSkill(activeSkill, weapon, ignoreArmors, decos, defs, skillList)
 
     resetSkillScroll()
     sendSearchSkillEvent()
-  }, [activeSkill, weapon, ignoreArmors, decos, skillList])
+  }, [activeSkill, weapon, ignoreArmors, decos, defs, skillList])
 
   const onClear = useCallback(() => {
     clearActiveSkill()

@@ -21,7 +21,7 @@ interface Var {
   useData?: boolean
 }
 
-interface Data {
+export interface LpData {
   name: string
   value: Record<string, number>
   generals?: boolean
@@ -30,7 +30,7 @@ interface Data {
 
 export interface LpModule {
   vars?: Var[]
-  data?: Data[]
+  data?: LpData[]
   subjectTo?: SubjectTo[]
 }
 
@@ -42,7 +42,7 @@ const fx0 = {
 
 const isNonNull = <T>(x: T): x is NonNullable<T> => x != null
 
-const createSubject = (name: string, data: Data[]) => {
+const createSubject = (name: string, data: LpData[]) => {
   const filterdData = data
     .filter(v => v.value[name])
     .map(v => ({ name: v.name, coef: v.value[name] }))
