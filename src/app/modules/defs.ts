@@ -6,6 +6,8 @@ const initState = {} as Defs
 
 const { reducer, createAction } = ActionReducer(initState, 'defs/')
 
+export const clear = createAction('clear', () => ({}))
+
 interface Payload {
   defs: string
   value: number | null
