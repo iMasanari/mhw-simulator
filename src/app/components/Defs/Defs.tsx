@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDefs, useDefsActions } from '~/app/hooks/defs'
 import { DEF, DRAGON, FIRE, ICE, THUNDER, WATER } from '~/app/util/baseLp/modules/def'
+import { SLOT_1, SLOT_2, SLOT_3, SLOT_4 } from '~/app/util/baseLp/modules/slots'
 import toNumber from '~/app/util/toNumber'
 import Accordion from '../common/Accordion'
 
@@ -28,6 +29,7 @@ const Defs: React.FC<Props> = () => {
               <td className="Defs-slot">
                 <input
                   type="number"
+                  min="1"
                   className="Defs-input"
                   value={defs[DEF] ?? ''}
                   onChange={(e) => set(DEF, toNumber(e.currentTarget.value))}
@@ -96,6 +98,62 @@ const Defs: React.FC<Props> = () => {
                   className="Defs-input"
                   value={defs[DRAGON] ?? ''}
                   onChange={(e) => set(DRAGON, toNumber(e.currentTarget.value))}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="Defs-text">
+                {t('空きスロット数 Lv{{level}}以上', { level: 1 })}
+              </th>
+              <td className="Defs-slot">
+                <input
+                  type="number"
+                  min="1"
+                  className="Defs-input"
+                  value={defs[SLOT_1] ?? ''}
+                  onChange={(e) => set(SLOT_1, toNumber(e.currentTarget.value))}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="Defs-text">
+                {t('空きスロット数 Lv{{level}}以上', { level: 2 })}
+              </th>
+              <td className="Defs-slot">
+                <input
+                  type="number"
+                  min="1"
+                  className="Defs-input"
+                  value={defs[SLOT_2] ?? ''}
+                  onChange={(e) => set(SLOT_2, toNumber(e.currentTarget.value))}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="Defs-text">
+                {t('空きスロット数 Lv{{level}}以上', { level: 3 })}
+              </th>
+              <td className="Defs-slot">
+                <input
+                  type="number"
+                  min="1"
+                  className="Defs-input"
+                  value={defs[SLOT_3] ?? ''}
+                  onChange={(e) => set(SLOT_3, toNumber(e.currentTarget.value))}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="Defs-text">
+                {t('空きスロット数 Lv{{level}}以上', { level: 4 })}
+              </th>
+              <td className="Defs-slot">
+                <input
+                  type="number"
+                  min="1"
+                  className="Defs-input"
+                  value={defs[SLOT_4] ?? ''}
+                  onChange={(e) => set(SLOT_4, toNumber(e.currentTarget.value))}
                 />
               </td>
             </tr>
