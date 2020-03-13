@@ -57,7 +57,8 @@ export default async (objective: string, condition: Condition): Promise<Equipmen
 
   const decos = list
     .filter(name => data.deco[name])
-    .map(name => ({ name, value: result.vars[name] }))
+    .map(name => ({ name, value: result.vars[name], level: name[name.length - 2] }))
+    .sort((a, b) => a.level === b.level ? 0 : a.level < b.level ? -1 : 1)
 
   const skills = list
     .filter(name => skillSet.has(name))
