@@ -14,6 +14,7 @@ interface Props {
 
 const EquipmentTable: React.FC<Props> = ({ equipment }) => {
   const { t } = useTranslation()
+  const [tSkill] = useTranslation('skills')
 
   return (
     <Table className="EquipmentTable">
@@ -25,7 +26,12 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) => {
         {equipment.weaponSkill !== 'none' && (
           <tr>
             <th>{t('覚醒スキル')}</th>
-            <td>{equipment.weaponSkill}</td>
+            <td>
+              {equipment.weaponSkill === 'なし'
+                ? t('なし')
+                : tSkill(equipment.weaponSkill!)
+              }
+            </td>
           </tr>
         )}
         <tr>

@@ -15,9 +15,13 @@ export const useDefs = () => {
 export const useDefsActions = () => {
   const dispatch = useDispatch()
 
+  const clear = useCallback(() => {
+    dispatch(actions.clear())
+  }, [])
+
   const set = useCallback((defs: string, value: number | null) => {
     dispatch(actions.set({ defs, value }))
   }, [])
 
-  return { set }
+  return { clear, set }
 }

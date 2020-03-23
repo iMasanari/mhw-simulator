@@ -1,3 +1,5 @@
+![github pages](https://github.com/iMasanari/mhw-simulator/workflows/github%20pages/badge.svg)
+
 # MHW:ICEBORNE スキルシミュ
 
 「モンスターハンターワールド：アイスボーン」のスキルシミュレーター

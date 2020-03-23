@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDefs } from '~/app/hooks/defs'
+import { useDefs, useDefsActions } from '~/app/hooks/defs'
 import { useWeapon } from '~/app/hooks/weapon'
 import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
@@ -30,6 +30,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const ignoreArmors = useIgnoreArmors()
   const decos = useDecos()
   const defs = useDefs()
+  const { clear: clearDefs } = useDefsActions()
   const { searchList } = useResultActions()
 
   const onSearchResult = useCallback(() => {
@@ -53,6 +54,7 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
   const onClear = useCallback(() => {
     clearActiveSkill()
     clearAddableSkill()
+    clearDefs()
     terminate()
   }, [])
 
