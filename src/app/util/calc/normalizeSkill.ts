@@ -51,6 +51,10 @@ export default (skill: ActiveSkill) => {
     skill['スタミナ奪取・極意'] = 1
   }
 
+  if (skill['火事場力'] > 3) {
+    skill['火事場力・極意'] = 1
+  }
+
   // シリーズスキル展開
   skill = fromEntries(
     Object.entries(skill).map(([name, value]) =>
