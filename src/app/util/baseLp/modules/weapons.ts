@@ -30,6 +30,7 @@ export const weaponSkillModule = (): LpModule => {
 
   const data = [
     { name: 'yws_none', value: { [WEAPON_SKILL_COUNTER]: 1 }, binaries: true },
+    { name: 'yws_爛輝龍の真髄', value: { [WEAPON_SKILL_COUNTER]: 1, 爛輝龍の真髄: 1 } as Record<string, number>, binaries: true },
     ...weaponSkills.map(name =>
       ({ name: `yws_${name}`, value: { [WEAPON_SKILL_COUNTER]: 1, [name]: 1 }, binaries: true })
     ),
