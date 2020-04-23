@@ -12,7 +12,7 @@ const WeaponSlots: React.FC<Props> = () => {
   const { t } = useTranslation()
   const { slots, skill } = useWeapon()
   const { setSlots } = useWeaponActions()
-  const value = [...slots, skill === 'yws_none' ? 0 : 1].join('-')
+  const value = [...slots, skill === 'yws_none' ? 0 : skill === 'yws_爛輝龍の真髄' ? 2 : 1].join('-')
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setSlots(e.currentTarget.value.split('-').map(Number) as [number, number, number, 0 | 1])
@@ -65,6 +65,10 @@ const WeaponSlots: React.FC<Props> = () => {
           <option value="4-4-2-0">【4】【4】【2】</option>
           <option value="4-4-3-0">【4】【4】【3】</option>
           <option value="4-4-4-0">【4】【4】【4】</option>
+        </optgroup>
+        <optgroup label={t('爛輝龍の真髄')}>
+          <option value="0-0-0-2">{t('[爛輝龍]')}</option>
+          <option value="3-0-0-2">{t('[爛輝龍]')}【3】</option>
         </optgroup>
         <optgroup label={t('スキル付き覚醒武器')}>
           <option value="4-0-0-1">{t('[覚醒]')}【4】</option>

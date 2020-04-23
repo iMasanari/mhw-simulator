@@ -16,7 +16,9 @@ const Weapon: React.FC<Props> = () => {
     <div>
       <HeadingTitle title={t('武器')} />
       <WeaponSlots />
-      {skill !== 'yws_none' && <WeaponSkills />}
+      {skill !== 'yws_none' && skill !== 'yws_爛輝龍の真髄' && (
+        <WeaponSkills />
+      )}
     </div>
   )
 }
