@@ -15,7 +15,7 @@ export const useWeapon = () => {
 export const useWeaponActions = () => {
   const dispatch = useDispatch()
 
-  const setSlots = useCallback((slots: [number, number, number, 0 | 1]) => (
+  const setSlots = useCallback((slots: [number, number, number]) => (
     dispatch(actions.setSlots(slots))
   ), [])
 

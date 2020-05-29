@@ -20,12 +20,20 @@ const WeaponSkills: React.FC<Props> = () => {
 
   return (
     <div className="WeaponSkills">
-      <div>{t('覚醒スキル')}</div>
+      <div>{t('武器スキル')}</div>
       <Select value={skill} onChange={onChange}>
-        <option value="yws_auto">{t('自動')}</option>
-        {weaponSkills.map(skill =>
-          <option key={skill} value={`yws_${skill}`}>{tSkill(skill)}</option>
-        )}
+        <optgroup label={t('武器スキル')}>
+          <option value="yws_none">{t('なし')}</option>
+          <option value="yws_auto">{t('自動')}</option>
+        </optgroup>
+        <optgroup label={tSkill('爛輝龍の真髄')}>
+          <option value={'yws_爛輝龍の真髄'}>{tSkill('爛輝龍の真髄')}</option>
+        </optgroup>
+        <optgroup label={t('覚醒スキル')}>
+          {weaponSkills.map(skill =>
+            <option key={skill} value={`yws_${skill}`}>{tSkill(skill)}</option>
+          )}
+        </optgroup>
       </Select>
     </div>
   )
