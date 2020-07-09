@@ -14,10 +14,8 @@ const initState: Weapon = {
 
 const { reducer, createAction } = ActionReducer(initState, 'weapon/')
 
-export const setSlots = createAction(
-  'setSlots',
-  ({ skill }, [s1, s2, s3, weaponSkill]: [number, number, number, number]) =>
-    ({ slots: [s1, s2, s3], skill: weaponSkill === 0 ? 'yws_none' : weaponSkill === 2 ? 'yws_爛輝龍の真髄' : (skill !== 'yws_none' && skill !== 'yws_爛輝龍の真髄') ? skill : 'yws_auto' })
+export const setSlots = createAction('setSlots', (state, slots: [number, number, number]) =>
+  ({ ...state, slots })
 )
 
 export const setSkill = createAction('setSkill', (state, skill: string) =>

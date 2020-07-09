@@ -3,9 +3,7 @@ import { fromEntries } from '../util/array'
 
 export type Armors = Record<string, 0 | 1>
 
-// 旧保存データの移行
-const STORAGE_KEY = 'mhw-simulator/ignoreArmors/v1.1'
-const initState: Armors = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+const initState = {} as Armors
 
 const { reducer, createAction } = ActionReducer(initState, 'ignoreArmors/')
 

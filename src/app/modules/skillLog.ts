@@ -3,9 +3,7 @@ import { ActiveSkill } from '../modules/activeSkill'
 
 export type SkillLog = Record<string, number>
 
-// 旧保存データの移行
-const STORAGE_KEY = 'mhw-simulator/skillLog/v1.1'
-const initState: ActiveSkill = JSON.parse(localStorage.getItem(STORAGE_KEY)!) || {}
+const initState = {} as ActiveSkill
 
 const { reducer, createAction } = ActionReducer(initState, 'skillLog/')
 

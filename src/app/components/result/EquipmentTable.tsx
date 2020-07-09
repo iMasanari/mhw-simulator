@@ -25,7 +25,7 @@ const EquipmentTable: React.FC<Props> = ({ equipment }) => {
         </tr>
         {equipment.weaponSkill !== 'none' && (
           <tr>
-            <th>{t('覚醒スキル')}</th>
+            <th>{t('武器スキル')}</th>
             <td>
               {equipment.weaponSkill === 'なし'
                 ? t('なし')
