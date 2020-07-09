@@ -6,6 +6,9 @@
 http://nap.s3.xrea.com/lpsim-v3.pdf
 
 
+2020/07/09 EXエスカドラ(アルバトリオン)等に対応
+
+
 ## 使い方
 
 発動したいスキルを選び、下記のボタンを押してください。
@@ -27,6 +30,7 @@ You can switch from the English button on the upper right. Currently, filters by
 
 [![iMasanari/mhw-simulator - GitHub](https://gh-card.dev/repos/iMasanari/mhw-simulator.svg)](https://github.com/iMasanari/mhw-simulator)  
 ![github pages](https://github.com/iMasanari/mhw-simulator/workflows/github%20pages/badge.svg)
+
 
 ## 感謝
 
