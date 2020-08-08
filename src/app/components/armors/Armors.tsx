@@ -11,7 +11,7 @@ import ArmorTable from './ArmorTable'
 interface Props {
 }
 
-const armorGroupEntries = Object.entries(armorGroup)
+const armorGroupEntries: [string, (string | null)[]][] = Object.entries(armorGroup)
 
 const skillList = unique(
   flat(
