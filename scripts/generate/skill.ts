@@ -37,11 +37,15 @@ export const getSkillList = async () => {
 
   const seriesSkill = fromEntries(
     seriesSkillList.map(name =>
-      [name, fromEntries(
-        skills
-          .filter(v => v.発動スキル === name)
-          .map(v => [v.スキル系統, +v.必要ポイント])
-      )]
+      [name, {
+        ...fromEntries(
+          skills
+            .filter(v => v.発動スキル === name)
+            .map(v => [v.スキル系統, +v.必要ポイント])
+        ),
+        ...(name.includes('極意') ? { '黒龍の伝説': 2 } : {}),
+        ...(name === '真・業物／弾丸節約' ? { '黒龍の伝説': 4 } : {}),
+      }]
     )
   )
 
