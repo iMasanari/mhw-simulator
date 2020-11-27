@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import { Fragment, useReducer } from 'react'
 import { useTranslation } from 'react-i18next'
 import Armors from '../armors/Armors'
 import Charms from '../charms/Charms'
@@ -25,7 +25,7 @@ const HeaderNav: React.FC<Props> = () => {
   return (
     <ul className="HeaderNav">
       {list.map(([name, Component]) =>
-        <React.Fragment key={name}>
+        <Fragment key={name}>
           <li className="HeaderNav-li" onClick={() => dispatch(name)}          >
             {name}
           </li>
@@ -34,7 +34,7 @@ const HeaderNav: React.FC<Props> = () => {
               <Component />
             </Modal>
           }
-        </React.Fragment>
+        </Fragment>
       )}
     </ul>
   )

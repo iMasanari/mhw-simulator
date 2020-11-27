@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import Accordion from '../common/Accordion'
 import { useDefs, useDefsActions } from '~/app/hooks/defs'
 import { DEF, DRAGON, FIRE, ICE, THUNDER, WATER } from '~/app/util/baseLp/modules/def'
 import { SLOT_1, SLOT_2, SLOT_3, SLOT_4 } from '~/app/util/baseLp/modules/slots'
 import toNumber from '~/app/util/toNumber'
-import Accordion from '../common/Accordion'
 
 require('./Defs.css')
 

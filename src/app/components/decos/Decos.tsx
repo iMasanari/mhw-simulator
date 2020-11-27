@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import TextFild from '../common/TextFild'
+import DecoTable from './DecoTable'
 import { useDecos, useDecosActions } from '~/app/hooks/decos'
 import { Decos as IDecos } from '~/app/modules/decos'
 import { flat, unique } from '~/app/util/array'
 import { deco } from '~/app/util/generatedUtil'
-import TextFild from '../common/TextFild'
-import DecoTable from './DecoTable'
 
 require('./Decos.css')
 
@@ -36,6 +36,7 @@ const Decos: React.FC<Props> = () => {
   // decosはdepsに入れない
   const decoList = useMemo(() => (
     createList(filter, decos, isInputedOnly)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   ), [filter, isInputedOnly])
 
   return (

@@ -1,10 +1,9 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
+import Table from '../common/Table'
+import TextFild from '../common/TextFild'
 import { Decos } from '~/app/modules/decos'
 import { deco } from '~/app/util/generatedUtil'
 import toNumber from '~/app/util/toNumber'
-import Table from '../common/Table'
-import TextFild from '../common/TextFild'
 
 require('./DecoTable.css')
 

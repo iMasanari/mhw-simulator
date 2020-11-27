@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 require('./Languages.css')
@@ -11,7 +11,7 @@ const Langages: React.FC = () => {
     i18n.on('languageChanged', setLanguage)
 
     return () => i18n.off('languageChanged', setLanguage)
-  })
+  }, [i18n])
 
   return (
     <div>

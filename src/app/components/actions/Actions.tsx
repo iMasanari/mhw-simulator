@@ -1,8 +1,5 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDefs, useDefsActions } from '~/app/hooks/defs'
-import { useWeapon } from '~/app/hooks/weapon'
-import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 import { useActiveSkill, useActiveSkillActions } from '../../hooks/activeSkill'
 import { useAddableSkillActions } from '../../hooks/addableSkill'
 import { useDecos } from '../../hooks/decos'
@@ -11,6 +8,9 @@ import { useResultActions } from '../../hooks/result'
 import { useSkillLogActions } from '../../hooks/skillLog'
 import { terminate } from '../../util/calc/worker'
 import Button from '../common/Button'
+import { useDefs, useDefsActions } from '~/app/hooks/defs'
+import { useWeapon } from '~/app/hooks/weapon'
+import { sendSearchResultEvent, sendSearchSkillEvent } from '~/app/util/gtag'
 
 require('./Actions.css')
 
@@ -42,21 +42,21 @@ const Actions: React.FC<Props> = ({ skillList, resetSkillScroll, scrollOutputAre
     resetSkillScroll()
     scrollOutputArea()
     sendSearchResultEvent()
-  }, [activeSkill, weapon, ignoreArmors, decos, defs])
+  }, [clearAddableSkill, updateSkillLog, activeSkill, searchList, weapon, ignoreArmors, decos, defs, resetSkillScroll, scrollOutputArea])
 
   const onSearchSkill = useCallback(() => {
     searchAddableSkill(activeSkill, weapon, ignoreArmors, decos, defs, skillList)
 
     resetSkillScroll()
     sendSearchSkillEvent()
-  }, [activeSkill, weapon, ignoreArmors, decos, defs, skillList])
+  }, [searchAddableSkill, activeSkill, weapon, ignoreArmors, decos, defs, skillList, resetSkillScroll])
 
   const onClear = useCallback(() => {
     clearActiveSkill()
     clearAddableSkill()
     clearDefs()
     terminate()
-  }, [])
+  }, [clearActiveSkill, clearAddableSkill, clearDefs])
 
   return (
     <div className="Actions">

@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDecos, useDecosActions } from '~/app/hooks/decos'
-import { deco } from '~/app/util/generatedUtil'
-import toNumber from '~/app/util/toNumber'
 import TextFild from '../common/TextFild'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
 import SlotTable from './SlotTable'
+import { useDecos, useDecosActions } from '~/app/hooks/decos'
+import { deco } from '~/app/util/generatedUtil'
+import toNumber from '~/app/util/toNumber'
 
 require('./DecoName.css')
 
@@ -22,7 +22,7 @@ const DecoName: React.FC<Props> = ({ name }) => {
 
   const setDeco = useCallback((e: React.ChangeEvent<HTMLInputElement>) => (
     name && set(name, toNumber(e.currentTarget.value))
-  ), [name])
+  ), [name, set])
 
   const [isModalOpen, setModalOpen] = useState(false)
   const toggleModal = useCallback(() => setModalOpen(state => !state), [])

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 
 require('./SkillLevelIcon.css')
@@ -19,9 +18,7 @@ const SkillLevelIcon: React.FC<Props> = ({ name, value, addableValue, items }) =
         <li
           key={level}
           className={
-            `SkillLevelIcon-li ${
-            value === level ? 'on' : ''} ${
-            addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
+            `SkillLevelIcon-li ${value === level ? 'on' : ''} ${addableValue == null ? '' : level <= addableValue ? 'addable' : 'unaddable'}`
           }
           onClick={() => update(name, level)}
         />

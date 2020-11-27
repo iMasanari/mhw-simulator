@@ -1,8 +1,7 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
+import Select from '../common/Select'
 import { useWeapon, useWeaponActions } from '~/app/hooks/weapon'
 import { weaponSkills } from '~/app/util/generatedUtil'
-import Select from '../common/Select'
 
 require('./WeaponSkills.css')
 

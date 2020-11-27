@@ -1,10 +1,9 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Equipment } from '~/app/util/calc'
 import Table from '../common/Table'
 import ArmorName from './ArmorName'
 import CharmName from './CharmName'
 import DecoName from './DecoName'
+import { Equipment } from '~/app/util/calc'
 
 require('./EquipmentTable.css')
 

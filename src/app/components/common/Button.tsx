@@ -1,5 +1,3 @@
-import React from 'react'
-
 require('./Button.css')
 
 interface Props extends React.HTMLProps<HTMLButtonElement> {

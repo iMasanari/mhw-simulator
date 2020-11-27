@@ -1,8 +1,7 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useResult } from '~/app/hooks/result'
 import HeadingTitle from '../common/HeadingTitle'
 import Equipment from './Equipment'
+import { useResult } from '~/app/hooks/result'
 
 interface Props {
 }

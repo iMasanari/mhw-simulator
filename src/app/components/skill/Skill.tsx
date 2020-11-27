@@ -1,9 +1,8 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
-import skillList from '~/generated/skillList.json'
 import HeadingTitle from '../common/HeadingTitle'
 import SkillFilter from './SkillFilter'
 import Skill from './SkillList'
+import skillList from '~/generated/skillList.json'
 
 interface Props {
   skillFilter: string

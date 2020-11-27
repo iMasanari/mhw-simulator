@@ -1,8 +1,7 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
+import Table from '../common/Table'
 import { Armors } from '~/app/modules/ignoreArmors'
 import { charm } from '~/app/util/generatedUtil'
-import Table from '../common/Table'
 
 require('./CharmTable.css')
 

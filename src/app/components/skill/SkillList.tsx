@@ -1,8 +1,7 @@
-import React from 'react'
+import SkillRow from './SkillRow'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useAddableSkill } from '~/app/hooks/addableSkill'
 import skillList from '~/generated/skillList.json'
-import SkillRow from './SkillRow'
 
 require('./SkillList.css')
 

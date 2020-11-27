@@ -1,5 +1,3 @@
-import React from 'react'
-
 require('./Table.css')
 
 interface Props extends React.HTMLProps<HTMLTableElement> {
