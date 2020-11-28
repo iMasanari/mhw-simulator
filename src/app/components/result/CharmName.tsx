@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import { charm } from '~/app/util/generatedUtil'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
+import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
+import { charm } from '~/app/util/generatedUtil'
 
 require('./CharmName.css')
 
@@ -16,7 +16,7 @@ const CharmName: React.FC<Props> = ({ name }) => {
   const [tEquips] = useTranslation('equips')
   const ignoreArmor = useIgnoreArmors()
   const { toggle } = useIgnoreArmorsActions()
-  const toggleArmor = useCallback(() => name && toggle(name), [name])
+  const toggleArmor = useCallback(() => name && toggle(name), [name, toggle])
 
   const isIgnore = name && ignoreArmor[name] === 0
 

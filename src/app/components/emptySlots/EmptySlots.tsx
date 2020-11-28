@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Accordion from '../common/Accordion'
 import { useActiveSkill } from '~/app/hooks/activeSkill'
 import { useDecos } from '~/app/hooks/decos'
 import { useDefs } from '~/app/hooks/defs'
@@ -12,7 +13,6 @@ import { Armors } from '~/app/modules/ignoreArmors'
 import { Weapon } from '~/app/modules/weapon'
 import calc, { Equipment } from '~/app/util/calc'
 import { Condition } from '~/app/util/calc/execute'
-import Accordion from '../common/Accordion'
 
 require('./EmptySlots.css')
 
@@ -55,7 +55,7 @@ const useSlots = () => {
   // 初回検索
   useEffect(() => {
     searchSummary(activeSkill, weapon, ignoreArmors, decos, defs)
-  }, [activeSkill, weapon])
+  }, [activeSkill, decos, defs, ignoreArmors, searchSummary, weapon])
 
   return slots
 }

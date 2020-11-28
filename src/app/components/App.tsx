@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
-import baseSkillList from '~/generated/skillList.json'
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { useSkillLog } from '../hooks/skillLog'
 import { partition } from '../util/array'
 import About from './about/About'
@@ -11,6 +10,7 @@ import PageTop from './pageTop/PageTop'
 import Result from './result/Result'
 import Skill from './skill/Skill'
 import Weapon from './weapon/Weapon'
+import baseSkillList from '~/generated/skillList.json'
 
 require('./App.css')
 
@@ -48,6 +48,7 @@ const App: React.FC = () => {
   }, [])
 
   // スキルの並びが変更したとき、スキルのスクロールをリセットする
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { scrollRef.current?.scrollTo(0, 0) }, skillList.map(v => v.name))
 
   return (

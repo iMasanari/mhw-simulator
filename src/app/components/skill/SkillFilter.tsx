@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import skillList from '~/generated/skillList.json'
 import TextFild from '../common/TextFild'
+import skillList from '~/generated/skillList.json'
 
 require('./SkillFilter.css')
 

@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Button from '../common/Button'
+import TextFild from '../common/TextFild'
+import CharmTable from './CharmTable'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
 import { flat, unique } from '~/app/util/array'
 import { charm } from '~/app/util/generatedUtil'
 import charmGroup from '~/generated/charmGroup.json'
-import Button from '../common/Button'
-import TextFild from '../common/TextFild'
-import CharmTable from './CharmTable'
 
 interface Props {
 }

@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react'
-import { useActiveSkillActions } from '~/app/hooks/activeSkill'
+import { useCallback } from 'react'
 import Select from '../common/Select'
+import { useActiveSkillActions } from '~/app/hooks/activeSkill'
 
 interface Props {
   name: string

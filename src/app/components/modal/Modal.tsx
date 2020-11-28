@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect } from 'react'
+import { useCallback, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import Button from '../common/Button'
@@ -17,7 +17,9 @@ const ESC = 27
 
 const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
   const { t } = useTranslation()
-  const onClick = useCallback((e: React.MouseEvent) => e.currentTarget === e.target && onClose(), [])
+  const onClick = useCallback((e: React.MouseEvent) => (
+    e.currentTarget === e.target && onClose()
+  ), [onClose])
 
   useLayoutEffect(() => {
     const type = 'keydown'
@@ -27,7 +29,7 @@ const Modal: React.FC<Props> = ({ title, className, onClose, children }) => {
     document.addEventListener(type, listener)
 
     return disposer
-  }, [])
+  }, [onClose])
 
   return createPortal(
     <div className="Modal" onClick={onClick}>

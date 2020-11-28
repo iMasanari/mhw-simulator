@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import SkillLevelIcon from './SkillLevelIcon'
 import SkillSelect from './SkillSelect'

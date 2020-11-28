@@ -1,5 +1,3 @@
-import React from 'react'
-
 require('./About.css')
 
 const md = require('~/documents/usage.md') as string

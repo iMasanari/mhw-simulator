@@ -1,5 +1,3 @@
-import React from 'react'
-
 require('./Select.css')
 
 interface Props extends React.HTMLProps<HTMLSelectElement> {

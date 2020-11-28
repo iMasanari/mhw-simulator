@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
-import { arm, body, charm, head, leg, wst } from '~/app/util/generatedUtil'
 import Table from '../common/Table'
 import Modal from '../modal/Modal'
 import SkillTable from './SkillTable'
 import SlotTable from './SlotTable'
+import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
+import { arm, body, charm, head, leg, wst } from '~/app/util/generatedUtil'
 
 require('./ArmorName.css')
 
@@ -27,7 +27,7 @@ const ArmorName: React.FC<Props> = ({ name, type }) => {
   const [tEquip] = useTranslation('equips')
   const ignoreArmor = useIgnoreArmors()
   const { toggle } = useIgnoreArmorsActions()
-  const toggleArmor = useCallback(() => name && toggle(name), [name])
+  const toggleArmor = useCallback(() => name && toggle(name), [name, toggle])
 
   const isIgnore = name && ignoreArmor[name] === 0
 

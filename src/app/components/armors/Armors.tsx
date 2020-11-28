@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Button from '../common/Button'
+import TextFild from '../common/TextFild'
+import ArmorTable from './ArmorTable'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
 import { flat, unique } from '~/app/util/array'
 import { arm, body, getEquip, head, leg, wst } from '~/app/util/generatedUtil'
 import armorGroup from '~/generated/armorGroup.json'
-import Button from '../common/Button'
-import TextFild from '../common/TextFild'
-import ArmorTable from './ArmorTable'
 
 interface Props {
 }

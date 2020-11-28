@@ -1,5 +1,3 @@
-import React from 'react'
-
 require('./HeadingTitle.css')
 
 interface Props extends React.HTMLProps<HTMLHeadingElement> {

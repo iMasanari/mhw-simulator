@@ -1,7 +1,6 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Armors } from '~/app/modules/ignoreArmors'
 import Table from '../common/Table'
+import { Armors } from '~/app/modules/ignoreArmors'
 
 require('./ArmorTable.css')
 

@@ -1,8 +1,7 @@
-import React from 'react'
-import { Equipment as IEquipment } from '~/app/util/calc'
 import Accordion from '../common/Accordion'
 import EquipmentTable from './EquipmentTable'
 import SkillTable from './SkillTable'
+import { Equipment as IEquipment } from '~/app/util/calc'
 
 require('./Equipment.css')
 
