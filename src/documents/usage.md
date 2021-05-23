@@ -3,10 +3,10 @@
 「モンスターハンターワールド：アイスボーン」のスキルシミュレーターです。  
 
 アルゴリズムは下記を参考にし、実装しています。  
-http://nap.s3.xrea.com/lpsim-v3.pdf
+https://github.com/13-480/lp-doc
 
-
-2020/10/01 ミラボレアスなどに対応
+モンスターハンターRise版はこちら  
+[MHRise スキルシミュ](https://mhrise-simulator.vercel.app)
 
 
 ## 使い方
