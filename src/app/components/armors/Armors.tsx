@@ -9,6 +9,7 @@ import { arm, body, getEquip, head, leg, wst } from '~/app/util/generatedUtil'
 import armorGroup from '~/generated/armorGroup.json'
 
 interface Props {
+  init_filter?: string
 }
 
 const armorGroupEntries: [string, (string | null)[]][] = Object.entries(armorGroup)
@@ -26,11 +27,11 @@ const isMatchFilter = (name: string | null, filter: string) =>
 const getDisplayList = (armorGroups: (readonly [string, (string | null)[]])[]) =>
   flat(armorGroups.map(([_, equips]) => equips.filter(Boolean) as string[]))
 
-const Armors: React.FC<Props> = () => {
+const Armors: React.FC<Props> = ({ init_filter = '' }) => {
   const { t } = useTranslation()
   const ignoreArmors = useIgnoreArmors()
   const { toggle, ignoreFromList, clearFromList } = useIgnoreArmorsActions()
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState(init_filter)
 
   const armorGroups = useMemo(() => (
     armorGroupEntries
@@ -48,6 +49,11 @@ const Armors: React.FC<Props> = () => {
     if (!confirm(t('表示をすべて除外しますか'))) return
 
     ignoreFromList(getDisplayList(armorGroups))
+  }
+
+  if (init_filter && filter === init_filter) {
+    const uniq = [...new Set(Object.keys(armorGroup).map(v => v.replace(/EX|α|β|γ/g, '')).filter(group => init_filter.match(group)))]
+    setFilter(1 === uniq.length ? uniq[0] : init_filter)
   }
 
   return (
@@ -68,7 +74,7 @@ const Armors: React.FC<Props> = () => {
         <Button label={t('表示をすべてチェック')} onClick={checkFromDisplay} />
         <Button label={t('表示をすべて除外')} onClick={uncheckFromDisplay} />
       </div>
-      <ArmorTable armorGroups={armorGroups} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} />
+      <ArmorTable armorGroups={armorGroups} ignoreArmors={ignoreArmors} toggleIgnoreArmors={toggle} equip={init_filter} />
     </div>
   )
 }

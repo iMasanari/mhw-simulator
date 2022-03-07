@@ -14,3 +14,9 @@
 .ArmorTable .ArmorTable-checkboxCell {
   text-align: center;
 }
+.hit-text {
+  color: salmon;
+}
+.hit-background {
+  background: salmon;
+}

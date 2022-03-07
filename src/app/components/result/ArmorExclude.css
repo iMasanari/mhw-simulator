@@ -1,0 +1,9 @@
+.ArmorExclude {
+  color: #1A0DAB;
+  cursor: pointer;
+}
+.ArmorExclude.on {
+}
+.ArmorExclude.off {
+  visibility: hidden;
+}

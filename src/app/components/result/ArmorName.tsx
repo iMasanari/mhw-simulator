@@ -1,7 +1,9 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Armors from '../armors/Armors'
 import Table from '../common/Table'
 import Modal from '../modal/Modal'
+import ArmorExclude from './ArmorExclude'
 import SkillTable from './SkillTable'
 import SlotTable from './SlotTable'
 import { useIgnoreArmors, useIgnoreArmorsActions } from '~/app/hooks/ignoreArmors'
@@ -38,6 +40,8 @@ const ArmorName: React.FC<Props> = ({ name, type }) => {
 
   return (
     <>
+      <ArmorExclude name={name} type={type} />
+      {' '}
       <span className={`ArmorName ${name ? 'on' : ''}`} onClick={name ? toggleModal : undefined}>
         {name ? tEquip(name) : t('装備なし')}
       </span>
